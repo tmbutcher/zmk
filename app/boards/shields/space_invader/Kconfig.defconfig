@@ -1,0 +1,9 @@
+# Copyright (c) 2021 Tom Butcher
+# SPDX-License-Identifier: MIT
+
+if SPACE_INVADER
+
+config ZMK_KEYBOARD_NAME
+    default "Space Invader"
+
+endif

@@ -1,0 +1,258 @@
+/*
+ * Copyright (c) 2021 Tom Butcher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+// Layer Defs
+#define _DFLT	0
+#define _QWERTY	1
+#define _FN		2
+#define _EMOJI	3 // Reserved for future use
+#define _NAV	4 
+#define _MOUSE	5 // Reserved for future use
+#define _NUM	6
+#define _CMP	7 // Reserved for future use
+#define _MEDIA	8
+
+// Key defs--For use until AHK can be ditched
+#define EMOJI	(F21)
+#define CMP		(F23)
+
+
+/ {
+
+	behaviors {
+        comcol: comma_colon {
+			compatible = "zmk,behavior-mod-morph";
+			label = "COMMA_COLON";
+			#binding-cells = <0>;
+			bindings = <&kp COMMA>, <&kp SEMI>;
+			mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
+		dotcol: dot_colon {
+			compatible = "zmk,behavior-mod-morph";
+			label = "DOT_COLON";
+			#binding-cells = <0>;
+			bindings = <&kp DOT>, <&kp COLON>;
+			mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
+		intbang: interobang {
+			compatible = "zmk,behavior-mod-morph";
+			label = "INTEROBANG";
+			#binding-cells = <0>;
+			bindings = <&kp QMARK>, <&kp EXCL>;
+			mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
+	};
+
+	keymap {
+		compatible = "zmk,keymap";
+
+				// ----------------------------------------------BLANK TEMPLATE----------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
+				// |                                  |      |      |      |      |      |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+		default_layer { 
+				// -------------------------------------------------COLEMAK--------------------------------------------------
+				// |  Q   |  W   |  F   |  P   |  B   |				                     |  J   |  L   |  U   |  Y   |  '"  |
+				// |  A   |  R   |  S   |  T   |  G   |				                     |  M   |  N   |  E   |  I   |  O   |
+				// |  Z   |  X   |  C   |  D   |  V   |             | Mute |             |  K   |  H   |  ,;  |  .:  |  ?!  |
+				// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |
+				// |                                  | Left |  Up  | Enter| Down | Rght |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+				// ------------------------------------------------HOLD LAYER------------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// | LWin | LAlt | LShft| LCtrl| LCAlt|				                     | RCAlt| RCtrl| RShft| RAlt | RWin |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |  Fn  |------| LCtrl| Emoji| Nav  | Mouse|      	          | Num  | RShft| Cmp  | RWin |------| Media|
+				// |                                  |      |      |      |      |      |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+			bindings = <
+				&kp Q 	   &kp W      &kp F          &kp P          &kp B 						   				&kp J           &kp L         &kp U        &kp Y      &kp APOS
+				&mt LWin A &mt LAlt R &mt LShft S    &mt LCtrl T    &mt LS(LCtrl) G 			   				&mt RS(RCtrl) M &mt RCtrl N   &mt RShft E  &mt RAlt I &mt RWin O
+				&kp Z      &kp X      &kp C          &kp D          &kp V 			       &kp C_Mute	   		&kp K           &kp H         &comcol      &dotcol    &intbang
+				&lt _FUNCTION Esc     &mt LCtrl Home &mt EMOJI Left &lt _NAV SPACE  &lt _MOUSE TAB &lt _NUM RET &mt RSHFT BSPC  &mt CMP RIGHT &mt RWIN END            &lt _MEDIA DEL
+													 &kp LEFT		&kp UP			&kp RET		   &kp DOWN		&kp RIGHT
+			>;
+
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+		};
+
+		qwerty_layer {
+				// --------------------------------------------------QWERTY--------------------------------------------------
+				// |  Q   |  W   |  E   |  R   |  T   |				                     |  Y   |  U   |  I   |  O   |  P   |
+				// |  A   |  S   |  D   |  F   |  G   |				                     |  H   |  J   |  K   |  L   |  ;:  |
+				// |  Z   |  X   |  C   |  V   |  B   |             | Mute |             |  N   |  M   |  ,<  |  .>  |  /?  |
+				// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |
+				// |                                  | Left |  Up  | Enter| Down | Rght |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+			bindings = <
+				&kp Q 	   &kp W      &kp E          &kp R          &kp T 						   		  &kp Y           &kp U         &kp I        &kp O          &kp P
+				&mt LWin A &mt LAlt S &mt LShft D    &mt LCtrl F    &mt LS(LCtrl) G 			   		  &mt RS(RCtrl) J &mt RCtrl K   &mt RShft L  &mt RAlt COLON &mt RWin APOS
+				&kp Z      &kp X      &kp C          &kp V          &kp B 			       &trans		  &kp N           &kp M         &kp COMMA    &kp DOT 	    &kp SLASH
+				&trans     			  &trans	 	 &trans			&trans			&trans		  &trans  &trans          &trans        &trans                      &trans
+													 &trans			&trans			&trans		  &trans  &trans
+			>;
+
+			sensor-bindings = <&inc_dec_kp &trans &trans>;
+		};
+
+		function_layer {
+				// -------------------------------------------------FUNCTION-------------------------------------------------
+				// |  Q   |  W   |  E   |  R   |  T   |				                     |  Y   |  U   |  I   |  O   |  P   |
+				// |  A   |  S   |  D   |  F   |  G   |				                     |  H   |  J   |  K   |  L   |  ;:  |
+				// |  Z   |  X   |  C   |  V   |  B   |             | Mute |             |  N   |  M   |  ,<  |  .>  |  /?  |
+				// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |
+				// |                                  | Left |  Up  | Enter| Down | Rght |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+			bindings = <
+				&kp Q 	   &kp W      &kp E          &kp R          &kp T 						   		  &kp Y           &kp U         &kp I        &kp O          &kp P
+				&mt LWin A &mt LAlt S &mt LShft D    &mt LCtrl F    &mt LS(LCtrl) G 			   		  &mt RS(RCtrl) J &mt RCtrl K   &mt RShft L  &mt RAlt COLON &mt RWin APOS
+				&kp Z      &kp X      &kp C          &kp V          &kp B 			       &trans		  &kp N           &kp M         &kp COMMA    &kp DOT 	    &kp SLASH
+				&trans     			  &trans	 	 &trans			&trans			&trans		  &trans  &trans          &trans        &trans                      &trans
+													 &trans			&trans			&trans		  &trans  &trans
+			>;
+
+			sensor-bindings = <&inc_dec_kp &trans &trans>;
+		};
+
+		emoji_layer {
+				// --------------------------------------------------EMOJI---------------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
+				// |                                  |      |      |      |      |      |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+
+			bindings = <
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
+				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
+											&trans	&trans	&trans	&trans	&trans
+				>;
+
+			sensor-bindings = <&inc_dec_kp &trans &trans>;
+		};
+
+		navigation_layer {
+				// ------------------------------------------------NAVIGATION------------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
+				// |                                  |      |      |      |      |      |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+
+			bindings = <
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
+				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
+											&trans	&trans	&trans	&trans	&trans
+				>;
+
+			sensor-bindings = <&inc_dec_kp &trans &trans>;
+		};
+
+		mouse_layer {
+				// --------------------------------------------------MOUSE---------------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
+				// |                                  |      |      |      |      |      |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+
+			bindings = <
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
+				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
+											&trans	&trans	&trans	&trans	&trans
+				>;
+
+			sensor-bindings = <&inc_dec_kp &trans &trans>;
+		};
+
+		number_layer {
+				// --------------------------------------------------NUMBER--------------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
+				// |                                  |      |      |      |      |      |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+
+			bindings = <
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
+				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
+											&trans	&trans	&trans	&trans	&trans
+				>;
+
+			sensor-bindings = <&inc_dec_kp &trans &trans>;
+		};
+
+		compose_layer {
+				// -------------------------------------------------COMPOSE--------------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
+				// |                                  |      |      |      |      |      |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+
+			bindings = <
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
+				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
+											&trans	&trans	&trans	&trans	&trans
+				>;
+
+			sensor-bindings = <&inc_dec_kp &trans &trans>;
+		};
+
+		media_layer {
+				// --------------------------------------------------MEDIA---------------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
+				// |                                  |      |      |      |      |      |									|
+				// ----------------------------------------------------------------------------------------------------------
+
+
+			bindings = <
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
+				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
+											&trans	&trans	&trans	&trans	&trans
+				>;
+
+			sensor-bindings = <&inc_dec_kp &trans &trans>;
+		};
+	};
+};
