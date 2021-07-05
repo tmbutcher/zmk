@@ -21,4 +21,10 @@ endif # USB
 config BT_CTLR
 	default BT
 
+config ZMK_BLE
+	default y
+
+config ZMK_USB
+	default y
+
 endif # BOARD_ADAFRUIT_FEATHER_NRF52840

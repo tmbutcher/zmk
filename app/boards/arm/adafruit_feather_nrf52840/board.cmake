@@ -6,3 +6,7 @@ board_runner_args(blackmagicprobe "--gdb-serial=/dev/ttyBmpGdb")
 include(${ZEPHYR_BASE}/boards/common/jlink.board.cmake)
 include(${ZEPHYR_BASE}/boards/common/pyocd.board.cmake)
 include(${ZEPHYR_BASE}/boards/common/blackmagicprobe.board.cmake)
+
+# board_runner_args(nrfjprog "--nrf-family=NRF52" "--softreset")
+# include(${ZEPHYR_BASE}/boards/common/blackmagicprobe.board.cmake)
+# include(${ZEPHYR_BASE}/boards/common/nrfjprog.board.cmake)

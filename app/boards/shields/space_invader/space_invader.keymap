@@ -9,19 +9,19 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Layer Defs
-#define _DFLT	0
-#define _QWERTY	1
-#define _FN		2
-#define _EMOJI	3 // Reserved for future use
-#define _NAV	4 
-#define _MOUSE	5 // Reserved for future use
-#define _NUM	6
-#define _CMP	7 // Reserved for future use
-#define _MEDIA	8
+#define DFLT	0
+#define QWERTY	1
+#define FN		2
+#define EMOJI	3 // Reserved for future use
+#define NAV		4 
+#define MOUSE	5 // Reserved for future use
+#define NUM		6
+#define CMP		7 // Reserved for future use
+#define MEDIA	8
 
 // Key defs--For use until AHK can be ditched
-#define EMOJI	(F21)
-#define CMP		(F23)
+#define KP_EMJ	(F21)
+#define KP_CMP	(F23)
 
 
 / {
@@ -79,11 +79,11 @@
 				// ----------------------------------------------------------------------------------------------------------
 
 			bindings = <
-				&kp Q 	   &kp W      &kp F          &kp P          &kp B 						   				&kp J           &kp L         &kp U        &kp Y      &kp APOS
-				&mt LWin A &mt LAlt R &mt LShft S    &mt LCtrl T    &mt LS(LCtrl) G 			   				&mt RS(RCtrl) M &mt RCtrl N   &mt RShft E  &mt RAlt I &mt RWin O
-				&kp Z      &kp X      &kp C          &kp D          &kp V 			       &kp C_Mute	   		&kp K           &kp H         &comcol      &dotcol    &intbang
-				&lt _FUNCTION Esc     &mt LCtrl Home &mt EMOJI Left &lt _NAV SPACE  &lt _MOUSE TAB &lt _NUM RET &mt RSHFT BSPC  &mt CMP RIGHT &mt RWIN END            &lt _MEDIA DEL
-													 &kp LEFT		&kp UP			&kp RET		   &kp DOWN		&kp RIGHT
+				&kp Q 	   &kp W      &kp F          &kp P           &kp B 						   				&kp J           &kp L            &kp U       &kp Y      &kp APOS
+				&mt LWIN A &mt LALT R &mt LSHFT S    &mt LCTRL T     &mt LS(LCTRL) G 			   			    &mt RS(RCTRL) M &mt RCTRL N      &mt RSHFT E &mt RALT I &mt RWIN O
+				&kp Z      &kp X      &kp C          &kp D           &kp V 			       &kp C_MUTE	   		&kp K           &kp H            &comcol     &dotcol    &intbang
+				&lt FN ESC      	  &mt LCTRL HOME &mt KP_EMJ LEFT &lt NAV SPACE  &lt MOUSE TAB  &lt NUM RET  &mt RSHFT BSPC  &mt KP_CMP RIGHT &mt RWIN END           &lt MEDIA DEL
+													 &kp LEFT		 &kp UP			&kp RET		   &kp DOWN		&kp RIGHT
 			>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -100,13 +100,13 @@
 
 			bindings = <
 				&kp Q 	   &kp W      &kp E          &kp R          &kp T 						   		  &kp Y           &kp U         &kp I        &kp O          &kp P
-				&mt LWin A &mt LAlt S &mt LShft D    &mt LCtrl F    &mt LS(LCtrl) G 			   		  &mt RS(RCtrl) J &mt RCtrl K   &mt RShft L  &mt RAlt COLON &mt RWin APOS
+				&mt LWIN A &mt LALT S &mt LSHFT D    &mt LCTRL F    &mt LS(LCTRL) G 			   		  &mt RS(RCTRL) J &mt RCTRL K   &mt RSHFT L  &mt RALT COLON &mt RWIN APOS
 				&kp Z      &kp X      &kp C          &kp V          &kp B 			       &trans		  &kp N           &kp M         &kp COMMA    &kp DOT 	    &kp SLASH
 				&trans     			  &trans	 	 &trans			&trans			&trans		  &trans  &trans          &trans        &trans                      &trans
 													 &trans			&trans			&trans		  &trans  &trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp &trans &trans>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
 		function_layer {
@@ -119,14 +119,14 @@
 				// ----------------------------------------------------------------------------------------------------------
 
 			bindings = <
-				&kp Q 	   &kp W      &kp E          &kp R          &kp T 						   		  &kp Y           &kp U         &kp I        &kp O          &kp P
-				&mt LWin A &mt LAlt S &mt LShft D    &mt LCtrl F    &mt LS(LCtrl) G 			   		  &mt RS(RCtrl) J &mt RCtrl K   &mt RShft L  &mt RAlt COLON &mt RWin APOS
-				&kp Z      &kp X      &kp C          &kp V          &kp B 			       &trans		  &kp N           &kp M         &kp COMMA    &kp DOT 	    &kp SLASH
-				&trans     			  &trans	 	 &trans			&trans			&trans		  &trans  &trans          &trans        &trans                      &trans
-													 &trans			&trans			&trans		  &trans  &trans
+				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
+				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
+											&trans	&trans	&trans	&trans	&trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp &trans &trans>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
 		emoji_layer {
@@ -140,14 +140,14 @@
 
 
 			bindings = <
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
 				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
 											&trans	&trans	&trans	&trans	&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp &trans &trans>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
 		navigation_layer {
@@ -161,14 +161,14 @@
 
 
 			bindings = <
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
 				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
 											&trans	&trans	&trans	&trans	&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp &trans &trans>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
 		mouse_layer {
@@ -182,14 +182,14 @@
 
 
 			bindings = <
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
 				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
 											&trans	&trans	&trans	&trans	&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp &trans &trans>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
 		number_layer {
@@ -203,14 +203,14 @@
 
 
 			bindings = <
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
 				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
 											&trans	&trans	&trans	&trans	&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp &trans &trans>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
 		compose_layer {
@@ -224,14 +224,14 @@
 
 
 			bindings = <
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
 				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
 											&trans	&trans	&trans	&trans	&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp &trans &trans>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
 		media_layer {
@@ -245,14 +245,14 @@
 
 
 			bindings = <
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
 				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
 											&trans	&trans	&trans	&trans	&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp &trans &trans>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 	};
 };
