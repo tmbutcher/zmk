@@ -25,4 +25,7 @@ config ZMK_BLE
 config ZMK_USB
 	default y
 
+config ZMK_KEYBOARD_NAME
+    default "adafruit_feather_nrf52840"
+
 endif # BOARD_NRF52840_M2
