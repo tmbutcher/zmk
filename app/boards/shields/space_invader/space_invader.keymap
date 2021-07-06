@@ -80,7 +80,7 @@
 
 			bindings = <
 				&kp Q 	   &kp W      &kp F          &kp P           &kp B 						   				&kp J           &kp L            &kp U       &kp Y      &kp APOS
-				&mt LWIN A &mt LALT R &mt LSHFT S    &mt LCTRL T     &mt LS(LCTRL) G 			   			    &mt RS(RCTRL) M &mt RCTRL N      &mt RSHFT E &mt RALT I &mt RWIN O
+				&mt LWIN A &mt LALT R &mt LSHFT S    &mt LCTRL T     &kp G 			   			    &kp M &mt RCTRL N      &mt RSHFT E &mt RALT I &mt RWIN O
 				&kp Z      &kp X      &kp C          &kp D           &kp V 			       &kp C_MUTE	   		&kp K           &kp H            &comcol     &dotcol    &intbang
 				&lt FN ESC      	  &mt LCTRL HOME &mt KP_EMJ LEFT &lt NAV SPACE  &lt MOUSE TAB  &lt NUM RET  &mt RSHFT BSPC  &mt KP_CMP RIGHT &mt RWIN END           &lt MEDIA DEL
 													 &kp LEFT		 &kp UP			&kp RET		   &kp DOWN		&kp RIGHT
@@ -119,7 +119,7 @@
 				// ----------------------------------------------------------------------------------------------------------
 
 			bindings = <
-				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
+				&bootloader	&bt BT_SEL 0	&bt BT_NXT	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
 				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
 				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
