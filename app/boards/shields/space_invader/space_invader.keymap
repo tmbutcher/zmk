@@ -48,6 +48,27 @@
 			bindings = <&kp QMARK>, <&kp EXCL>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
+		lgthan: less_greater_than {
+			compatible = "zmk,behavior-mod-morph";
+			label = "LESS_GREATER_THAN";
+			#binding-cells = <0>;
+			bindings = <&kp LT>, <&kp GT>;
+			mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
+		dotcom: dot_comma {
+			compatible = "zmk,behavior-mod-morph";
+			label = "DOT_COMMA";
+			#binding-cells = <0>;
+			bindings = <&kp DOT>, <&kp COMMA>;
+			mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
+		zeroleft: zero_left_parenthesis {
+			compatible = "zmk,behavior-mod-morph";
+			label = "ZERO_LEFT_PARENTHESIS";
+			#binding-cells = <0>;
+			bindings = <&kp N0>, <&kp LPAR>;
+			mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
 	};
 
 	keymap {
@@ -57,9 +78,11 @@
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
-				// |                                  |      |      |      |      |      |									|
+				// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
+
+
 
 		default_layer { 
 				// -------------------------------------------------COLEMAK--------------------------------------------------
@@ -67,7 +90,7 @@
 				// |  A   |  R   |  S   |  T   |  G   |				                     |  M   |  N   |  E   |  I   |  O   |
 				// |  Z   |  X   |  C   |  D   |  V   |             | Mute |             |  K   |  H   |  ,;  |  .:  |  ?!  |
 				// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |
-				// |                                  | Left |  Up  | Enter| Down | Rght |									|
+				// |----------------------------------| Left |  Up  | Enter| Down | Rght |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 				// ------------------------------------------------HOLD LAYER------------------------------------------------
@@ -75,12 +98,12 @@
 				// | LWin | LAlt | LShft| LCtrl| LCAlt|				                     | RCAlt| RCtrl| RShft| RAlt | RWin |
 				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
 				// |  Fn  |------| LCtrl| Emoji| Nav  | Mouse|      	          | Num  | RShft| Cmp  | RWin |------| Media|
-				// |                                  |      |      |      |      |      |									|
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 			bindings = <
 				&kp Q 	   &kp W      &kp F          &kp P           &kp B 						   				&kp J           &kp L            &kp U       &kp Y      &kp APOS
-				&mt LWIN A &mt LALT R &mt LSHFT S    &mt LCTRL T     &kp G 			   			    &kp M &mt RCTRL N      &mt RSHFT E &mt RALT I &mt RWIN O
+				&mt LWIN A &mt LALT R &mt LSHFT S    &mt LCTRL T     &mt LS(LCTRL) G 			   		  		&mt RS(RCTRL) J &mt RCTRL N      &mt RSHFT E &mt RALT I &mt RWIN O
 				&kp Z      &kp X      &kp C          &kp D           &kp V 			       &kp C_MUTE	   		&kp K           &kp H            &comcol     &dotcol    &intbang
 				&lt FN ESC      	  &mt LCTRL HOME &mt KP_EMJ LEFT &lt NAV SPACE  &lt MOUSE TAB  &lt NUM RET  &mt RSHFT BSPC  &mt KP_CMP RIGHT &mt RWIN END           &lt MEDIA DEL
 													 &kp LEFT		 &kp UP			&kp RET		   &kp DOWN		&kp RIGHT
@@ -95,7 +118,15 @@
 				// |  A   |  S   |  D   |  F   |  G   |				                     |  H   |  J   |  K   |  L   |  ;:  |
 				// |  Z   |  X   |  C   |  V   |  B   |             | Mute |             |  N   |  M   |  ,<  |  .>  |  /?  |
 				// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |
-				// |                                  | Left |  Up  | Enter| Down | Rght |									|
+				// |----------------------------------| Left |  Up  | Enter| Down | Rght |----------------------------------|
+				// ----------------------------------------------------------------------------------------------------------
+
+				// ------------------------------------------------HOLD LAYER------------------------------------------------
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// | LWin | LAlt | LShft| LCtrl| LCAlt|				                     | RCAlt| RCtrl| RShft| RAlt | RWin |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |  Fn  |------| LCtrl| Emoji| Nav  | Mouse|      	          | Num  | RShft| Cmp  | RWin |------| Media|
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 			bindings = <
@@ -111,40 +142,40 @@
 
 		function_layer {
 				// -------------------------------------------------FUNCTION-------------------------------------------------
-				// |  Q   |  W   |  E   |  R   |  T   |				                     |  Y   |  U   |  I   |  O   |  P   |
-				// |  A   |  S   |  D   |  F   |  G   |				                     |  H   |  J   |  K   |  L   |  ;:  |
-				// |  Z   |  X   |  C   |  V   |  B   |             | Mute |             |  N   |  M   |  ,<  |  .>  |  /?  |
-				// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |
-				// |                                  | Left |  Up  | Enter| Down | Rght |									|
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |				                     |      |      |      |      |      |
+				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+				// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 			bindings = <
-				&bootloader	&bt BT_SEL 0	&bt BT_NXT	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
-				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
-											&trans	&trans	&trans	&trans	&trans
+				&bootloader	&bt BT_SEL 0 &bt BT_NXT	&trans		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans 		&trans 		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans		&trans		&trans			  &trans			&trans		&trans		&trans		&trans		&trans
+				&trans					&trans		&trans		&trans		&trans		&trans		&trans		&trans		&trans					&trans
+															&trans		&trans		&trans		&trans		&trans
 			>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
-		emoji_layer {
+		emoji_layer { // todo: Unicode (including emoji) not yet implemented in ZMK. Maybe try using AHK in the meantime?
 				// --------------------------------------------------EMOJI---------------------------------------------------
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
-				// |                                  |      |      |      |      |      |									|
+				// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 
 			bindings = <
-				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
-				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
-											&trans	&trans	&trans	&trans	&trans
+				&kp Q		&trans		&trans		&trans		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans 		&trans 		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans		&trans		&trans			  &trans			&trans		&trans		&trans		&trans		&trans
+				&trans					&trans		&trans		&trans		&trans		&trans		&trans		&trans		&trans					&trans
+															&trans		&trans		&trans		&trans		&trans
 				>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -152,41 +183,41 @@
 
 		navigation_layer {
 				// ------------------------------------------------NAVIGATION------------------------------------------------
-				// |      |      |      |      |      |				                     |      |      |      |      |      |
-				// |      |      |      |      |      |				                     |      |      |      |      |      |
-				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
-				// |                                  |      |      |      |      |      |									|
+				// |      | Home |  Up  | End  | PgUp |				                     | PgUp | Home |  Up  | End  |  =+  |
+				// |PrvTab| Left | Down | Right| PgDn |				                     | PgDn | Left | Down | Right|NxtTab|
+				// |      |AltLft|      |AltRgt|      |             |Scroll|             |      |AltLft|      |AltRgt|  -_  |
+				// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 
 			bindings = <
-				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
-				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
-											&trans	&trans	&trans	&trans	&trans
+				&trans		&kb HOME	&kp UP		&kp END		&kp PG_UP							&kp PG_UP	&kb HOME	&kp UP		&kp END		&kp EQUAL
+				&kp RC(TAB)	&kp LEFT	&kp DOWN 	&kp RIGHT 	&kp PG_DN							&kp PG_DN	&kp LEFT	&kp DOWN 	&kp RIGHT	&kp RC(RS(TAB))
+				&trans		&kp LA(LEFT) &trans		&kp LA(RIGHT)  &trans		  &trans			&trans		&kp LA(LEFT) &trans		&kp LA(RIGHT)  &kp MINUS
+				&trans					&trans		&trans		&trans		&trans		&trans		&trans		&trans		&trans					&trans
+															&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+			sensor-bindings = <&inc_dec_kp DOWN UP>;
 		};
 
-		mouse_layer {
+		mouse_layer {  // todo: Mouse not yet implemented in ZMK. Maybe try using AHK in the meantime?
 				// --------------------------------------------------MOUSE---------------------------------------------------
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
-				// |                                  |      |      |      |      |      |									|
+				// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 
 			bindings = <
-				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
-				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
-											&trans	&trans	&trans	&trans	&trans
+				&kp Q		&trans		&trans		&trans		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans 		&trans 		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans		&trans		&trans			  &trans			&trans		&trans		&trans		&trans		&trans
+				&trans					&trans		&trans		&trans		&trans		&trans		&trans		&trans		&trans					&trans
+															&trans		&trans		&trans		&trans		&trans
 				>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -194,41 +225,41 @@
 
 		number_layer {
 				// --------------------------------------------------NUMBER--------------------------------------------------
-				// |      |      |      |      |      |				                     |      |      |      |      |      |
-				// |      |      |      |      |      |				                     |      |      |      |      |      |
-				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
-				// |                                  |      |      |      |      |      |									|
+				// |  [{  |  7&  |  8*  |  9(  |  -_  |				                     |  [{  |  7&  |  8*  |  9(  |  -_  |
+				// |  ]}  |  4$  |  5%  |  6^  |  =+  |				                     |  ]}  |  4$  |  5%  |  6^  |  =+  |
+				// |  <>  |  1!  |  2@  |  3#  |  \|  |             |      |             |  <>  |  1!  |  2@  |  3#  |  \|  |
+				// | LAlt |------|  .,  |  0(  |  0)  |      |      	          |      |  0(  |  0)  |  .,  |------|RShift|
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 
 			bindings = <
-				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
-				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
-											&trans	&trans	&trans	&trans	&trans
+				&kp LBKT	&kp N7		&kp N8		&kp N9		&kp MINUS							&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
+				&kp RBKT	&kp N4		&kp N5		&kp N6		&kp EQUAL							&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
+				&lgthan		&kp N1		&kp N2		&kp N3		&kp BSLH		  &trans			&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
+				&kp LALT				&dotcom		&zeroleft	&kp N0		&trans		&trans		&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
+															&trans		&trans		&trans		&trans		&trans
 				>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
-		compose_layer {
+		compose_layer { // todo: unicode not yet implemented in ZMK. Maybe try using AHK in the meantime?
 				// -------------------------------------------------COMPOSE--------------------------------------------------
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
-				// |                                  |      |      |      |      |      |									|
+				// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 
 			bindings = <
-				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
-				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
-											&trans	&trans	&trans	&trans	&trans
+				&kp Q		&trans		&trans		&trans		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans 		&trans 		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans		&trans		&trans			  &trans			&trans		&trans		&trans		&trans		&trans
+				&trans					&trans		&trans		&trans		&trans		&trans		&trans		&trans		&trans					&trans
+															&trans		&trans		&trans		&trans		&trans
 				>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -239,17 +270,17 @@
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |				                     |      |      |      |      |      |
 				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-				// |      |      |      |      |      |      |      	          |      |      |      |      |      |      |
-				// |                                  |      |      |      |      |      |									|
+				// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
+				// |----------------------------------|      |      |      |      |      |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
 
 			bindings = <
-				&kp Q	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans					&trans	&trans	&trans	&trans	&trans
-				&trans	&trans	&trans	&trans	&trans	&trans			&trans	&trans	&trans	&trans	&trans
-				&trans			&trans	&trans	&trans	&trans	&trans	&trans	&trans	&trans			&trans
-											&trans	&trans	&trans	&trans	&trans
+				&kp Q		&trans		&trans		&trans		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans 		&trans 		&trans								&trans		&trans		&trans		&trans		&trans
+				&trans		&trans		&trans		&trans		&trans			  &trans			&trans		&trans		&trans		&trans		&trans
+				&trans					&trans		&trans		&trans		&trans		&trans		&trans		&trans		&trans					&trans
+															&trans		&trans		&trans		&trans		&trans
 				>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
