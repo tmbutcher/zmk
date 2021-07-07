@@ -71,6 +71,15 @@
 		};
 	};
 
+    combos {
+        compatible = "zmk,combos";
+        combo_qwerty {
+            timeout-ms = <50>;
+            key-positions = <0 1>;  // Q & W
+            bindings = <&to QWERTY>;
+        };
+    };
+
 	keymap {
 		compatible = "zmk,keymap";
 
@@ -192,7 +201,7 @@
 
 
 			bindings = <
-				&trans		&kb HOME	&kp UP		&kp END		&kp PG_UP							&kp PG_UP	&kb HOME	&kp UP		&kp END		&kp EQUAL
+				&trans		&kp HOME	&kp UP		&kp END		&kp PG_UP							&kp PG_UP	&kp HOME	&kp UP		&kp END		&kp EQUAL
 				&kp RC(TAB)	&kp LEFT	&kp DOWN 	&kp RIGHT 	&kp PG_DN							&kp PG_DN	&kp LEFT	&kp DOWN 	&kp RIGHT	&kp RC(RS(TAB))
 				&trans		&kp LA(LEFT) &trans		&kp LA(RIGHT)  &trans		  &trans			&trans		&kp LA(LEFT) &trans		&kp LA(RIGHT)  &kp MINUS
 				&trans					&trans		&trans		&trans		&trans		&trans		&trans		&trans		&trans					&trans
