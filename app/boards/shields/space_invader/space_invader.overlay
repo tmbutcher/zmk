@@ -74,3 +74,27 @@ RC(3,0)         RC(3,1) RC(3,2) RC(3,3) RC(3,4)                         RC(3,5) 
 		sensors = <&encoder>;
 	};
 };
+
+// Uncomment to enable OLED display
+
+&feather_i2c {
+	status = "okay";
+	sda-pin = <12>;
+	scl-pin = <11>;
+
+	oled: ssd1306@3c {
+		compatible = "solomon,ssd1306fb";
+		reg = <0x3c>;
+		label = "DISPLAY";
+		width = <128>;
+		height = <32>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <31>;
+		com-invdir;
+		segment-remap;
+		com-sequential;
+		prechargep = <0x22>;
+	};
+};
