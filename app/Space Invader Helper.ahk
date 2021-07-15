@@ -13,22 +13,22 @@ SetNumLockState, AlwaysOn
     F24::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0) ; Computer sleep button
 
 ; Mouse Stuff
-    Numpad8::
+    Numpad8::        ;Regular mouse movement
     Numpad5::
     Numpad4::
     Numpad6::
         moveTheMouse()
 
-    !Numpad8::
+    !Numpad8::       ;Faster mouse movement w/ CTRL
     !Numpad5::
     !Numpad4::
     !Numpad6::
         moveTheMouse(50,5,10)
 
-    ^Numpad8::
-    ^Numpad5::
-    ^Numpad4::
-    ^Numpad6::
+    !#^Numpad8::       ;Slower mouse movement w/ HYPER
+    !#^Numpad5::
+    !#^Numpad4::
+    !#^Numpad6::
         moveTheMouse(1,0.01,10)
 
     Numpad7::Click, WheelLeft

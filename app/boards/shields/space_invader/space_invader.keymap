@@ -24,11 +24,28 @@
 #define CMP		8 // Reserved for future use
 #define STAY	9
 
-// Key defs--For use until AHK can be ditched
+// Mouse Key defs--For use until AHK can be ditched
+#define WH_DN	(F17)
+#define WH_UP	(F18)
+#define WH_L	(KP_N7)
+#define WH_R	(KP_N9)
+#define M_UP	(KP_N8)
+#define M_DN	(KP_N5)
+#define M_L		(KP_N4)
+#define M_R		(KP_N6)
+#define M_MB	(KP_DIVIDE)
+#define M_LB	(KP_MINUS)
+#define M_RB	(KP_MULTIPLY)
+
+// Other defs
+#define KP_COM	(F19)
+#define KP_SMC	(F20)
 #define KP_EMJ	(F21)
 #define KP_CMP	(F23)
+#define KP_SLP	(F24)
 
 #define HYPER	(LG(LA(LS(LCTRL))))
+// #define HYPER	(LG(LA(LS(LCTRL))))   // Maybe try to make a custom mod kp?
 
 &mt {
 	quick_tap_ms = <200>;
@@ -74,7 +91,7 @@
 			compatible = "zmk,behavior-mod-morph";
 			label = "COMMA_COLON";
 			#binding-cells = <0>;
-			bindings = <&kp COMMA>, <&kp F20>; // Use AHK to turn F20 into semicolon
+			bindings = <&kp COMMA>, <&kp KP_SMC>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
 		dotcol: dot_colon {
@@ -102,7 +119,7 @@
 			compatible = "zmk,behavior-mod-morph";
 			label = "DOT_COMMA";
 			#binding-cells = <0>;
-			bindings = <&kp DOT>, <&kp F19>; // Use AHK to turn F19 into comma
+			bindings = <&kp DOT>, <&kp KP_COM>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
 		zeroleft: zero_left_parenthesis {
@@ -116,7 +133,7 @@
 			compatible = "zmk,behavior-mod-morph";
 			label = "BOOTLOADER_SLEEP";
 			#binding-cells = <0>;
-			bindings = <&bootloader>, <&kp F24>; // Use AHK to turn F24 into Sleep Button
+			bindings = <&bootloader>, <&kp KP_SLP>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
 	};
@@ -179,7 +196,7 @@
 													 &kp LEFT		 &kp UP			&kp RET		   &kp DOWN		&kp RIGHT
 			>;
 
-			sensor-bindings = <&inc_dec_kp F17 F18>; // Use AHK to turn F17 & F18 to Wheel Up/Down
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		number_layer {
@@ -194,14 +211,14 @@
 
 
 			bindings = < // All numbers use auto-shift for symbols
-				&as LS(LBKT) LBKT	&as LS(N7) N7	&as LS(N8) N8	&as LS(N9) N9	&as LS(MINUS) MINUS						&trans		&trans		&trans		&trans		&trans     //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
+				&as LS(LBKT) LBKT	&as LS(N7) N7	&as LS(N8) N8	&as LS(N9) N9	&as LS(MINUS) MINUS						&none       &none		&none		&none		&none     //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
 				&as LS(RBKT) RBKT	&as LS(N4) N4	&as LS(N5) N5	&as LS(N6) N6	&as LS(EQUAL) EQUAL						&kp HYPER	&kp RCTRL	&kp RSHFT	&kp RALT	&kp RWIN   //	&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
-				&lgthan				&as LS(N1) N1	&as LS(N2) N2	&as LS(N3) N3	&as LS(BSLH) BSLH	  	&trans     		&trans		&trans		&trans		&trans		&trans     //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
-				&to DFLT			&kp SPACE	    &dotcom	        &zeroleft		&as LS(N0) N0	   					&tog NUM 	&kp RSHFT	&trans		&trans					&trans     //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
-															&trans		&trans		&trans		&trans		&trans
+				&lgthan				&as LS(N1) N1	&as LS(N2) N2	&as LS(N3) N3	&as LS(BSLH) BSLH	  	&trans     		&none		&none		&none		&none		&none     //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
+				&to DFLT			                &kp SPACE	    &dotcom	        &zeroleft	&as LS(N0) N0	&tog NUM 	&kp RSHFT	    &trans		&trans					&trans     //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
+																					&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp F17 F18>; // Use AHK to turn F17 & F18 to Wheel Up/Down
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		symbol_layer {
@@ -216,14 +233,14 @@
 
 
 			bindings = <
-				&kp LS(LBKT)	&kp LS(N7)	&kp LS(N8)	&kp LS(N9)	&kp LS(MINUS)						&trans		&trans		&trans		&trans		&trans   //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
+				&kp LS(LBKT)	&kp LS(N7)	&kp LS(N8)	&kp LS(N9)	&kp LS(MINUS)						&none		&none		&none		&none		&none    //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
 				&kp LS(RBKT)	&kp LS(N4)	&kp LS(N5)	&kp LS(N6)	&kp LS(EQUAL)						&kp HYPER	&kp RCTRL	&kp RSHFT	&kp RALT	&kp RWIN //	&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
-				&lgthan			&kp LS(N1)	&kp LS(N2)	&kp LS(N3)	&kp LS(BSLH)	  &trans			&trans		&trans		&trans		&trans		&trans   //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
-				&to DFLT					&dotcom		&trans		&kp LS(N9)	  &kp LS(N0)  &trans	&trans		&trans		&trans					&tog SYM //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
+				&lgthan			&kp LS(N1)	&kp LS(N2)	&kp LS(N3)	&kp LS(BSLH)	  &trans			&none		&none		&none		&none		&none    //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
+				&to DFLT					&dotcom		&kp SPACE	&kp LS(N9)	  &kp LS(N0)  &trans	&trans		&trans		&trans					&tog SYM //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
 																&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp F17 F18>; // Use AHK to turn F17 & F18 to Wheel Up/Down
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		navigation_layer {
@@ -238,14 +255,14 @@
 
 
 			bindings = <
-				&trans		&trans		&trans		&trans		&trans								&kp PG_UP	&kp HOME	&kp UP		&kp END		&kp EQUAL
-				&kp LWIN	&kp LALT  &mt LSHFT LC(S) &kp LCTRL	&kp HYPER							&kp PG_DN	&kp LEFT	&kp DOWN 	&kp RIGHT	&kp RC(TAB)
-				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		    &trans			&trans		&kp LC(LEFT) &trans		&kp LC(RIGHT)  &kp MINUS
-				&to DFLT				&trans		&trans		&tog NAV	&trans		&trans		&trans		&trans		&trans					&trans
+				&trans		&trans		&trans		&trans		&trans								&none	    &kp HOME	 &kp PG_DN   &kp PG_UP  &kp END
+				&kp LWIN	&kp LALT  &mt LSHFT LC(S) &kp LCTRL	&kp HYPER							&none	    &kp LEFT	 &kp DOWN    &kp UP   	&kp RIGHT
+				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		    &trans			&none		&kp LC(LEFT) &kp WH_DN	 &kp WH_UP	&kp LC(RIGHT)
+				&to DFLT				&trans		&trans		&tog NAV	&trans		&trans		&trans		&trans		 &trans					&trans
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp LA(TAB) LA(LS(TAB))>; // Alt-Tab & Shift-Alt-Tab -- not working right now. Probably best to abandon.tts
+			sensor-bindings = <&inc_dec_kp WH_DN LA(LS(TAB))>;
 		};
 
 		mouse_layer {  // todo: Mouse not yet implemented in ZMK. Using AHK in the meantime
@@ -260,14 +277,14 @@
 
 
 			bindings = <
-				&kp Q		&trans		&trans		&trans		&trans								&kp F18		&kp KP_N7	&kp KP_N8	&kp KP_N9	&trans
-				&kp LWIN	&kp LALT	&kp LSHFT	&kp LCTRL	&kp HYPER							&kp F17		&kp KP_N4	&kp KP_N5	&kp KP_N6	&trans
-				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		  &trans			&trans		&kp KP_N1	&kp KP_N2	&kp KP_N3	&trans
-				&to DFLT				&trans		&trans		&trans	&tog MOUSE	 &kp KP_DIVIDE  &kp KP_MINUS &kp KP_MULTIPLY &trans				&trans    // kp N0 & ADD are still available
+				&kp Q		&trans		&trans		&trans		&trans								&none       &kp WH_L	 &kp WH_DN   &kp WH_UP	&kp WH_R	
+				&kp LWIN	&kp LALT	&kp LSHFT	&kp LCTRL	&kp HYPER							&none	    &kp M_L      &kp M_DN    &kp M_UP	&kp M_R
+				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		  &trans			&none		&kp LC(LG(LA(M_L)))	     &kp LC(LG(LA(M_DN)))      &kp LC(LG(LA(M_UP)))    &kp LC(LG(LA(M_R)))
+				&to DFLT				&trans		&trans		&trans	&tog MOUSE	 &kp KP_DIVIDE  &kp KP_MINUS &kp KP_MULTIPLY 	&trans          &trans
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp F17 F18>; // Use AHK to turn F17 & F18 to Wheel Up/Down
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		function_layer {
@@ -281,11 +298,11 @@
 				// ----------------------------------------------------------------------------------------------------------
 
 			bindings = <
-				&kp CAPS	&trans 		&trans	 		&trans		&trans								&bt BT_CLR	&kp F7 		&kp F8	 	&kp F9		&kp F12
+				&kp CAPS	&trans 		&trans	 		&trans		&kp INS								&bt BT_CLR	&kp F7 		&kp F8	 	&kp F9		&kp F12
 				&kp LWIN	&kp LALT    &mt LSHFT LC(S)	&kp LCTRL	&kp HYPER							&bt BT_NXT	&kp F4		&kp F5 		&kp F6 		&kp	F11
 				&kp LC(Z)	&kp LC(X)	&kp LC(C)		&kp LC(V)	&kp LC(Y)   	&bootsleep			&bt BT_PRV	&kp F1		&kp F2		&kp F3		&kp F10
 				&tog FN					&kp C_PREV		&kp C_PP	&kp C_NEXT	&trans		&kp C_PREV	&kp C_PP	&kp C_NEXT	&trans					&trans
-															&trans		&trans		&trans		&trans		&trans
+											&kp LG(LEFT)		&kp LG(UP)			&kp RET		   &kp LG(DOWN)		&kp LG(RIGHT)
 			>;
 
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -311,13 +328,13 @@
 
 			bindings = <
 				&kp Q 	   &kp W      &kp E          &kp R          &kp T 						   		  &kp Y           &kp U         &kp I        &kp O          &lt STAY P
-				&kp A      &kp S      &kp D          &kp F          &kp G 						   		  &kp H 		  &mt RCTRL K   &mt RSHFT L  &mt RALT COLON &mt RWIN APOS
+				&hm LWIN A &hm LALT S &hm LSHFT D    &hm LCTRL F    &mt LA(LCTRL) G 			   		  &mt RA(RCTRL) H &hm RCTRL K   &hm RSHFT L  &hm RALT COLON &hm RWIN APOS
 				&kp Z      &kp X      &kp C          &kp V          &kp B 			       &trans		  &kp N           &kp M         &kp COMMA    &kp DOT 	    &kp SLASH
 				&trans     			  &trans	 	 &trans			&trans			&trans		  &trans  &trans          &trans        &trans                      &trans
 													 &trans			&trans			&trans		  &trans  &trans
 			>;
 
-			sensor-bindings = <&inc_dec_kp F17 F18>; // Use AHK to turn F17 & F18 to Wheel Up/Down
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		emoji_layer { // todo: Unicode (including emoji) not yet implemented in ZMK. Maybe try using AHK in the meantime?
@@ -338,7 +355,7 @@
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp F17 F18>; // Use AHK to turn F17 & F18 to Wheel Up/Down
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		compose_layer { // todo: unicode not yet implemented in ZMK. Maybe try using AHK in the meantime?
@@ -359,7 +376,7 @@
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp F17 F18>; // Use AHK to turn F17 & F18 to Wheel Up/Down
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		stay_layer {	// This layer is for toggling the layers (rather than just holding them on). Can be replaced in the future with double-taps
@@ -380,7 +397,7 @@
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp F17 F18>; // Use AHK to turn F17 & F18 to Wheel Up/Down
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 	};
 };
