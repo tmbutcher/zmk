@@ -68,11 +68,19 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+		td: tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_TEST";
+            #binding-cells = <0>;
+            tapping_term_ms = <1000>;
+            bindings = <&kp N1>, <&kp N2>, <&kp N3>, <&kp N4> , <&kp N5>;
+        };
+		
 		as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
             label = "AutoShift";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>;
             // quick_tap_ms = <-1>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
@@ -119,7 +127,7 @@
 			compatible = "zmk,behavior-mod-morph";
 			label = "DOT_COMMA";
 			#binding-cells = <0>;
-			bindings = <&kp DOT>, <&kp KP_COM>;
+			bindings = <&as KP_COM DOT>, <&kp KP_COM>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
 		zeroleft: zero_left_parenthesis {
@@ -176,7 +184,7 @@
 				// |  Q   |  W   |  F   |  P   |  B   |                                  |  J   |  L   |  U   |  Y   |  '"  |
 				// |  A   |  R   |  S   |  T   |  G   |                                  |  M   |  N   |  E   |  I   |  O   |
 				// |  Z   |  X   |  C   |  D   |  V   |             | Mute |             |  K   |  H   |  ,;  |  .:  |  /?  |  // In the future, maybe change back to interobang
-				// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |
+				// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |  // Although maybe slash is more common than exclamation mark?
 				// |----------------------------------| Left |  Up  | Enter| Down | Rght |----------------------------------|
 				// ----------------------------------------------------------------------------------------------------------
 
@@ -192,7 +200,7 @@
 				&kp Q 	   &kp W      &kp F          &kp P           &kp B 						   				&kp J      		&kp L            &kp U       &kp Y      &lt STAY APOS
 				&hm LWIN A &hm LALT R &hm LSHFT S    &hm LCTRL T     &mt LA(LCTRL) G 			   		  		&mt RA(RCTRL) M &hm RCTRL N      &hm RSHFT E &hm RALT I &hm RWIN O
 				&kp Z      &kp X      &kp C          &kp D           &kp V 			       &kp C_MUTE	   		&kp K           &kp H            &comcol     &dotcol    &kp SLASH
-				&lt FN ESC      	  &mt LCTRL HOME &cm KP_EMJ LEFT &lt NAV BSPC  &lt MOUSE TAB  &lt NUM RET   &hm RSHFT SPACE &cm KP_CMP RIGHT &mt RWIN END           &lt SYM DEL
+				&lt FN ESC      	  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &lt NAV RET &lt MOUSE TAB  &lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL   &mt RWIN END           &lt SYM RG(S)
 													 &kp LEFT		 &kp UP			&kp RET		   &kp DOWN		&kp RIGHT
 			>;
 
@@ -211,10 +219,10 @@
 
 
 			bindings = < // All numbers use auto-shift for symbols
-				&as LS(LBKT) LBKT	&as LS(N7) N7	&as LS(N8) N8	&as LS(N9) N9	&as LS(MINUS) MINUS						&none       &none		&none		&none		&none     //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
-				&as LS(RBKT) RBKT	&as LS(N4) N4	&as LS(N5) N5	&as LS(N6) N6	&as LS(EQUAL) EQUAL						&kp HYPER	&kp RCTRL	&kp RSHFT	&kp RALT	&kp RWIN   //	&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
-				&lgthan				&as LS(N1) N1	&as LS(N2) N2	&as LS(N3) N3	&as LS(BSLH) BSLH	  	&trans     		&none		&none		&none		&none		&none     //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
-				&to DFLT			                &kp SPACE	    &dotcom	        &zeroleft	&as LS(N0) N0	&tog NUM 	&kp RSHFT	    &trans		&trans					&trans     //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
+				&as LS(LBKT) LBKT	&as LS(N7) N7	&as LS(N8) N8	&as LS(N9) N9	&as LS(MINUS) MINUS			      &as LS(BSLH) BSLH &none       &none		&none		&none     //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
+				&as LS(RBKT) RBKT	&as LS(N4) N4	&as LS(N5) N5	&as LS(N6) N6	&as LS(EQUAL) EQUAL						&kp BSPC	&kp RCTRL	&kp RSHFT	&kp RALT	&kp RWIN   //	&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
+				&lgthan				&as LS(N1) N1	&as LS(N2) N2	&as LS(N3) N3	&as LS(SLASH) SLASH	  	&trans     		&none		&none		&comcol     &dotcol		&none     //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
+				&to DFLT			                &kp SPACE	    &dotcom	        &zeroleft	&as LS(N0) N0	&tog NUM 	&trans      &trans		&trans					&trans     //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
 																					&trans		&trans		&trans		&trans		&trans
 				>;
 
@@ -233,8 +241,8 @@
 
 
 			bindings = <
-				&kp LS(LBKT)	&kp LS(N7)	&kp LS(N8)	&kp LS(N9)	&kp LS(MINUS)						&none		&none		&none		&none		&none    //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
-				&kp LS(RBKT)	&kp LS(N4)	&kp LS(N5)	&kp LS(N6)	&kp LS(EQUAL)						&kp HYPER	&kp RCTRL	&kp RSHFT	&kp RALT	&kp RWIN //	&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
+				&kp LS(LBKT)	&kp LS(N7)	&kp LS(N8)	&kp LS(N9)	&kp LS(MINUS)						&kp LS(BSLH) &none		&none		&none		&none    //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
+				&kp LS(RBKT)	&kp LS(N4)	&kp LS(N5)	&kp LS(N6)	&kp LS(EQUAL)						&kp BSPC	&kp RCTRL	&kp RSHFT	&kp RALT	&kp RWIN //	&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
 				&lgthan			&kp LS(N1)	&kp LS(N2)	&kp LS(N3)	&kp LS(BSLH)	  &trans			&none		&none		&none		&none		&none    //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
 				&to DFLT					&dotcom		&kp SPACE	&kp LS(N9)	  &kp LS(N0)  &trans	&trans		&trans		&trans					&tog SYM //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
 																&trans		&trans		&trans		&trans		&trans
@@ -255,14 +263,14 @@
 
 
 			bindings = <
-				&trans		&trans		&trans		&trans		&trans								&none	    &kp HOME	 &kp PG_DN   &kp PG_UP  &kp END
-				&kp LWIN	&kp LALT  &mt LSHFT LC(S) &kp LCTRL	&kp HYPER							&none	    &kp LEFT	 &kp DOWN    &kp UP   	&kp RIGHT
-				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		    &trans			&none		&kp LC(LEFT) &kp WH_DN	 &kp WH_UP	&kp LC(RIGHT)
+				&trans		&trans		&trans		&trans		&trans								&kp WH_UP   &kp HOME	 &kp UP      &kp END   &kp PG_UP
+				&kp LWIN	&kp LALT  &mt LSHFT LC(S) &kp LCTRL	&kp HYPER							&kp WH_DN   &kp LEFT	 &kp DOWN    &kp RIGHT &kp PG_DN  	
+				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		    &trans			&none		&kp LC(LEFT) &none  	 &kp LC(RIGHT) &none
 				&to DFLT				&trans		&trans		&tog NAV	&trans		&trans		&trans		&trans		 &trans					&trans
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
-			sensor-bindings = <&inc_dec_kp WH_DN LA(LS(TAB))>;
+			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		mouse_layer {  // todo: Mouse not yet implemented in ZMK. Using AHK in the meantime
@@ -277,8 +285,8 @@
 
 
 			bindings = <
-				&kp Q		&trans		&trans		&trans		&trans								&none       &kp WH_L	 &kp WH_DN   &kp WH_UP	&kp WH_R	
-				&kp LWIN	&kp LALT	&kp LSHFT	&kp LCTRL	&kp HYPER							&none	    &kp M_L      &kp M_DN    &kp M_UP	&kp M_R
+				&kp Q		&trans		&trans		&trans		&trans								&kp WH_UP       &kp WH_L	 &kp M_UP   	&kp WH_R   &none	
+				&kp LWIN	&kp LALT	&kp LSHFT	&kp LCTRL	&kp HYPER							&kp WH_DN	    &kp M_L      &kp M_DN    	&kp M_R    &none
 				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		  &trans			&none		&kp LC(LG(LA(M_L)))	     &kp LC(LG(LA(M_DN)))      &kp LC(LG(LA(M_UP)))    &kp LC(LG(LA(M_R)))
 				&to DFLT				&trans		&trans		&trans	&tog MOUSE	 &kp KP_DIVIDE  &kp KP_MINUS &kp KP_MULTIPLY 	&trans          &trans
 															&trans		&trans		&trans		&trans		&trans
