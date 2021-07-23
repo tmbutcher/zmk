@@ -266,7 +266,7 @@
 				&trans		&trans		&trans		&trans		&trans								&kp WH_UP   &kp HOME	 &kp UP      &kp END   &kp PG_UP
 				&kp LWIN	&kp LALT  &mt LSHFT LC(S) &kp LCTRL	&kp HYPER							&kp WH_DN   &kp LEFT	 &kp DOWN    &kp RIGHT &kp PG_DN  	
 				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		    &kp LC(W)		&none		&kp LC(LEFT) &none  	 &kp LC(RIGHT) &none
-				&to DFLT				&trans		&trans		&tog NAV	&trans		&trans		&trans		&trans		 &trans					&trans
+				&to DFLT				&kp RET		&trans		&tog NAV	&trans		&trans		&trans		&trans		 &trans					&trans
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
