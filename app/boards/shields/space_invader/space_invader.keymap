@@ -62,8 +62,8 @@
             compatible = "zmk,behavior-hold-tap";
             label = "homerow mods";
             #binding-cells = <2>;
-            tapping_term_ms = <200>;
-			quick_tap_ms = <200>;
+            tapping_term_ms = <150>;
+			quick_tap_ms = <150>;
 			// retro-tap;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
@@ -80,7 +80,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "AutoShift";
             #binding-cells = <2>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <200>;
             // quick_tap_ms = <-1>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
@@ -89,10 +89,30 @@
             compatible = "zmk,behavior-hold-tap";
             label = "Custom Mods";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick_tap_ms = <200>;
+            tapping-term-ms = <150>;
+            quick_tap_ms = <150>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
+        };
+		fm: fast_mods {								// The same as homerow mods except with a much faster quick_tap setting
+            compatible = "zmk,behavior-hold-tap";
+            label = "fast mods";
+            #binding-cells = <2>;
+            tapping_term_ms = <150>;
+			quick_tap_ms = <75>;
+			// retro-tap;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+		sm: sticky_mods {								// For using a sticky key tap with another hold option
+            compatible = "zmk,behavior-hold-tap";
+            label = "sticky_mods";
+            #binding-cells = <2>;
+            tapping_term_ms = <150>;
+			quick_tap_ms = <0>;
+			// retro-tap;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&sk>;
         };
 
         comcol: comma_colon {
@@ -150,18 +170,33 @@
         compatible = "zmk,combos";
         combo_qwerty {
             timeout-ms = <50>;
-            key-positions = <0 1>;  // Q & W
+            key-positions = <0 1>;  // Q W
             bindings = <&tog QWERTY>;
         };
 		combo_return {
             timeout-ms = <50>;
-            key-positions = <8 9>;  // Y & '
+            key-positions = <8 9>;  // Y '
             bindings = <&reset>;
         };
 		combo_sleep {
             timeout-ms = <50>;
-            key-positions = <6 7 8 9>;  // Y & '
+            key-positions = <6 7 8 9>;  // L U Y '
             bindings = <&kp F24>;  		// Use AHK to turn F24 into Sleep Button
+        };
+		// combo_shift1 {
+        //     timeout-ms = <50>;
+        //     key-positions = <12 13>;  // S T
+        //     bindings = <&sk LSHFT>;
+        // };
+		// combo_shift2 {
+        //     timeout-ms = <50>;
+        //     key-positions = <16 17>;  // N E
+        //     bindings = <&sk RSHFT>;
+        // };
+		combo_caps_lock {
+            timeout-ms = <50>;
+            key-positions = <10 11 12 13>;  // A R S T
+            bindings = <&kp CAPS>;
         };
     };
 
@@ -200,7 +235,7 @@
 				&kp Q 	   &kp W      &kp F          &kp P           &kp B 						   				&kp J      		&kp L            &kp U       &kp Y      &lt STAY APOS
 				&hm LWIN A &hm LALT R &hm LSHFT S    &hm LCTRL T     &mt LA(LCTRL) G 			   		  		&mt RA(RCTRL) M &hm RCTRL N      &hm RSHFT E &hm RALT I &hm RWIN O
 				&kp Z      &kp X      &kp C          &kp D           &kp V 			       &kp C_MUTE	   		&kp K           &kp H            &comcol     &dotcol    &kp SLASH
-				&lt FN ESC      	  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &lt NAV BSPC &lt MOUSE TAB &lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL   &mt RWIN END           &lt SYM RET
+				&lt FN ESC      	  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &lt NAV BSPC &lt MOUSE TAB &sm RSHFT RSHFT &lt NUM SPACE &cm KP_CMP DEL   &mt RWIN END           &lt SYM RET
 													 &kp LEFT		 &kp UP			&kp RET		   &kp DOWN		&kp RIGHT
 			>;
 
@@ -222,7 +257,7 @@
 				&as LS(LBKT) LBKT	&as LS(N7) N7	&as LS(N8) N8	&as LS(N9) N9	&as LS(MINUS) MINUS			          &as LS(BSLH) BSLH &as LS(GRAVE) GRAVE &none		&none		&none     //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
 				&as LS(RBKT) RBKT	&as LS(N4) N4	&as LS(N5) N5	&as LS(N6) N6	&as LS(EQUAL) EQUAL						&kp BSPC	&kp RCTRL	&kp RSHFT	&kp RALT	&kp RWIN   //	&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
 				&lgthan				&as LS(N1) N1	&as LS(N2) N2	&as LS(N3) N3	&as LS(SLASH) SLASH	  	&trans     		&none		&none		&comcol     &dotcol		&none     //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
-				&to DFLT			                &kp SPACE	    &dotcom	        &zeroleft	&as LS(N0) N0	&tog NUM 	&trans      &trans		&trans					&trans     //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
+				&to DFLT			                &kp SPACE	    &dotcom	        &zeroleft	&as LS(N0) N0	&trans		&tog NUM  	&trans		&trans					&trans     //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
 																					&trans		&trans		&trans		&trans		&trans
 				>;
 
@@ -387,7 +422,7 @@
 			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
-		stay_layer {	// This layer is for toggling the layers (rather than just holding them on). Can be replaced in the future with double-taps
+		stay_layer {	// This layer is for toggling the layers (rather than just holding them on). Can be replaced in the future with double-taps or something
 				// --------------------------------------------------MEDIA---------------------------------------------------
 				// |      |      |      |      |      |                                  |      |      |      |      |      |
 				// |      |      |      |      |      |                                  |      |      |      |      |      |
@@ -401,7 +436,7 @@
 				&kp Q		&trans		&trans		&trans		&trans								&trans		&trans		&trans		&trans		&trans
 				&trans		&trans		&trans 		&trans 		&trans								&trans		&trans		&trans		&trans		&trans
 				&trans		&trans		&trans		&trans		&trans			  &trans			&trans		&trans		&trans		&trans		&trans
-				&tog FN					&trans		&tog EMOJI	&tog NAV		&tog MOUSE	&tog NUM &trans		&tog CMP	&trans					&tog SYM
+				&tog FN					&trans		&tog EMOJI	&tog NAV	&tog MOUSE	 &kp CAPS 	&tog NUM	&tog CMP	&trans					&tog SYM
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
