@@ -112,7 +112,7 @@
 			quick_tap_ms = <0>;
 			// retro-tap;
             flavor = "tap-preferred";
-            bindings = <&to>, <&sk>;
+            bindings = <&mo>, <&sk>;
         };
 
         comcol: comma_colon {
@@ -257,7 +257,7 @@
 				&as LS(LBKT) LBKT	&as LS(N7) N7	&as LS(N8) N8	&as LS(N9) N9	&as LS(MINUS) MINUS			          &as LS(BSLH) BSLH &as LS(GRAVE) GRAVE &none		&none		&none     //	&kp LBKT	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp MINUS
 				&as LS(RBKT) RBKT	&as LS(N4) N4	&as LS(N5) N5	&as LS(N6) N6	&as LS(EQUAL) EQUAL						&kp BSPC	&kp RCTRL	&kp RSHFT	&kp RALT	&kp RWIN   //	&kp RBKT	&kp KP_N4	&kp KP_N5	&kp KP_N6	&kp EQUAL
 				&lgthan				&as LS(N1) N1	&as LS(N2) N2	&as LS(N3) N3	&as LS(SLASH) SLASH	  	&trans     		&none		&none		&comcol     &dotcol		&none     //	&lgthan		&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp BSLH
-				&to DFLT			                &kp SPACE	    &dotcom	        &zeroleft	&as LS(N0) N0	&trans		&tog NUM  	&trans		&trans					&trans     //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
+				&to DFLT			                &kp SPACE	    &dotcom	        &zeroleft	&as LS(N0) N0	&tog NUM	&trans	 	&trans		&trans					&trans     //	&zeroleft	&kp KP_N0	&dotcom					&kp RSHFT
 																					&trans		&trans		&trans		&trans		&trans
 				>;
 
@@ -301,8 +301,8 @@
 				&trans		&trans		&trans		&trans		&trans								&kp WH_UP   &kp HOME	 &kp UP      &kp END   &kp PG_UP
 				&kp LWIN	&kp LALT  &mt LSHFT LC(S) &kp LCTRL	&kp HYPER							&kp WH_DN   &kp LEFT	 &kp DOWN    &kp RIGHT &kp PG_DN  	
 				&kp LC(Z)	&kp LC(X)	&kp LC(C)	&kp LC(V)	&kp LC(Y)		    &kp LC(W)		&none		&kp LC(LEFT) &none  	 &kp LC(RIGHT) &none
-				&to DFLT				&kp RET		&trans		&tog NAV	&trans		&trans		&trans		&trans		 &trans					&trans
-															&trans		&trans		&trans		&trans		&trans
+				&to DFLT				&kp RET		&trans		&tog NAV	&trans	  &kp LC(BSPC)	&trans		&kp LC(DEL) &trans					&trans
+															&kp LC(LEFT)	&trans		&trans		&trans		&kp LC(RIGHT)
 				>;
 
 			sensor-bindings = <&inc_dec_kp LC(TAB) LS(LC(TAB))>;	// Scroll tabs
@@ -436,7 +436,7 @@
 				&kp Q		&trans		&trans		&trans		&trans								&trans		&trans		&trans		&trans		&trans
 				&trans		&trans		&trans 		&trans 		&trans								&trans		&trans		&trans		&trans		&trans
 				&trans		&trans		&trans		&trans		&trans			  &trans			&trans		&trans		&trans		&trans		&trans
-				&tog FN					&trans		&tog EMOJI	&tog NAV	&tog MOUSE	 &kp CAPS 	&tog NUM	&tog CMP	&trans					&tog SYM
+				&tog FN					&trans		&tog EMOJI	&tog NAV	&tog MOUSE	&tog NUM	&kp CAPS 		&tog CMP	&trans				&tog SYM
 															&trans		&trans		&trans		&trans		&trans
 				>;
 
