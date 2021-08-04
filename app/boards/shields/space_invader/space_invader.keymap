@@ -58,6 +58,7 @@
 / {
 
 	behaviors {
+		// Hold-Tap Behaviors
 		hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "homerow mods";
@@ -68,14 +69,6 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
-		td: tap_dance {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_TEST";
-            #binding-cells = <0>;
-            tapping_term_ms = <1000>;
-            bindings = <&kp N1>, <&kp N2>, <&kp N3>, <&kp N4> , <&kp N5>;
-        };
-		
 		as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
             label = "AutoShift";
@@ -115,6 +108,7 @@
             bindings = <&mo>, <&sk>;
         };
 
+		// Mod-Morph Behaviors
         comcol: comma_colon {
 			compatible = "zmk,behavior-mod-morph";
 			label = "COMMA_COLON";
@@ -164,6 +158,15 @@
 			bindings = <&bootloader>, <&kp KP_SLP>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
+
+		// Tap-Dance Behaviors
+		tdq: tap_dance_quotes {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_TEST";
+            #binding-cells = <0>;
+            tapping_term_ms = <200>;
+            bindings = <&kp SQT>, <&kp DQT>;
+        };
 	};
 
     combos {
@@ -241,7 +244,7 @@
 				// ----------------------------------------------------------------------------------------------------------
 
 			bindings = <
-				&kp Q 	   &kp W      &kp F          &kp P           &kp B 						   				&kp J      		&kp L            &kp U       &kp Y      &lt STAY APOS
+				&kp Q 	   &kp W      &kp F          &kp P           &kp B 						   				&kp J      		&kp L            &kp U       &kp Y      &tdq		// &lt STAY APOS
 				&hm LWIN A &hm LALT R &hm LSHFT S    &hm LCTRL T     &kp G			 			   		  		&kp M			&hm RCTRL N      &hm RSHFT E &hm RALT I &hm RWIN O
 				&kp Z      &kp X      &kp C          &kp D           &kp V 			       &kp C_MUTE	   		&kp K           &kp H            &comcol     &dotcol    &kp SLASH
 				&lt FN ESC      	  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB &lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL  &mt RWIN END           &lt SYM RET
