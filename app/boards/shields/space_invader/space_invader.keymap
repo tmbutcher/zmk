@@ -58,6 +58,7 @@
 / {
 
 	behaviors {
+		// Hold-Tap Behaviors
 		hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "homerow mods";
@@ -68,14 +69,6 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
-		td: tap_dance {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_TEST";
-            #binding-cells = <0>;
-            tapping_term_ms = <1000>;
-            bindings = <&kp N1>, <&kp N2>, <&kp N3>, <&kp N4> , <&kp N5>;
-        };
-		
 		as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
             label = "AutoShift";
@@ -115,6 +108,7 @@
             bindings = <&mo>, <&sk>;
         };
 
+		// Mod-Morph Behaviors
         comcol: comma_colon {
 			compatible = "zmk,behavior-mod-morph";
 			label = "COMMA_COLON";
@@ -164,6 +158,15 @@
 			bindings = <&bootloader>, <&kp KP_SLP>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
+
+		// Tap-Dance Behaviors
+		tdq: tap_dance_quotes {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_TEST";
+            #binding-cells = <0>;
+            tapping_term_ms = <200>;
+            bindings = <&kp SQT>, <&kp DQT>;
+        };
 	};
 
     combos {
