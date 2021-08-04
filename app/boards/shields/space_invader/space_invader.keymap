@@ -203,13 +203,22 @@
 	keymap {
 		compatible = "zmk,keymap";
 
-				// ----------------------------------------------BLANK TEMPLATE----------------------------------------------
-				// |      |      |      |      |      |                                  |      |      |      |      |      |
-				// |      |      |      |      |      |                                  |      |      |      |      |      |
-				// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-				// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
-				// |----------------------------------|      |      |      |      |      |----------------------------------|
-				// ----------------------------------------------------------------------------------------------------------
+		// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ 						 	  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+        //  ___			  ___			___			  ___			___										   ___			 ___		   ___			 ___		   ___
+        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 						 	  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+        //  ___			  ___			___			  ___			___										   ___			 ___		   ___			 ___		   ___
+        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤		 ╭────────────╮		  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+        //  ___			  ___			___			  ___			___					  ___				   ___			 ___		   ___			 ___		   ___
+        // ├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬───────╰─────╮╭─────╯───────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
+        //  ___							___			  ___			___			  ___			 ___		   ___			 ___		   ___					   ___
+        // ╰─────────────────╯         ╰─────────────┴─────────────┴─────────────┴─────────────╯╰─────────────┴─────────────┴─────────────┴─────────────╯		  ╰─────────────────╯
+		//																				   ╭────────╮
+		//																					___
+		//																   		  ╭────────┼────────┼────────╮
+		//																		   ___		___		 ___
+		//																   		  ╰────────┼────────┼────────╯
+		//																					___
+		//																				   ╰────────╯
 
 
 
@@ -233,7 +242,7 @@
 
 			bindings = <
 				&kp Q 	   &kp W      &kp F          &kp P           &kp B 						   				&kp J      		&kp L            &kp U       &kp Y      &lt STAY APOS
-				&hm LWIN A &hm LALT R &hm LSHFT S    &hm LCTRL T     &mt LA(LCTRL) G 			   		  		&mt RA(RCTRL) M &hm RCTRL N      &hm RSHFT E &hm RALT I &hm RWIN O
+				&hm LWIN A &hm LALT R &hm LSHFT S    &hm LCTRL T     &kp G			 			   		  		&kp M			&hm RCTRL N      &hm RSHFT E &hm RALT I &hm RWIN O
 				&kp Z      &kp X      &kp C          &kp D           &kp V 			       &kp C_MUTE	   		&kp K           &kp H            &comcol     &dotcol    &kp SLASH
 				&lt FN ESC      	  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB &lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL  &mt RWIN END           &lt SYM RET
 													 &kp LEFT		 &kp UP			&kp RET		   &kp DOWN		&kp RIGHT
@@ -371,7 +380,7 @@
 
 			bindings = <
 				&kp Q 	   &kp W      &kp E          &kp R          &kp T 						   		  &kp Y           &kp U         &kp I        &kp O          &lt STAY P
-				&hm LWIN A &hm LALT S &hm LSHFT D    &hm LCTRL F    &mt LA(LCTRL) G 			   		  &mt RA(RCTRL) H &hm RCTRL K   &hm RSHFT L  &hm RALT COLON &hm RWIN APOS
+				&hm LWIN A &hm LALT S &hm LSHFT D    &hm LCTRL F    &kp G 			   		  			  &kp H 		  &hm RCTRL K   &hm RSHFT L  &hm RALT COLON &hm RWIN APOS
 				&kp Z      &kp X      &kp C          &kp V          &kp B 			       &trans		  &kp N           &kp M         &kp COMMA    &kp DOT 	    &kp SLASH
 				&trans     			  &trans	 	 &trans			&trans			&trans		  &trans  &trans          &trans        &trans                      &trans
 													 &trans			&trans			&trans		  &trans  &trans
