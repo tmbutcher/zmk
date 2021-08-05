@@ -48,7 +48,9 @@
 #define KP_CMP	(F23)
 #define KP_SLP	(F24)
 
-#define HYPER	(LG(LA(LS(LCTRL))))
+#define XXX		&none
+#define ___		&trans
+#define HYPER	(LG(LA(LS(LCTRL))))		  // If I want to send a hypered key, then I might need to make a custom behavior
 // #define HYPER	(LG(LA(LS(LCTRL))))   // Maybe try to make a custom mod kp?
 
 &mt {
@@ -62,6 +64,8 @@
 / {
 
 	behaviors {
+		// #include "hold-tap.dtsi"				// Couldn't figure out how to get this working. Maybe try with combos or something?
+												// See https://github.com/dxmh/zmk-config/tree/5c2baa8f0bd68a88fa61ef5521f0cd11c05870b7/config
 		// Hold-Tap Behaviors
 		hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -82,7 +86,7 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
-		cm: custom_mods {
+		cm: custom_mods {							// Is there a difference between this and hm?
             compatible = "zmk,behavior-hold-tap";
             label = "Custom Mods";
             #binding-cells = <2>;
@@ -101,7 +105,7 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
-		sm: sticky_mod_layer {								// For using a sticky key tap with layer tap
+		sm: sticky_mod_layer {						// For using a sticky key tap with layer tap
             compatible = "zmk,behavior-hold-tap";
             label = "sticky_mods";
             #binding-cells = <2>;
@@ -182,9 +186,9 @@
 
     combos {
 
-		/*                  KEY POSITIONS
-
-  		╭────────────────────╮          ╭────────────────────╮  	╭────╮
+		/*                  KEY POSITIONS									// NB: This assumes that the numbers go by the adaptive matrix positions,
+																				   rather than absolute matrix positions (which would have different
+  		╭────────────────────╮          ╭────────────────────╮  	╭────╮		   numbers after the encoder button).
   		│  0   1   2   3   4 │          │  5   6   7   8   9 │  ╭───╯ 41 ╰───╮
   		│ 10  11  12  13  14 │   ╭──╮   │ 15  16  17  18  19 │  │ 42  43  44 │
   		│ 20  21  22  23  24 ╰───╮25╭───╯ 26  27  28  29  30 │  ╰───╮ 45 ╭───╯
