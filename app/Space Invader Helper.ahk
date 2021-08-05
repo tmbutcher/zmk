@@ -7,8 +7,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetNumLockState, AlwaysOn
 
 ; General Keys
-	F17::WheelDown
-	F18::WheelUp
+	F18::=
 	F19::,
 	+F20::SendRaw `;
     F24::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0) ; Computer sleep button
@@ -32,8 +31,11 @@ SetNumLockState, AlwaysOn
     !#^Numpad6::
         moveTheMouse(1,0.01,10)
 
+	F16::Click, WheelDown
+	F17::Click, WheelUp
     Numpad7::Click, WheelLeft
     Numpad9:: Click, WheelRight
+	
     NumpadDiv::Click, Middle
     NumpadSub::Click
     NumpadMult::Click, Right
