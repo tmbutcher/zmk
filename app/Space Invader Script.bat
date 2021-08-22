@@ -10,8 +10,7 @@ d:
 cd D:\Win\Users\Tom\Documents\Git\zmk\app
 west build -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
 if %ERRORLEVEL% EQU 0 goto copyFirmware
-if %ERRORLEVEL% neq 0 goto hold
-
+if %ERRORLEVEL% neq 0 goto pristineBuild
 
 :pristineBuild
 west build -p -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
@@ -54,7 +53,7 @@ if %ERRORLEVEL% EQU 1 goto copyFirmware
 
 :hold
 echo.
-choice /C RX /T 9999 /D X /M "Well that didn't work. [R]estart or e[X]it?" /N
+choice /C RX /D X /M "Well that didn't work. [R]estart or e[X]it?" /N
 if %ERRORLEVEL% EQU 1 goto buildFirmware
 if %ERRORLEVEL% EQU 2 goto end
 

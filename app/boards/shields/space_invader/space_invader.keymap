@@ -229,6 +229,11 @@
 		combo_caps_lock {
             timeout-ms = <50>;
             key-positions = <10 11 12 13>;  // A R S T
+            bindings = <&caps_word>;
+        };
+		combo_caps_lock {
+            timeout-ms = <50>;
+            key-positions = <10 11 12 13 14>;  // A R S T G
             bindings = <&kp CAPS>;
         };
     };
@@ -289,7 +294,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
   	&hm LWIN A	  &hm LALT R	&hm LSHFT S	  &hm LCTRL T	&kp G									  &kp M			&hm RCTRL N	  &hm RSHFT E	&hm RALT I	  &hm RWIN O
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp Z		  &kp X			&kp C		  &kp D			&kp V				 &kp C_MUTE			  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
+	&fm LC(Z) Z	  &fm LC(X) X	&fm LC(C) C	  &fm LC(V) D	&fm LC(Y) V				 &kp C_MUTE			  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL &mt RWIN END             &lt SYM RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
