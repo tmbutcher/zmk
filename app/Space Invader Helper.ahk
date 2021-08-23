@@ -2,9 +2,39 @@
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-#NoTrayIcon ;As it says.
+;#NoTrayIcon ;As it says.
 
-SetNumLockState, AlwaysOn
+; Ctrl-Hold Stuff
+	$^z::
+		Send ^z
+		Sleep 1000
+		While GetKeyState("z", "P")
+			Send ^z
+		return
+	$^x::
+		Send ^x
+		Sleep 1000
+		While GetKeyState("x", "P")
+			Send ^x
+		return
+	$^c::
+		Send ^c
+		Sleep 1000
+		While GetKeyState("c", "P")
+			Send ^c
+		return
+	$^v::
+		Send ^v
+		Sleep 1000
+		While GetKeyState("v", "P")
+			Send ^v
+		return
+	$^y::
+		Send ^y
+		Sleep 1000
+		While GetKeyState("y", "P")
+			Send ^y
+		return
 
 ; General Keys
 	F18::=

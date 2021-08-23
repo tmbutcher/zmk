@@ -53,7 +53,7 @@ if %ERRORLEVEL% EQU 1 goto copyFirmware
 
 :hold
 echo.
-choice /C RX /D X /M "Well that didn't work. [R]estart or e[X]it?" /N
+choice /C RX /M "Well that didn't work. [R]estart or e[X]it?" /N
 if %ERRORLEVEL% EQU 1 goto buildFirmware
 if %ERRORLEVEL% EQU 2 goto end
 
