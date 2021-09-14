@@ -368,6 +368,32 @@ Further documentation on behaviors and bindings is forthcoming, but a summary of
 - `trans` is the "transparent" behavior, useful to be place in higher layers above `mo` bindings to be sure the key release is handled by the lower layer. No binding arguments are required.
 - `mt` is the "mod-tap" behavior, and takes two binding arguments, the modifier to use if held, and the keycode to send if tapped.
 
+## Metadata
+
+ZMK makes use of an additional metadata YAML file for all boards and shields to provide high level information about the hardware to be incorporated into setup scripts/utilities, website hardware list, etc.
+
+The naming convention for metadata files is `{item_id}.zmk.yml`, where the `item_id` is the board/shield identifier, including version information but excluding any optional split `_left`/`_right` suffix, e.g. `corne.zmk.yml` or `nrfmicro_11.zmk.yml`.
+
+Here is a sample `corne.zmk.yml` file from the repository:
+
+```yaml
+file_format: "1"
+id: corne
+name: Corne
+type: shield
+url: https://github.com/foostan/crkbd/
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+siblings:
+  - corne_left
+  - corne_right
+```
+
+You should place a properly named `foo.zmk.yml` file in the directory next to your other shield values, and fill it out completely and accurately. See [Hardware Metadata Files](/docs/development/hardware-metadata-files) for the full details.
+
 ## Adding Features
 
 ### Encoders
@@ -483,37 +509,3 @@ Please have a look at documentation specific to
 Further testing your keyboard shield without altering the root keymap file can be done with the use of `-DZMK_CONFIG` in your `west build` command,
 shown [here](build-flash.md#building-from-zmk-config-folder)
 :::
-
-## Updating `build.yml`
-
-Before publishing your shield to the public via a PR, navigate to `build.yml` found in `.github/workflows` and add your shield to the appropriate list. An example edit to `build.yml` is shown below.
-
-```
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Build Test
-    strategy:
-      matrix:
-        board: [proton_c, nice_nano, bluemicro840_v1, nrfmicro_13]
-        shield:
-          - corne_left
-          - corne_right
-          - kyria_left
-          - kyria_right
-          - lily58_left
-          - lily58_right
-          - iris_left
-          - iris_right
-          - romac
-	  - <MY_BOARD>
-	  - <MY_SPLIT_BOARD_left>
-	  - <MY_SPLIT_BOARD_right>
-        include:
-          - board: proton_c
-            shield: clueboard_california
-```
-
-:::note
-Notice that both the left and right halves of a split board need to be added to the list of shields for proper error checking.
-:::note
