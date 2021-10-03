@@ -1,4 +1,4 @@
-@ECHO Off
+@ECHO OFF
 
 choice /C YNQ /T 5 /D Y /M "Build firmware? [Y]es | [N]o | [Q]uit" /N
 if %ERRORLEVEL% EQU 1 goto buildFirmware
