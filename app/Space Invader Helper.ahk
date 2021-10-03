@@ -5,35 +5,38 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #NoTrayIcon ;As it says.
 
 ; Ctrl-Hold Stuff
-	$^z::
+	^+!#z::
 		Send ^z
 		Sleep 1000
 		While GetKeyState("z", "P")
 			Send ^z
+            Sleep 250
 		return
-	$^x::
+	^+!#x::
 		Send ^x
 		Sleep 1000
-		While GetKeyState("x", "P")
+		If GetKeyState("x", "P")
 			Send ^x
 		return
-	$^c::
+	^+!#c::
 		Send ^c
 		Sleep 1000
-		While GetKeyState("c", "P")
+		If GetKeyState("c", "P")
 			Send ^c
 		return
-	$^v::
+	^+!#v::
 		Send ^v
 		Sleep 1000
 		While GetKeyState("v", "P")
 			Send ^v
+            Sleep 250
 		return
-	$^y::
+	^+!#y::
 		Send ^y
 		Sleep 1000
 		While GetKeyState("y", "P")
 			Send ^y
+            Sleep 250
 		return
 
 ; General Keys

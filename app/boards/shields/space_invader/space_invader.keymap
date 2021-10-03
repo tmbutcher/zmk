@@ -104,13 +104,23 @@
         };
 		sm: sticky_mod_layer {						// For using a sticky key tap with layer tap
             compatible = "zmk,behavior-hold-tap";
-            label = "sticky_mods";
+            label = "Sticky Mod-Layer Tap";
             #binding-cells = <2>;
             tapping_term_ms = <150>;
 			quick_tap_ms = <0>;
 			// retro-tap;
             flavor = "tap-preferred";
             bindings = <&mo>, <&sk>;
+        };
+		hyp: hyper_mod {						// For doing a hyper modifier
+            compatible = "zmk,behavior-hold-tap";
+            label = "Hyper Mod";
+            #binding-cells = <2>;
+            tapping_term_ms = <150>;
+			quick_tap_ms = <0>;
+			// retro-tap;
+            flavor = "tap-preferred";
+            bindings = <LG(LA(LS(LCTRL(&kp))))>, <&kp>;
         };
 		// mm: macro_mod {						// An attempt to send a macro with a hold-tap behavior... didn't work
         //     compatible = "zmk,behavior-hold-tap";
@@ -246,12 +256,12 @@
         // };
 		combo_caps_word {
             timeout-ms = <50>;
-            key-positions = <10 11 12 13>;  // A R S T
+            key-positions = <10 11 12>;  // A R S
             bindings = <&caps_word>;
         };
 		combo_caps_lock {
             timeout-ms = <50>;
-            key-positions = <10 11 12 13 14>;  // A R S T G
+            key-positions = <10 11 12 13>;  // A R S T
             bindings = <&kp CAPS>;
         };
 		combo_ctrl_w {
@@ -317,7 +327,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
   	&hm LWIN A	  &hm LALT R	&hm LSHFT S	  &hm LCTRL T	&kp G									  &kp M			&hm RCTRL N	  &hm RSHFT E	&hm RALT I	  &hm RWIN O
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&fm LC(Z) Z	  &fm LC(X) X	&fm LC(C) C	  &fm LC(V) D	&fm LC(Y) V			&kp C_MUTE			  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
+	&hyp Z Z	  &hyp X X		&hyp C C	  &hyp V D		&hyp Y V			&kp C_MUTE			  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL &mt RWIN END             &lt SYM RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
@@ -362,7 +372,7 @@
 				label = "Number Layer";
 				
 				// --------------------------------------------------NUMBER--------------------------------------------------
-				// |  [{  |  1!  |  2@  |  3#  |  -_  |                                  |  \|  |  `~  |      |      |      |
+				// |  [{  |  1!  |  2@  |  3#  |  -_  |                                  |      |  \|  |  `~  |      |      |
 				// |  ]}  |  4$  |  5%  |  6^  |  =+  |                                  | BSPC | RCTRL| RSHFT| RALT | RWIN |
 				// |  <>  |  7&  |  8*  |  9(  |  \|  |             |      |             |      |      |  ,;  |  .:  |      |
 				// | DFLT |------| SPACE|  .,  |  0(  |  0)  |      	          |      |      |      |      |------|      |
@@ -372,11 +382,11 @@
 			bindings = < // All numbers use auto-shift for symbols
 //---------------------------------------------------------------------------------NUMBERS---------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  				╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	&as LBRC LBKT &as EXCL N1	&as AT N2	  &as HASH N3	&as UNDER MINUS							  &as PIPE BSLH &as TILDE GRAVE   xxx		xxx			  xxx	
+	&as LBRC LBKT &as LPAR N9	&as ASTRK N8  &as AMPS N7 	&as UNDER MINUS							  xxx		  	&as PIPE BSLH &as TILDE GRAVE xxx		  xxx	
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 						├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&as RBRC RBKT &as DLLR N4	&as PRCNT N5  &as CARET N6	&revplus								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
+	&as RBRC RBKT &as CARET N6	&as PRCNT N5  &as DLLR N4	&revplus								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮		├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&lgthan		  &as AMPS N7	&as ASTRK N8  &as LPAR N9	&as QMARK SLASH	  	 ___	     		  xxx			xxx			  &comcol     	&kp COLON	  xxx	
+	&lgthan		  &as HASH N3	&as AT N2	  &as EXCL N1	&as QMARK SLASH	  	 ___	     		  xxx			xxx			  &comcol     	&kp COLON	  xxx	
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&to DFLT					&kp SPACE	  &dotcom		&zeroleft	  &as RPAR N0	&tog NUM	  ___		 	___			  ___						  ___	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
@@ -397,11 +407,11 @@
 			bindings = <
 //---------------------------------------------------------------------------------SYMBOLS--------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	&kp LBRC	  &kp EXCL		&kp AT		  &kp HASH		&kp UNDER					     		  &kp PIPE		&kp TILDE	  xxx			xxx			  xxx	
+	&kp LBRC	  &kp LPAR		&kp ASTRK	  &kp AMPS		&kp UNDER					     		  xxx			&kp PIPE	  &kp TILDE		xxx			  xxx	
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp RBRC	  &kp DLLR		&kp PRCNT	  &kp CARET		&kp EQUAL								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
+	&kp RBRC	  &kp CARET		&kp PRCNT	  &kp DLLR		&kp EQUAL								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp GT		  &kp AMPS		&kp ASTRK	  &kp LPAR		&kp QMARK		  	 ___				  xxx			xxx			  &kp SEMI		&kp COLON	  xxx	
+	&kp GT		  &kp HASH		&kp AT		  &kp EXCL		&kp QMARK		  	 ___				  xxx			xxx			  &kp SEMI		&kp COLON	  xxx	
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&to DFLT					&dotcom		  &kp SPACE		&kp LPAR	  &kp RPAR	    ___			  ___			___			  ___						  &tog SYM
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
