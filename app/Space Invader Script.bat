@@ -6,7 +6,7 @@ if %ERRORLEVEL% EQU 2 goto copyFirmware
 if %ERRORLEVEL% EQU 3 goto end
 
 :buildFirmware
-cd %USERPROFILE%\Documents\Git\zmk\app
+cd %USERPROFILE%\Documents\GitHub\zmk\app
 west build -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
 if %ERRORLEVEL% EQU 0 goto copyFirmware
 if %ERRORLEVEL% neq 0 goto pristineBuild
@@ -17,7 +17,7 @@ if %ERRORLEVEL% EQU 0 goto copyFirmware
 if %ERRORLEVEL% neq 0 goto hold
 
 :copyFirmware
-cd %USERPROFILE%\Documents\Git\zmk\app\backup_firmware
+cd %USERPROFILE%\Documents\GitHub\zmk\app\backup_firmware
 echo.
 del zmk.uf2.bk5
 rename zmk.uf2.bk4 zmk.uf2.bk5
@@ -35,7 +35,7 @@ For /F Skip^=1 %%A In (
 If Not Defined Drv goto dfuPrompt
 @REM Echo Your Drive Letter is %Drv%
 @REM Timeout 3 >NUL
-copy %USERPROFILE%\Documents\Git\zmk\app\build\zephyr\zmk.uf2 %Drv%
+copy %USERPROFILE%\Documents\GitHub\zmk\app\build\zephyr\zmk.uf2 %Drv%
 if %ERRORLEVEL% EQU 0 goto end
 if %ERRORLEVEL% neq 0 goto dfuPrompt
 
