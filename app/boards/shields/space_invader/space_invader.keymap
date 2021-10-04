@@ -112,16 +112,16 @@
             flavor = "tap-preferred";
             bindings = <&mo>, <&sk>;
         };
-		hyp: hyper_mod {						// For doing a hyper modifier
-            compatible = "zmk,behavior-hold-tap";
-            label = "Hyper Mod";
-            #binding-cells = <2>;
-            tapping_term_ms = <150>;
-			quick_tap_ms = <0>;
-			// retro-tap;
-            flavor = "tap-preferred";
-            bindings = <LG(LA(LS(LCTRL(&kp))))>, <&kp>;
-        };
+		// hyp: hyper_mod {						// For doing a hyper modifier
+        //     compatible = "zmk,behavior-hold-tap";
+        //     label = "Hyper Mod";
+        //     #binding-cells = <2>;
+        //     tapping_term_ms = <150>;
+		// 	quick_tap_ms = <0>;
+		// 	// retro-tap;
+        //     flavor = "tap-preferred";
+        //     bindings = <LG(LA(LS(LCTRL(&kp))))>, <&kp>;
+        // };
 		// mm: macro_mod {						// An attempt to send a macro with a hold-tap behavior... didn't work
         //     compatible = "zmk,behavior-hold-tap";
         //     label = "macro_mods";
@@ -327,7 +327,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
   	&hm LWIN A	  &hm LALT R	&hm LSHFT S	  &hm LCTRL T	&kp G									  &kp M			&hm RCTRL N	  &hm RSHFT E	&hm RALT I	  &hm RWIN O
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&hyp Z Z	  &hyp X X		&hyp C C	  &hyp V D		&hyp Y V			&kp C_MUTE			  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
+	&fm LC(LG(Z)) Z	  &fm LC(LG(X)) X		&fm LC(LG(C)) C	  &fm LC(LG(V)) D		&fm LC(LG(Y)) V			&kp C_MUTE			  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL &mt RWIN END             &lt SYM RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
