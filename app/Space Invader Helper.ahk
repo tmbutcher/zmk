@@ -53,18 +53,21 @@ SetNumLockState, AlwaysOn
     Numpad4::
     Numpad6::
         moveTheMouse()
+		return
 
-    !Numpad8::       ;Faster mouse movement w/ CTRL
+    !Numpad8::       ;Faster mouse movement w/ ALT
     !Numpad5::
     !Numpad4::
     !Numpad6::
         moveTheMouse(50,5,10)
+		return
 
     !#^Numpad8::       ;Slower mouse movement w/ HYPER
     !#^Numpad5::
     !#^Numpad4::
     !#^Numpad6::
         moveTheMouse(1,0.01,10)
+		return
 
 	F16::Click, WheelDown
 	F17::Click, WheelUp
@@ -87,16 +90,16 @@ moveTheMouse(defaultRate:=1, acceleration:=2, sleepvar:=20) {
             xrate := xrate + acceleration
             X := X-xrate
             xIsOn := true
-        }else if GetKeyState("Numpad6", "P"){
+        } else if GetKeyState("Numpad6", "P") {
             xrate := xrate + acceleration
             X := X+xrate + acceleration
             xIsOn := true
         }
-        if GetKeyState("Numpad8", "P"){
+        if GetKeyState("Numpad8", "P") {
             yrate := yrate + acceleration
             Y := Y-yrate
             yIsOn := true
-        }else if GetKeyState("Numpad5", "P"){
+        } else if GetKeyState("Numpad5", "P") {
             yrate := yrate + acceleration
             Y := Y+yrate
             yIsOn := true
@@ -105,12 +108,12 @@ moveTheMouse(defaultRate:=1, acceleration:=2, sleepvar:=20) {
             xrate := defaultxrate
             yrate := defaultyrate
             return
-        }
-        else
-            DllCall("SetCursorPos", "int", X, "int", Y) ; MouseMove, X, Y, 0, R ; MouseMove, 0, 80, 0, R
+        } else {
+            DllCall("SetCursorPos", "int", X, "int", Y) ; MouseMove, %xrate%, %yrate%, 2, R ; MouseMove, 0, 80, 0, R
             xIsOn := False
             yIsOn := False
             Sleep sleepvar
+        }    
     }
     return
 }
