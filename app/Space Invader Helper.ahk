@@ -9,10 +9,10 @@ SetNumLockState, AlwaysOn
 ; Ctrl-Hold Stuff
 	^#z::
 		Send ^z
-		Sleep 1000
-		While GetKeyState("z", "P")
-			Send ^z
-            Sleep 500
+		; Sleep 1000
+		; While GetKeyState("z", "P")
+		; 	Send ^z
+        ;     Sleep 500
 		return
 	^#x::
 		Send ^x
@@ -35,10 +35,10 @@ SetNumLockState, AlwaysOn
 		return
 	^#y::
 		Send ^y
-		Sleep 1000
-		While GetKeyState("y", "P")
-			Send ^y
-            Sleep 500
+		; Sleep 1000
+		; While GetKeyState("y", "P")
+		; 	Send ^y
+        ;     Sleep 500
 		return
 
 ; General Keys
