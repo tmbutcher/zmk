@@ -242,7 +242,7 @@
 		combo_sleep {
             timeout-ms = <50>;
             key-positions = <6 7 8 9>;  // L U Y '
-            bindings = <&kp F24>;  		// Use AHK to turn F24 into Sleep Button
+            bindings = <&kp KP_SLP>;
         };
 		// combo_shift1 {
         //     timeout-ms = <50>;
@@ -263,6 +263,11 @@
             timeout-ms = <50>;
             key-positions = <10 11 12 13>;  // A R S T
             bindings = <&kp CAPS>;
+        };
+		combo_stay_layer {
+            timeout-ms = <50>;
+            key-positions = <16 17 18 19>;  // N E I O
+            bindings = <&tog STAY>;
         };
 		combo_ctrl_w {
             timeout-ms = <50>;
@@ -327,7 +332,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
   	&hm LWIN A	  &hm LALT R	&hm LSHFT S	  &hm LCTRL T	&kp G									  &kp M			&hm RCTRL N	  &hm RSHFT E	&hm RALT I	  &hm RWIN O
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&fm LC(LG(Z)) Z	  &fm LC(LG(X)) X		&fm LC(LG(C)) C	  &fm LC(LG(V)) D		&fm LC(LG(Y)) V			&kp C_MUTE			  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
+&fm LC(LG(Z)) Z	  &fm LC(LG(X)) X &fm LC(LG(C)) C &fm LC(LG(V)) D &fm LC(LG(Y)) V &kp C_MUTE		  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL &mt RWIN END             &lt SYM RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
@@ -382,11 +387,11 @@
 			bindings = < // All numbers use auto-shift for symbols
 //---------------------------------------------------------------------------------NUMBERS---------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  				╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	&as LBRC LBKT &as LPAR N9	&as ASTRK N8  &as AMPS N7 	&as UNDER MINUS							  xxx		  	&as PIPE BSLH &as TILDE GRAVE xxx		  xxx	
+	&as LBRC LBKT &as AMPS N7	&as ASTRK N8  &as LPAR N9 	&as UNDER MINUS							  &as PIPE BSLH &as TILDE GRAVE xxx		  	xxx			  xxx
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 						├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&as RBRC RBKT &as CARET N6	&as PRCNT N5  &as DLLR N4	&revplus								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
+	&as RBRC RBKT &as DLLR N4	&as PRCNT N5  &as CARET N6	&revplus								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮		├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&lgthan		  &as HASH N3	&as AT N2	  &as EXCL N1	&as QMARK SLASH	  	 ___	     		  xxx			xxx			  &comcol     	&kp COLON	  xxx	
+	&lgthan		  &as EXCL N1	&as AT N2	  &as HASH N3	&as QMARK SLASH	  	 ___	     		  xxx			xxx			  &comcol     	&kp COLON	  xxx	
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&to DFLT					&kp SPACE	  &dotcom		&zeroleft	  &as RPAR N0	&tog NUM	  ___		 	___			  ___						  ___	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
@@ -407,11 +412,11 @@
 			bindings = <
 //---------------------------------------------------------------------------------SYMBOLS--------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	&kp LBRC	  &kp LPAR		&kp ASTRK	  &kp AMPS		&kp UNDER					     		  xxx			&kp PIPE	  &kp TILDE		xxx			  xxx	
+	&kp LBRC	  &kp AMPS		&kp ASTRK	  &kp LPAR		&kp UNDER					     		  &kp PIPE		&kp TILDE	  &kp UP			xxx			  xxx	
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp RBRC	  &kp CARET		&kp PRCNT	  &kp DLLR		&kp EQUAL								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
+	&kp RBRC	  &kp DLLR		&kp PRCNT	  &kp CARET		&kp EQUAL								  &kp BSPC		&kp LEFT	  &kp DOWN    	&kp RIGHT	  &kp RWIN
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp GT		  &kp HASH		&kp AT		  &kp EXCL		&kp QMARK		  	 ___				  xxx			xxx			  &kp SEMI		&kp COLON	  xxx	
+	&kp GT		  &kp EXCL		&kp AT		  &kp HASH		&kp QMARK		  	 ___				  xxx			&kp LC(LEFT)  xxx			&kp LC(RIGHT)  xxx	
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&to DFLT					&dotcom		  &kp SPACE		&kp LPAR	  &kp RPAR	    ___			  ___			___			  ___						  &tog SYM
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
@@ -432,11 +437,11 @@
 			bindings = <
 //-------------------------------------------------------------------------------NAVIGATION-------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	___			  ___			___			  ___			___										  &kp WH_UP   	&kp HOME	  &kp UP		&kp END		  &kp PG_UP
+	&as LBRC LBKT &as AMPS N7	&as ASTRK N8  &as LPAR N9 	&as UNDER MINUS							  &kp WH_UP   	&kp HOME	  &kp UP		&kp END		  &kp PG_UP
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-  &mt LWIN LC(A)  &kp LALT	 &mt LSHFT LC(S) &mt LCTRL LC(T) &kp HYPER								  &kp WH_DN   	&kp LEFT	  &kp DOWN    	&kp RIGHT 	  &kp PG_DN
+  	&as RBRC RBKT &as DLLR N4	&as PRCNT N5  &as CARET N6	&revplus								  &kp WH_DN   	&kp LEFT	  &kp DOWN    	&kp RIGHT 	  &kp PG_DN
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp LC(Z)	  &kp LC(X)		&kp LC(C)	  &kp LC(V)		&kp LC(Y)		     &kp LC(W)			  xxx			&kp LC(LEFT)  xxx			&kp LC(RIGHT) xxx	
+	&lgthan		  &as EXCL N1	&as AT N2	  &as HASH N3	&as QMARK SLASH	     &kp LC(W)			  xxx			&kp LC(LEFT)  xxx			&kp LC(RIGHT) xxx	
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&to DFLT					&kp RET		  ___			&tog NAV	  ___		  	&kp LC(BSPC)  ___			&kp LC(DEL)	  ___						  ___	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
