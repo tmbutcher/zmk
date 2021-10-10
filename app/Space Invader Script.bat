@@ -27,7 +27,9 @@ rename zmk.uf2.bk1 zmk.uf2.bk2
 rename zmk.uf2 zmk.uf2.bk1
 cd ..
 copy /y build\zephyr\zmk.uf2 backup_firmware\zmk.uf2
+goto flashKeeb
 
+:flashKeeb
 Set "Drv="
 For /F Skip^=1 %%A In (
     'WMIC LogicalDisk Where "VolumeName='FTHR840BOOT'" Get DeviceID 2^>NUL'
@@ -45,10 +47,10 @@ powershell "[console]::beep(700,300)"
 
 echo.
 choice /C ONA /T 10 /D A /M "Put Space Invader in DFU mode. [O]kay | [N]o | [A]lready there" /N
-if %ERRORLEVEL% EQU 3 goto copyFirmware
+if %ERRORLEVEL% EQU 3 goto flashKeeb
 if %ERRORLEVEL% EQU 2 goto end
 timeout 10 /nobreak
-if %ERRORLEVEL% EQU 1 goto copyFirmware
+if %ERRORLEVEL% EQU 1 goto flashKeeb
 
 :hold
 echo.
