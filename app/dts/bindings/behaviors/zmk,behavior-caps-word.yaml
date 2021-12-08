@@ -8,7 +8,7 @@ compatible: "zmk,behavior-caps-word"
 include: zero_param.yaml
 
 properties:
-  breaks:
+  continue-list:
     type: array
     required: true
   mods:

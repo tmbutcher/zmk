@@ -10,7 +10,7 @@
 		default_layer {
 			bindings = <
 				&caps_word &kp A
-				&kp B &kp SPACE 
+				&kp N6 &kp MINUS
 			>;
 		};
 	};
