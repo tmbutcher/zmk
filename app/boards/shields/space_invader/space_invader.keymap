@@ -233,17 +233,17 @@
 
         combo_qwerty {
             timeout-ms = <150>;
-            key-positions = <0 1>;  // Q W
+            key-positions = <0 1 2 3>;  // Q W F P
             bindings = <&tog QWERTY>;
         };
 		combo_reset {
             timeout-ms = <150>;
-            key-positions = <8 9>;  // Y '
+            key-positions = <6 7 8 9>;  // L U Y '
             bindings = <&reset>;
         };
 		combo_sleep {
             timeout-ms = <50>;
-            key-positions = <6 7 8 9>;  // L U Y '
+            key-positions = <3 4 5 6>;  // P B J L
             bindings = <&kp KP_SLP>;
         };
 		// combo_shift1 {
