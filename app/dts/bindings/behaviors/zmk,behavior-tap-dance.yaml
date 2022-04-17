@@ -1,4 +1,4 @@
-# Copyright (c) 2021 The ZMK Contributors
+# Copyright (c) 2022 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
 description: Tap Dance Behavior
@@ -11,6 +11,6 @@ properties:
   bindings:
     type: phandle-array
     required: true
-  tapping_term_ms:
+  tapping-term-ms:
     type: int
-    default: 175
+    default: 200
