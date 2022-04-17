@@ -198,14 +198,14 @@
             compatible = "zmk,behavior-tap-dance";
             label = "tap_quotes";
             #binding-cells = <0>;
-            tapping_term_ms = <200>;
+            // tapping-term-ms = <200>;
             bindings = <&kp SQT>, <&kp DQT>;
         };
 		tdbt: tap_dance_bluetooth {
             compatible = "zmk,behavior-tap-dance";
             label = "tap_bluetooth";
             #binding-cells = <0>;
-            tapping_term_ms = <200>;
+            // tapping_term_ms = <200>;
             bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>, <&bt BT_SEL 3>, <&bt BT_SEL 4>;
         };
 
@@ -335,7 +335,7 @@
 			// |      |      |      |      |      |                                  |      |      |      |      | Stay |
 			// | LWin | LAlt | LShft| LCtrl| LCAlt|                                  | RCAlt| RCtrl| RShft| RAlt | RWin |
 			// |      |      |      |      |      |             |      |             |      |      |      |      |      |
-			// |  Fn  |------| LCtrl| Emoji| Nav  | Mouse|      	          | Num  | RShft| Cmp  | RWin |------| Media|
+			// |  Fn  |------| LCtrl| Emoji| Nav  | Mouse|      	          | Num  | RShft| Cmp  | Sym  |------| Media|
 			// |----------------------------------|      |      |      |      |      |----------------------------------|
 			// ----------------------------------------------------------------------------------------------------------
 
