@@ -28,10 +28,10 @@ SetNumLockState, AlwaysOn
 		return
 	^#v::
 		Send ^v
-		Sleep 1000
-		While GetKeyState("v", "P")
-			Send ^v
-            Sleep 500
+		Sleep 5000
+		; While GetKeyState("v", "P")  Maybe use a while loop that uses a variable rather than a function?
+			; Send ^v
+            ; Sleep 500
 		return
 	^#y::
 		Send ^y
