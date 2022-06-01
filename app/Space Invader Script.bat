@@ -7,7 +7,7 @@ if %ERRORLEVEL% EQU 3 goto end
 
 :buildFirmware
 cd %USERPROFILE%\Documents\GitHub\zmk\app
-west build -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
+west build
 if %ERRORLEVEL% EQU 0 goto copyFirmware
 if %ERRORLEVEL% neq 0 goto pristineBuild
 
