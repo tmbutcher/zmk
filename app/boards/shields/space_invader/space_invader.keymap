@@ -455,9 +455,9 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 						├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 	&kp BSPC	  &kp RCTRL	  	&kp RSHFT	  &kp RALT		&tog LNUM								  &as RBRC RBKT &as DLLR N4	  &as PRCNT N5  &as CARET N6  &revplus
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮		├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	 xxx		  xxx			xxx			  &as PIPE BSLH &as TILDE GRAVE		  ___				  &dotcom		&as EXCL N1	  &as AT N2		&as HASH N3	  &as QMARK SLASH
+	 xxx		  xxx			xxx			  &as PIPE BSLH &as TILDE GRAVE		  ___				  &lgthan		&as EXCL N1	  &as AT N2		&as HASH N3	  &as QMARK SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
-	&to DFLT					&kp HOME	  &kp LS(TAB)	&sm NAV LSHFT &kp LSHFT		&zeroleft	  &kp SPACE		&as RPAR N0	  &lgthan				  ___	
+	&to DFLT					&kp HOME	  &kp LS(TAB)	&sm NAV LSHFT &dotcom		___			  &zeroleft	  	___			  &as RPAR N0			  	  ___	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
 //																		  		 ╭─────────╮
 																				   ___	
