@@ -2,14 +2,14 @@
 
 choice /C YNQ /T 5 /D Y /M "Build firmware? [Y]es | [N]o | [Q]uit" /N
 if %ERRORLEVEL% EQU 1 goto buildFirmware
-if %ERRORLEVEL% EQU 2 goto copyFirmware
+if %ERRORLEVEL% EQU 2 goto flashKeeb
 if %ERRORLEVEL% EQU 3 goto end
 
 :buildFirmware
-cd %USERPROFILE%\Documents\GitHub\zmk\app
-west build
-if %ERRORLEVEL% EQU 0 goto copyFirmware
-if %ERRORLEVEL% neq 0 goto pristineBuild
+@REM cd %USERPROFILE%\Documents\GitHub\zmk\app
+@REM west build
+@REM if %ERRORLEVEL% EQU 0 goto copyFirmware
+@REM if %ERRORLEVEL% neq 0 goto pristineBuild
 
 :pristineBuild
 west build -p -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
