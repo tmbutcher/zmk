@@ -6,6 +6,12 @@
 
  // standard build command: west build -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
 
+ /* ********* TODO *************
+ *	• Add inverse mod PR or use AHK to fix bracket tap dance
+		• And use macro to fix elipsis on the bracket td
+ *	• Find a way to put interobang back on the regular map (maybe a tap dance for slash?)
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -104,6 +110,16 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+		shm: shift_mod {								// Special setting for the shift-space key
+            compatible = "zmk,behavior-hold-tap";
+            label = "shift mod";
+            #binding-cells = <2>;
+            tapping_term_ms = <150>;
+			quick_tap_ms = <0>;
+			// retro-tap;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
 		sm: sticky_mod_layer {						// For using a sticky key tap with layer tap
             compatible = "zmk,behavior-hold-tap";
             label = "Sticky Mod-Layer Tap";
@@ -148,6 +164,20 @@
 			label = "DOT_COLON";
 			#binding-cells = <0>;
 			bindings = <&kp DOT>, <&kp COLON>;
+			mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
+		lparbkt: l_par_bkt {
+			compatible = "zmk,behavior-mod-morph";
+			label = "L_PAR_BRACKET";
+			#binding-cells = <0>;
+			bindings = <&kp LPAR>, <&kp LBKT>;
+			mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
+		rparbkt: r_par_bkt {
+			compatible = "zmk,behavior-mod-morph";
+			label = "R_PAR_BRACKET";
+			#binding-cells = <0>;
+			bindings = <&kp RPAR>, <&kp RBKT>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
 		intbang: interobang {
@@ -198,18 +228,41 @@
             compatible = "zmk,behavior-tap-dance";
             label = "tap_quotes";
             #binding-cells = <0>;
-            // tapping-term-ms = <200>;
+            tapping-term-ms = <150>;
             bindings = <&kp SQT>, <&kp DQT>;
         };
 		tdbt: tap_dance_bluetooth {
             compatible = "zmk,behavior-tap-dance";
             label = "tap_bluetooth";
             #binding-cells = <0>;
-            // tapping_term_ms = <200>;
+            tapping-term-ms = <200>;
             bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>, <&bt BT_SEL 3>, <&bt BT_SEL 4>;
         };
+		tdlpar: tap_dance_l_par {
+			compatible = "zmk,behavior-tap-dance";
+            label = "tap_l_par";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&comcol>, <&lparbkt>;
+		};
+		tdrpar: tap_dance_r_par {
+			compatible = "zmk,behavior-tap-dance";
+            label = "tap_r_par";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&dotcol>, <&rparbkt>, <&elipsis>;		// Need to use a macro for the third option
+		};
+	};
 
-		// // Macro Behaviors
+	// Macros
+	 macros {
+        elipsis: elipsis {
+            label = "ZM_elipsis";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DOT &kp DOT &kp DOT>;
+        };
+
 		// mcz: m_ctrl_z {
 		// 	compatible = "zmk,behavior-macro";
         //     label = "macro_ctrl_z";
@@ -342,13 +395,13 @@
 			bindings = <
 //--------------------------------------------------------------------------------COLEMAK---------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-  	&kp Q		  &kp W			&kp F		  &kp P			&kp B									  &kp J			&kp L		  &kp U			&kp Y		  &tdq			// &lt STAY APOS
+  	&kp Q		  &kp W			&kp F		  &kp P			&kp B									  &kp J			&kp L		  &kp U			&kp Y		  &lt STAY APOS		// &tdq
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
   	&hm LWIN A	  &hm LALT R	&hm LSHFT S	  &hm LCTRL T	&kp G									  &kp M			&hm RCTRL N	  &hm RSHFT E	&hm RALT I	  &hm RWIN O
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-&fm LC(LG(Z)) Z	  &fm LC(LG(X)) X &fm LC(LG(C)) C &fm LC(LG(V)) D &fm LC(LG(Y)) V &kp C_MUTE		  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
+&fm LC(LG(Z)) Z	  &fm LC(LG(X)) X &fm LC(LG(C)) C &fm LC(LG(V)) D &fm LC(LG(Y)) V &kp C_MUTE		  &kp K			&kp H		  &tdlpar		&tdrpar		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
-	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &hm RSHFT SPACE &cm KP_CMP DEL &lt SYM END				  &mt RSHFT RET
+	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &shm RSHFT SPACE &cm KP_CMP DEL &lt SYM END			  &mt RSHFT RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
 //																		  		 ╭─────────╮
 																				  &kp UP
@@ -465,11 +518,11 @@
 			bindings = <
 //-------------------------------------------------------------------------------NAVIGATION-------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	&as LBRC LBKT &as AMPS N7	&as ASTRK N8  &as LPAR N9 	&as UNDER MINUS							  &kp WH_UP   	&kp HOME	  &kp UP		&kp END		  &kp PG_UP
+	xxx			  xxx			xxx			  xxx			xxx										  &kp WH_UP   	&kp HOME	  &kp UP		&kp END		  &kp PG_UP
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-  	&as RBRC RBKT &as DLLR N4	&as PRCNT N5  &as CARET N6	&revplus								  &kp WH_DN   	&kp LEFT	  &kp DOWN    	&kp RIGHT 	  &kp PG_DN
+  	&kp LWIN	  &kp LALT	 	&kp LSHFT	  &kp LCTRL		xxx										  &kp WH_DN   	&kp LEFT	  &kp DOWN    	&kp RIGHT 	  &kp PG_DN
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&lgthan		  &as EXCL N1	&as AT N2	  &as HASH N3	&as QMARK SLASH	     &kp LC(W)			  xxx			&kp LC(LEFT)  xxx			&kp LC(RIGHT) xxx	
+	xxx			  xxx			xxx			  xxx			xxx				     &kp LC(W)			  xxx			&kp LC(LEFT)  xxx			&kp LC(RIGHT) xxx	
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&to DFLT					&kp RET		  ___			&tog NAV	  ___		  	&kp LC(BSPC)  ___			&kp LC(DEL)	  ___						  ___	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
