@@ -243,14 +243,14 @@
 			compatible = "zmk,behavior-tap-dance";
             label = "tap_l_par";
             #binding-cells = <0>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <100>;
             bindings = <&comcol>, <&lparbkt>;
 		};
 		tdrpar: tap_dance_r_par {
 			compatible = "zmk,behavior-tap-dance";
             label = "tap_r_par";
             #binding-cells = <0>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <100>;
             bindings = <&dotcol>, <&rparbkt>, <&elipsis>;		// Need to use a macro for the third option
 		};
 	};
@@ -285,7 +285,12 @@
 
         compatible = "zmk,combos";
 
-        combo_qwerty {
+		combo_hyphen {
+            timeout-ms = <150>;
+            key-positions = <28 29>;  // , .
+            bindings = <&kp MINUS>;
+        };
+	    combo_qwerty {
             timeout-ms = <150>;
             key-positions = <0 1 2 3>;  // Q W F P
             bindings = <&tog QWERTY>;
@@ -296,41 +301,40 @@
             bindings = <&reset>;
         };
 		combo_sleep {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <3 4 5 6>;  // P B J L
             bindings = <&kp KP_SLP>;
         };
 		// combo_shift1 {
-        //     timeout-ms = <50>;
+        //     timeout-ms = <150>;
         //     key-positions = <12 13>;  // S T
         //     bindings = <&sk LSHFT>;
         // };
 		// combo_shift2 {
-        //     timeout-ms = <50>;
+        //     timeout-ms = <150>;
         //     key-positions = <16 17>;  // N E
         //     bindings = <&sk RSHFT>;
         // };
 		combo_caps_word {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <10 11 12>;  // A R S
             bindings = <&caps_word>;
         };
 		combo_caps_lock {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <10 11 12 13>;  // A R S T
             bindings = <&kp CAPS>;
         };
 		combo_stay_layer {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <16 17 18 19>;  // N E I O
             bindings = <&tog STAY>;
         };
 		combo_ctrl_w {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <37 38 39>;  // SPACE COMP END
             bindings = <&kp LC(W)>;
 		};
-
 		combo_mods_cmk {
 			timeout-ms = <150>;
             key-positions = <20 21 22 23>;  // Z X C D
