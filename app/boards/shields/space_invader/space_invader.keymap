@@ -253,6 +253,12 @@
             tapping-term-ms = <150>;
             bindings = <&dotcol>, <&rparbkt>, <&elipsis>;		// Need to use a macro for the third option
 		};
+		tdspace: tap_dance_space {
+			compatible = "zmk,behavior-tap-dance";
+            label = "tap_space";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&shm RSHFT SPACE>, <&shm RSHFT SPACE>, <&kp SPACE>;
 	};
 
 	// Macros
@@ -402,7 +408,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 &fm LC(LG(Z)) Z	  &fm LC(LG(X)) X &fm LC(LG(C)) C &fm LC(LG(V)) D &fm LC(LG(Y)) V &kp C_MUTE		  &kp K			&kp H		  &tdlpar		&tdrpar		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
-	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &shm RSHFT SPACE &cm KP_CMP DEL &lt SYM END			  &mt RSHFT RET
+	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &tdspace 		&cm KP_CMP DEL &lt SYM END			  &mt RSHFT RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
 //																		  		 ╭─────────╮
 																				  &kp UP
