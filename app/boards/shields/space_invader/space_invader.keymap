@@ -243,14 +243,14 @@
 			compatible = "zmk,behavior-tap-dance";
             label = "tap_l_par";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <150>;
             bindings = <&comcol>, <&lparbkt>;
 		};
 		tdrpar: tap_dance_r_par {
 			compatible = "zmk,behavior-tap-dance";
             label = "tap_r_par";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <150>;
             bindings = <&dotcol>, <&rparbkt>, <&elipsis>;		// Need to use a macro for the third option
 		};
 		tdspace: tap_dance_space {
@@ -259,6 +259,7 @@
             #binding-cells = <0>;
             tapping-term-ms = <150>;
             bindings = <&shm RSHFT SPACE>, <&shm RSHFT SPACE>, <&kp SPACE>;
+		}
 	};
 
 	// Macros
