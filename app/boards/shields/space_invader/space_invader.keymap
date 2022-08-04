@@ -56,7 +56,7 @@
 #define KP_SMC	(F20)
 #define KP_EMJ	(F21)
 #define KP_CMP	(F23)
-#define KP_SLP	(F24)
+#define KP_SLP	(LG(LA(LS(LC(APOS)))))
 
 // Other defs
 #define xxx		&none	
@@ -253,13 +253,13 @@
             tapping-term-ms = <150>;
             bindings = <&dotcol>, <&rparbkt>, <&elipsis>;		// Need to use a macro for the third option
 		};
-		tdspace: tap_dance_space {
-			compatible = "zmk,behavior-tap-dance";
-            label = "tap_space";
-            #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&shm RSHFT SPACE>, <&shm RSHFT SPACE>, <&kp SPACE>;
-		}
+		// tdspace: tap_dance_space {							// Tried to use a tap-dance to preserve the ability of holding down space,
+		// 	compatible = "zmk,behavior-tap-dance";				// but doesn't seem to work--doesn't seem to process the hold-tap mod until
+        //     label = "tap_space";								// after the tap-dance finishes
+        //     #binding-cells = <0>;
+        //     tapping-term-ms = <150>;
+        //     bindings = <&shm RSHFT SPACE>, <&shm RSHFT SPACE>, <&kp SPACE>;
+		// };
 	};
 
 	// Macros
@@ -293,7 +293,7 @@
         compatible = "zmk,combos";
 
 		combo_hyphen {
-            timeout-ms = <150>;
+            timeout-ms = <100>;
             key-positions = <28 29>;  // , .
             bindings = <&kp MINUS>;
         };
@@ -413,7 +413,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 &fm LC(LG(Z)) Z	  &fm LC(LG(X)) X &fm LC(LG(C)) C &fm LC(LG(V)) D &fm LC(LG(Y)) V &kp C_MUTE		  &kp K			&kp H		  &tdlpar		&tdrpar		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
-	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &tdspace 		&cm KP_CMP DEL &lt SYM END			  &mt RSHFT RET
+	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &shm RSHFT SPACE &cm KP_CMP DEL &lt SYM END			  &mt RSHFT RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
 //																		  		 ╭─────────╮
 																				  &kp UP
@@ -621,7 +621,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 	&kp LC(Z)	  &kp LC(X)		&kp LC(C)	  &kp LC(V)		&kp LC(Y)   		 &bootsleep			  &bt BT_PRV	&kp F1		  &kp F2		&kp F3		  &kp F10
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
-	&tog FN						___			  &kp C_PREV	&kp C_PP	  &kp C_NEXT	&kp LC(BSPC)  ___			&kp LC(DEL)	  ___						  ___	
+	&tog FN						___			  &kp C_PREV	&kp C_PP	  &kp C_NEXT	&kp LC(BSPC)  ___			&kp LC(DEL)	  ___						  &kp KP_SLP	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
 //																		  		 ╭─────────╮
 																				   &kp LG(UP)

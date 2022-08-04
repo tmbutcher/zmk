@@ -45,7 +45,7 @@ SetNumLockState, AlwaysOn
 	F18::=
 	F19::,
 	+F20::SendRaw `;
-    F24::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0) ; Computer sleep button
+    #^+!'::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 1, "int", 0) ; Computer sleep button
 
 ; Mouse Stuff
     Numpad8::        ;Regular mouse movement
