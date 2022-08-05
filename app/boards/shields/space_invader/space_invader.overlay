@@ -94,6 +94,7 @@
 	status = "okay";
 	sda-pin = <12>;
 	scl-pin = <11>;
+	zephyr,concat-buf-size = <1024>;
 
 	oled: ssd1306@3c {
 		compatible = "solomon,ssd1306fb";

@@ -46,10 +46,10 @@ powershell "[console]::beep(700,300)"
 powershell "[console]::beep(700,300)"
 
 echo.
-choice /C ONA /T 10 /D A /M "Put Space Invader in DFU mode. [O]kay | [N]o | [A]lready there" /N
+choice /C ONA /T 5 /D A /M "Put Space Invader in DFU mode. [O]kay | [N]o | [A]lready there" /N
 if %ERRORLEVEL% EQU 3 goto flashKeeb
 if %ERRORLEVEL% EQU 2 goto end
-timeout 10 /nobreak
+timeout 5 /nobreak
 if %ERRORLEVEL% EQU 1 goto flashKeeb
 
 :hold

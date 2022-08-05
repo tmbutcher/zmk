@@ -7,9 +7,10 @@
  // standard build command: west build -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
 
  /* ********* TODO *************
- *	• Add inverse mod PR or use AHK to fix bracket tap dance
+ 	• Add inverse mod PR or use AHK to fix bracket tap dance
 		• And use macro to fix elipsis on the bracket td
- *	• Find a way to put interobang back on the regular map (maybe a tap dance for slash?)
+ 	• Find a way to put interobang back on the regular map (maybe a tap dance for slash?)
+ 	• Find a way to have both the tap dance and the hyphen combo working
  */
 
 #include <behaviors.dtsi>
@@ -292,11 +293,11 @@
 
         compatible = "zmk,combos";
 
-		combo_hyphen {
-            timeout-ms = <100>;
-            key-positions = <28 29>;  // , .
-            bindings = <&kp MINUS>;
-        };
+		// combo_hyphen {
+        //     timeout-ms = <100>;
+        //     key-positions = <28 29>;  // , .
+        //     bindings = <&kp MINUS>;
+        // };
 	    combo_qwerty {
             timeout-ms = <150>;
             key-positions = <0 1 2 3>;  // Q W F P
@@ -388,7 +389,7 @@
 
 
 		default_layer { 
-			label = "Default Layer";
+			label = "Default";
 			// -------------------------------------------------COLEMAK--------------------------------------------------
 			// |  Q   |  W   |  F   |  P   |  B   |                                  |  J   |  L   |  U   |  Y   |  '"  |
 			// |  A   |  R   |  S   |  T   |  G   |                                  |  M   |  N   |  E   |  I   |  O   |
@@ -428,7 +429,7 @@
 		};
 
 		default_no_mods_layer { // Just turns off hm mods, so no need for the whole keymap diagram
-			label = "Default No Mods Layer";
+			label = "D.NoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp R &kp S &kp T ___ ___ &kp N &kp E &kp I &kp O ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 						___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___>;
 			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
@@ -460,14 +461,14 @@
 		};
 
 		qwerty_no_mods_layer { // Just turns off hm mods, so no need for the whole keymap diagram
-			label = "QWERTY No Mods Layer";
+			label = "QNoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp S &kp D &kp F ___ ___ &kp K &kp L &kp COLON &kp APOS ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 						___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___>;
 			sensor-bindings = <&inc_dec_kp WH_DN WH_UP>;
 		};
 
 		number_layer {
-			label = "Number Layer";
+			label = "Numbers";
 			
 			// --------------------------------------------------NUMBER--------------------------------------------------
 			// |  [{  |  1!  |  2@  |  3#  |  -_  |                                  |      |  \|  |  `~  |      |      |
@@ -502,7 +503,7 @@
 
 
 		left_number_layer {
-			label = "Left Number Layer";
+			label = "L Numbers";
 			
 			// -----------------------------------------------LEFT NUMBER------------------------------------------------
 			// |  [{  |  1!  |  2@  |  3#  |  -_  |                                  |      |  \|  |  `~  |      |      |
@@ -536,7 +537,7 @@
 		};
 
 		symbol_layer {
-			label = "Symbol Layer";
+			label = "Symbols";
 			bindings = <
 //---------------------------------------------------------------------------------SYMBOLS--------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -561,7 +562,7 @@
 		};
 
 		navigation_layer {
-			label = "Navigation Layer";
+			label = "Nav";
 			bindings = <
 //-------------------------------------------------------------------------------NAVIGATION-------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -586,7 +587,7 @@
 		};
 
 		mouse_layer {  // todo: Mouse not yet implemented in ZMK. Using AHK in the meantime
-			label = "Mouse Layer";
+			label = "Mouse";
 			bindings = <
 //----------------------------------------------------------------------------------MOUSE---------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -611,7 +612,7 @@
 		};
 
 		function_layer {
-			label = "Function Layer";
+			label = "Function";
 			bindings = <
 //--------------------------------------------------------------------------------FUNCTION--------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -636,7 +637,7 @@
 		};
 
 		emoji_layer { // todo: Unicode (including emoji) not yet implemented in ZMK. Maybe try using AHK in the meantime?
-			label = "Emoji Layer";
+			label = "Emoji";
 			bindings = <
 //----------------------------------------------------------------------------------EMOJI---------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -661,7 +662,7 @@
 		};
 
 		compose_layer { // todo: unicode not yet implemented in ZMK. Maybe try using AHK in the meantime?
-			label = "Compose Layer";
+			label = "Compose";
 			bindings = <
 //---------------------------------------------------------------------------------COMPOSE--------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -686,7 +687,7 @@
 		};
 
 		stay_layer {	// This layer is for toggling the layers (rather than just holding them on). Can be replaced in the future with double-taps or something
-			label = "Stay Layer";
+			label = "Stay";
 			bindings = <
 //-------------------------------------------------------------------------------STAY  LAYER-------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
