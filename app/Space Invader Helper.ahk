@@ -69,8 +69,16 @@ SetNumLockState, AlwaysOn
         moveTheMouse(1,0.01,10)
 		return
 
-	F16::Click, WheelDown
-	F17::Click, WheelUp
+	F16::
+		Loop, 2 {
+			Click, WheelDown 2
+		}
+		return
+	F17::
+			Loop, 2 {
+			Click, WheelUp 2
+		}
+		return
     Numpad7::Click, WheelLeft
     Numpad9:: Click, WheelRight
 	
