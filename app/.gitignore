@@ -1,4 +1,5 @@
 build/
 node_modules/
 backup_firmware/
-node_modules/
+boards/shields/*/*
+!boards/shields/*/space_invader
