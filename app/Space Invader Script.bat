@@ -1,15 +1,16 @@
 @ECHO OFF
 
-choice /C YNQ /T 5 /D Y /M "Build firmware? [Y]es | [N]o | [Q]uit" /N
+choice /C YPNQ /T 5 /D Y /M "Build firmware? [Y]es | [P]ristine | [N]o | [Q]uit" /N
 if %ERRORLEVEL% EQU 1 goto buildFirmware
-if %ERRORLEVEL% EQU 2 goto flashKeeb
-if %ERRORLEVEL% EQU 3 goto end
+if %ERRORLEVEL% EQU 2 goto pristineBuild
+if %ERRORLEVEL% EQU 3 goto flashKeeb
+if %ERRORLEVEL% EQU 4 goto end
 
 :buildFirmware
-@REM cd %USERPROFILE%\Documents\GitHub\zmk\app
-@REM west build
-@REM if %ERRORLEVEL% EQU 0 goto copyFirmware
-@REM if %ERRORLEVEL% neq 0 goto pristineBuild
+cd %USERPROFILE%\Documents\GitHub\zmk\app
+west build
+if %ERRORLEVEL% EQU 0 goto copyFirmware
+if %ERRORLEVEL% neq 0 goto pristineBuild
 
 :pristineBuild
 west build -p -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
