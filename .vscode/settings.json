@@ -3,5 +3,6 @@
     "*.overlay": "dts"
   },
   "python.formatting.provider": "black",
-  "editor.insertSpaces": false
+  "editor.insertSpaces": false,
+  "C_Cpp.errorSquiggles": "Disabled"
 }
