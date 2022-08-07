@@ -7,10 +7,7 @@
  // standard build command: west build -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
 
  /* ********* TODO *************
- 	• Add inverse mod PR or use AHK to fix bracket tap dance
-		• And use macro to fix elipsis on the bracket td
- 	• Find a way to put interobang back on the regular map (maybe a tap dance for slash?)
- 	• Find a way to have both the tap dance and the hyphen combo working
+ 	* Make the QWERTY No Mod layer into a conditional layer
  */
 
 #include <behaviors.dtsi>
@@ -68,298 +65,19 @@
 #include <../boards/shields/space_invader/key_positions.h>
 #include <../boards/shields/space_invader/helper.h>
 #include <../boards/shields/space_invader/combos.dtsi>
+#include <../boards/shields/space_invader/behaviors.dtsi>
 
 &mt { quick_tap_ms = <200>; };
 &lt { quick_tap_ms = <200>; };
 
 / {
-
-	behaviors {
-		// #include "hold-tap.dtsi"				// Couldn't figure out how to get this working. Maybe try with combos or something?
-												// See https://github.com/dxmh/zmk-config/tree/5c2baa8f0bd68a88fa61ef5521f0cd11c05870b7/config
-		// Hold-Tap Behaviors
-		hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "homerow mods";
-            #binding-cells = <2>;
-            tapping_term_ms = <200>;
-			quick_tap_ms = <150>;
-			// retro-tap;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+	conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
         };
-		as: auto_shift {
-            compatible = "zmk,behavior-hold-tap";
-            label = "AutoShift";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            // quick_tap_ms = <-1>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-		cm: custom_mods {							// Is there a difference between this and hm?
-            compatible = "zmk,behavior-hold-tap";
-            label = "Custom Mods";
-            #binding-cells = <2>;
-            tapping-term-ms = <150>;
-            quick_tap_ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-		fm: fast_mods {								// The same as homerow mods except with a much faster quick_tap setting
-            compatible = "zmk,behavior-hold-tap";
-            label = "fast mods";
-            #binding-cells = <2>;
-            tapping_term_ms = <150>;
-			quick_tap_ms = <75>;
-			// retro-tap;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-		shm: shift_mod {								// Special setting for the shift-space key
-            compatible = "zmk,behavior-hold-tap";
-            label = "shift mod";
-            #binding-cells = <2>;
-            tapping_term_ms = <150>;
-			quick_tap_ms = <0>;
-			// retro-tap;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-		sm: sticky_mod_layer {						// For using a sticky key tap with layer tap
-            compatible = "zmk,behavior-hold-tap";
-            label = "Sticky Mod-Layer Tap";
-            #binding-cells = <2>;
-            tapping_term_ms = <150>;
-			quick_tap_ms = <0>;
-			// retro-tap;
-            flavor = "tap-preferred";
-            bindings = <&mo>, <&sk>;
-        };
-		// hyp: hyper_mod {						// For doing a hyper modifier
-        //     compatible = "zmk,behavior-hold-tap";
-        //     label = "Hyper Mod";
-        //     #binding-cells = <2>;
-        //     tapping_term_ms = <150>;
-		// 	quick_tap_ms = <0>;
-		// 	// retro-tap;
-        //     flavor = "tap-preferred";
-        //     bindings = <LG(LA(LS(LCTRL(&kp))))>, <&kp>;
-        // };
-		// mm: macro_mod {						// An attempt to send a macro with a hold-tap behavior... didn't work
-        //     compatible = "zmk,behavior-hold-tap";
-        //     label = "macro_mods";
-        //     #binding-cells = <2>;
-        //     tapping_term_ms = <150>;
-		// 	quick_tap_ms = <0>;
-		// 	// retro-tap;
-        //     flavor = "tap-preferred";
-        //     bindings = <&mcz>, <&kp>;
-        // };
-
-		// Mod-Morph Behaviors
-        comcol: comma_colon {
-			compatible = "zmk,behavior-mod-morph";
-			label = "COMMA_COLON";
-			#binding-cells = <0>;
-			bindings = <&kp COMMA>, <&kp KP_SMC>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		dotcol: dot_colon {
-			compatible = "zmk,behavior-mod-morph";
-			label = "DOT_COLON";
-			#binding-cells = <0>;
-			bindings = <&kp DOT>, <&kp COLON>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		lparbkt: l_par_bkt {
-			compatible = "zmk,behavior-mod-morph";
-			label = "L_PAR_BRACKET";
-			#binding-cells = <0>;
-			bindings = <&kp LPAR>, <&kp LBKT>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		rparbkt: r_par_bkt {
-			compatible = "zmk,behavior-mod-morph";
-			label = "R_PAR_BRACKET";
-			#binding-cells = <0>;
-			bindings = <&kp RPAR>, <&kp RBKT>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		intbang: interobang {
-			compatible = "zmk,behavior-mod-morph";
-			label = "INTEROBANG";
-			#binding-cells = <0>;
-			bindings = <&kp QMARK>, <&kp EXCL>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		lgthan: less_greater_than {
-			compatible = "zmk,behavior-mod-morph";
-			label = "LESS_GREATER_THAN";
-			#binding-cells = <0>;
-			bindings = <&as GT LT>, <&kp GT>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		revplus: reverse_plus {							// Uses AHK to reverse the shift order of + and =
-			compatible = "zmk,behavior-mod-morph";
-			label = "REVERSE_PLUS";
-			#binding-cells = <0>;
-			bindings = <&as F18 PLUS>, <&kp F18>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		dotcom: dot_comma {
-			compatible = "zmk,behavior-mod-morph";
-			label = "DOT_COMMA";
-			#binding-cells = <0>;
-			bindings = <&as KP_COM DOT>, <&kp KP_COM>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		zeroleft: zero_left_parenthesis {
-			compatible = "zmk,behavior-mod-morph";
-			label = "ZERO_LEFT_PARENTHESIS";
-			#binding-cells = <0>;
-			bindings = <&as LPAR N0>, <&kp LPAR>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-		bootsleep: bootloader_sleep {
-			compatible = "zmk,behavior-mod-morph";
-			label = "BOOTLOADER_SLEEP";
-			#binding-cells = <0>;
-			bindings = <&bootloader>, <&kp KP_SLP>;
-			mods = <(MOD_LSFT|MOD_RSFT)>;
-		};
-
-		// Tap-Dance Behaviors
-		tdq: tap_dance_quotes {
-            compatible = "zmk,behavior-tap-dance";
-            label = "tap_quotes";
-            #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&kp SQT>, <&kp DQT>;
-        };
-		tdbt: tap_dance_bluetooth {
-            compatible = "zmk,behavior-tap-dance";
-            label = "tap_bluetooth";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>, <&bt BT_SEL 3>, <&bt BT_SEL 4>;
-        };
-		tdlpar: tap_dance_l_par {
-			compatible = "zmk,behavior-tap-dance";
-            label = "tap_l_par";
-            #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&comcol>, <&lparbkt>;
-		};
-		tdrpar: tap_dance_r_par {
-			compatible = "zmk,behavior-tap-dance";
-            label = "tap_r_par";
-            #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&dotcol>, <&rparbkt>, <&elipsis>;		// Need to use a macro for the third option
-		};
-		// tdspace: tap_dance_space {							// Tried to use a tap-dance to preserve the ability of holding down space,
-		// 	compatible = "zmk,behavior-tap-dance";				// but doesn't seem to work--doesn't seem to process the hold-tap mod until
-        //     label = "tap_space";								// after the tap-dance finishes
-        //     #binding-cells = <0>;
-        //     tapping-term-ms = <150>;
-        //     bindings = <&shm RSHFT SPACE>, <&shm RSHFT SPACE>, <&kp SPACE>;
-		// };
-	};
-
-	// Macros
-	 macros {
-        elipsis: elipsis {
-            label = "ZM_elipsis";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp DOT &kp DOT &kp DOT>;
-        };
-
-		// mcz: m_ctrl_z {
-		// 	compatible = "zmk,behavior-macro";
-        //     label = "macro_ctrl_z";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp LC(Z)>;
-		// };
-	};
-
-    // combos {
-
-	// 	/*                  KEY POSITIONS									// NB: This assumes that the numbers go by the adaptive matrix positions,
-	// 																			   rather than absolute matrix positions (which would have different
-  	// 	╭────────────────────╮          ╭────────────────────╮  	╭────╮		   numbers after the encoder button).
-  	// 	│  0   1   2   3   4 │          │  5   6   7   8   9 │  ╭───╯ 41 ╰───╮
-  	// 	│ 10  11  12  13  14 │   ╭──╮   │ 15  16  17  18  19 │  │ 42  43  44 │
-  	// 	│ 20  21  22  23  24 ╰───╮25╭───╯ 26  27  28  29  30 │  ╰───╮ 45 ╭───╯
-  	// 	│ 31 ╭──╮ 32  33  34  35 │‾‾│ 36  37  38  39╭──╮  40 │      ╰────╯
-    //     ╰────╯  ╰────────────────╯  ╰───────────────╯  ╰─────╯                */
-
-    //     compatible = "zmk,combos";
-
-	// 	// combo_hyphen {
-    //     //     timeout-ms = <100>;
-    //     //     key-positions = <28 29>;  // , .
-    //     //     bindings = <&kp MINUS>;
-    //     // };
-	//     combo_qwerty {
-    //         timeout-ms = <150>;
-    //         key-positions = <0 1 2 3>;  // Q W F P
-    //         bindings = <&tog QWERTY>;
-    //     };
-	// 	combo_reset {
-    //         timeout-ms = <150>;
-    //         key-positions = <6 7 8 9>;  // L U Y '
-    //         bindings = <&reset>;
-    //     };
-	// 	combo_sleep {
-    //         timeout-ms = <150>;
-    //         key-positions = <3 4 5 6>;  // P B J L
-    //         bindings = <&kp KP_SLP>;
-    //     };
-	// 	// combo_shift1 {
-    //     //     timeout-ms = <150>;
-    //     //     key-positions = <12 13>;  // S T
-    //     //     bindings = <&sk LSHFT>;
-    //     // };
-	// 	// combo_shift2 {
-    //     //     timeout-ms = <150>;
-    //     //     key-positions = <16 17>;  // N E
-    //     //     bindings = <&sk RSHFT>;
-    //     // };
-	// 	combo_caps_word {
-    //         timeout-ms = <150>;
-    //         key-positions = <10 11 12>;  // A R S
-    //         bindings = <&caps_word>;
-    //     };
-	// 	combo_caps_lock {
-    //         timeout-ms = <150>;
-    //         key-positions = <10 11 12 13>;  // A R S T
-    //         bindings = <&kp CAPS>;
-    //     };
-	// 	combo_stay_layer {
-    //         timeout-ms = <150>;
-    //         key-positions = <16 17 18 19>;  // N E I O
-    //         bindings = <&tog STAY>;
-    //     };
-	// 	combo_ctrl_w {
-    //         timeout-ms = <150>;
-    //         key-positions = <37 38 39>;  // SPACE COMP END
-    //         bindings = <&kp LC(W)>;
-	// 	};
-	// 	combo_mods_cmk {
-	// 		timeout-ms = <150>;
-    //         key-positions = <20 21 22 23>;  // Z X C D
-	// 		layers = <0 1>;
-    //         bindings = <&tog DEF_NM>;
-	// 	};
-	// 	combo_mods_qwer {
-	// 		timeout-ms = <150>;
-    //         key-positions = <20 21 22 23>;  // Z X C D [Z X C V]
-	// 		layers = <2 3>;
-    //         bindings = <&tog QWER_NM>;
-	// 	};
-    // };
+    };
 
 	keymap {
 		compatible = "zmk,keymap";
@@ -398,12 +116,12 @@
 			// |  Q   |  W   |  F   |  P   |  B   |                                  |  J   |  L   |  U   |  Y   |  '"  |
 			// |  A   |  R   |  S   |  T   |  G   |                                  |  M   |  N   |  E   |  I   |  O   |
 			// |  Z   |  X   |  C   |  D   |  V   |             | Mute |             |  K   |  H   |  ,;  |  .:  |  /?  |  // In the future, maybe change back to interobang
-			// |  Esc |------| Home | Left | Space| Tab  |      	          | Enter| Bspc | Rght |  End |------|  Del |  // Although maybe slash is more common than exclamation mark?
-			// |----------------------------------| Left |  Up  | Enter| Down | Rght |----------------------------------|
+			// |  Esc |------| Home |ShftTb|StckSh| Tab  |      	          | Bspc | Space| Del  |  End |------|  Del |  // Although maybe slash is more common than exclamation mark?
+			// |----------------------------------|  Up  | Left | Enter| Right| Down |----------------------------------|
 			// ----------------------------------------------------------------------------------------------------------
 			// ------------------------------------------------HOLD LAYER------------------------------------------------
 			// |      |      |      |      |      |                                  |      |      |      |      | Stay |
-			// | LWin | LAlt | LShft| LCtrl| LCAlt|                                  | RCAlt| RCtrl| RShft| RAlt | RWin |
+			// | LWin | LAlt | LShft| LCtrl| LNum |                                  |      | RCtrl| RShft| RAlt | RWin |
 			// |      |      |      |      |      |             |      |             |      |      |      |      |      |
 			// |  Fn  |------| LCtrl| Emoji| Nav  | Mouse|      	          | Num  | RShft| Cmp  | Sym  |------| Media|
 			// |----------------------------------|      |      |      |      |      |----------------------------------|
@@ -414,7 +132,7 @@
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
   	&kp Q		  &kp W			&kp F		  &kp P			&kp B									  &kp J			&kp L		  &kp U			&kp Y		  &lt STAY APOS		// &tdq
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-  	&hm LWIN A	  &hm LALT R	&hm LSHFT S	  &hm LCTRL T	&lt LNUM G								  &kp M			&hm RCTRL N	  &hm RSHFT E	&hm RALT I	  &hm RWIN O
+  	&cm LWIN A	  &cm LALT R	&cm LSHFT S	  &cm LCTRL T	&lt LNUM G								  &kp M			&cm RCTRL N	  &cm RSHFT E	&cm RALT I	  &cm RWIN O
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 	&kp Z		  &kp X			&kp C		  &kp D			&kp V				  &kp C_MUTE		  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
@@ -432,7 +150,7 @@
 			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
 		};
 
-		default_no_mods_layer { // Just turns off hm mods, so no need for the whole keymap diagram
+		default_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "D.NoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp R &kp S &kp T ___ ___ &kp N &kp E &kp I &kp O ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 						___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___>;
@@ -446,7 +164,7 @@
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 	&kp Q		  &kp W			&kp E		  &kp R			&kp T									  &kp Y			&kp U		  &kp I			&kp O		  &kp P 		// &lt STAY APOS
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&hm LWIN A	  &hm LALT S	&hm LSHFT D	  &hm LCTRL F	&lt LNUM G								  &kp H			&hm RCTRL K	  &hm RSHFT L	&hm RALT COLON &tdq
+	&cm LWIN A	  &cm LALT S	&cm LSHFT D	  &cm LCTRL F	&lt LNUM G								  &kp H			&cm RCTRL K	  &cm RSHFT L	&cm RALT COLON &kp APOS
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 	&kp Z		  &kp X			&kp C		  &kp V			&kp B				 ___				  &kp N			&kp M		  &kp COMMA		&kp DOT		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
@@ -464,7 +182,7 @@
 			sensor-bindings = <&inc_dec_kp ___ ___>;
 		};
 
-		qwerty_no_mods_layer { // Just turns off hm mods, so no need for the whole keymap diagram
+		qwerty_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "QNoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp S &kp D &kp F ___ ___ &kp K &kp L &kp COLON &kp APOS ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 						___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___>;
