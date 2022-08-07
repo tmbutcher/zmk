@@ -19,8 +19,6 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/ext_power.h>
 
-
-
 // Layer Defs
 #define DEF		0
 #define DEF_NM	1
@@ -67,12 +65,12 @@
 #define HYPER	(LG(LA(LS(LCTRL))))		  // If I want to send a hypered key, then I might need to make a custom behavior
 // #define HYPER	(LG(LA(LS(LCTRL))))   // Maybe try to make a custom mod kp?
 
-&mt { quick_tap_ms = <200>; };
-&lt { quick_tap_ms = <200>; };
-
 #include <../boards/shields/space_invader/key_positions.h>
 #include <../boards/shields/space_invader/helper.h>
 #include <../boards/shields/space_invader/combos.dtsi>
+
+&mt { quick_tap_ms = <200>; };
+&lt { quick_tap_ms = <200>; };
 
 / {
 
@@ -418,7 +416,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
   	&hm LWIN A	  &hm LALT R	&hm LSHFT S	  &hm LCTRL T	&lt LNUM G								  &kp M			&hm RCTRL N	  &hm RSHFT E	&hm RALT I	  &hm RWIN O
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-&fm LC(LG(Z)) Z	  &fm LC(LG(X)) X &fm LC(LG(C)) C &fm LC(LG(V)) D &fm LC(LG(Y)) V &kp C_MUTE		  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
+	&kp Z		  &kp X			&kp C		  &kp D			&kp V				  &kp C_MUTE		  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &shm RSHFT SPACE &cm KP_CMP DEL &lt SYM END			  &mt RSHFT RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
