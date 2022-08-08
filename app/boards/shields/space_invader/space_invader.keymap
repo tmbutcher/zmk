@@ -34,19 +34,19 @@
 // Mouse Key defs--For use until AHK can be ditched
 #define WH_DN	(F16)
 #define WH_UP	(F17)
-#define WH_L	(KP_N7)
-#define WH_R	(KP_N9)
-#define M_UP	(KP_N8)
-#define M_DN	(KP_N5)
-#define M_L		(KP_N4)
-#define M_R		(KP_N6)
-#define M_UP_SL	(LC(LG(LA(M_UP))))		// These move the mouse slowly
-#define M_DN_SL	(LC(LG(LA(M_DN))))
-#define M_R_SL	(LC(LG(LA(M_R))))
-#define M_L_SL	(LC(LG(LA(M_L))))
-#define M_MB	(KP_DIVIDE)
-#define M_LB	(KP_MINUS)
-#define M_RB	(KP_MULTIPLY)
+// #define WH_L	(KP_N7)
+// #define WH_R	(KP_N9)
+// #define M_UP	(KP_N8)
+// #define M_DN	(KP_N5)
+// #define M_L		(KP_N4)
+// #define M_R		(KP_N6)
+// #define M_UP_SL	(LC(LG(LA(M_UP))))		// These move the mouse slowly
+// #define M_DN_SL	(LC(LG(LA(M_DN))))
+// #define M_R_SL	(LC(LG(LA(M_R))))
+// #define M_L_SL	(LC(LG(LA(M_L))))
+// #define M_MB	(KP_DIVIDE)
+// #define M_LB	(KP_MINUS)
+// #define M_RB	(KP_MULTIPLY)
 
 // F Key subs (use with AHK)
 #define KP_PLS	(F18)
@@ -63,6 +63,7 @@
 // #define HYPER	(LG(LA(LS(LCTRL))))   // Maybe try to make a custom mod kp?
 
 #include <../boards/shields/space_invader/key_positions.h>
+#include <../boards/shields/space_invader/mouse.dtsi>
 #include <../boards/shields/space_invader/helper.h>
 #include <../boards/shields/space_invader/combos.dtsi>
 #include <../boards/shields/space_invader/behaviors.dtsi>
@@ -308,18 +309,18 @@
 			sensor-bindings = <&inc_dec_kp LC(TAB) LS(LC(TAB))>;	// Scroll tabs
 		};
 
-		mouse_layer {  // todo: Mouse not yet implemented in ZMK. Using AHK in the meantime
+		mouse_layer {
 			label = "Mouse";
 			bindings = <
 //----------------------------------------------------------------------------------MOUSE---------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	___			  ___			___			  ___			___										  &kp WH_UP		&kp WH_L	  &kp M_UP		&kp WH_R	  xxx	
+	xxx			  xxx			xxx			  xxx			xxx										  &mwh S_UP		&mwh S_LT	  &mouse_u		&mwh S_RT 	  xxx	
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp LWIN	  &kp LALT		&kp LSHFT	  &kp LCTRL		&kp HYPER								  &kp WH_DN		&kp M_L		  &kp M_DN		&kp M_R		  xxx	
+	&kp LWIN	  &kp LALT		&kp LSHFT	  &kp LCTRL		&kp HYPER								  &mwh S_DN		&mouse_l	  &mouse_d		&mouse_r	  &kp RSHFT	
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp LC(Z)	  &kp LC(X)		&kp LC(C)	  &kp LC(V)		&kp LC(Y)			 ___				  xxx			&kp M_L_SL	  &kp M_DN_SL	&kp M_UP_SL	  &kp M_R_SL
+	xxx			  xxx			xxx			  xxx			xxx					 ___				  xxx			xxx			  xxx			xxx			  xxx
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
-	&to DEF					___			  ___			___			  &tog MOUSE	&kp M_MB	  &kp M_LB		&kp M_RB	  ___						  ___	
+	&to DEF						___			  ___			___			  &tog MOUSE	&mkp MCLK	  &mkp LCLK		&mkp RCLK	  ___						  ___	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
 //																		  		 ╭─────────╮
 																				   ___	

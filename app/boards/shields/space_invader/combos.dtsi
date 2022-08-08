@@ -52,7 +52,7 @@
 #undef COMBO_ADD_ON
 #define COMBO_ADD_ON global-quick-tap-ms = <150>;
 
-#define COMBO_TERM_FAST 30
+#define COMBO_TERM_FAST 35
 #define COMBO_TERM_SLOW 45
 #define COMBO_TERM_VERY_SLOW 100
 
