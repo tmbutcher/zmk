@@ -26,7 +26,7 @@ typedef int (*behavior_keymap_binding_callback_t)(struct zmk_behavior_binding *b
                                                   struct zmk_behavior_binding_event event);
 typedef int (*behavior_sensor_keymap_binding_callback_t)(struct zmk_behavior_binding *binding,
                                                          const struct device *sensor,
-                                                         struct zmk_behavior_binding_event event);
+                                                         int64_t timestamp);
 
 enum behavior_locality {
     BEHAVIOR_LOCALITY_CENTRAL,
@@ -160,12 +160,11 @@ static inline int z_impl_behavior_keymap_binding_released(struct zmk_behavior_bi
  */
 __syscall int behavior_sensor_keymap_binding_triggered(struct zmk_behavior_binding *binding,
                                                        const struct device *sensor,
-                                                       struct zmk_behavior_binding_event event);
+                                                       int64_t timestamp);
 
 static inline int
 z_impl_behavior_sensor_keymap_binding_triggered(struct zmk_behavior_binding *binding,
-                                                const struct device *sensor,
-                                                struct zmk_behavior_binding_event event) {
+                                                const struct device *sensor, int64_t timestamp) {
     const struct device *dev = device_get_binding(binding->behavior_dev);
 
     if (dev == NULL) {
@@ -178,7 +177,7 @@ z_impl_behavior_sensor_keymap_binding_triggered(struct zmk_behavior_binding *bin
         return -ENOTSUP;
     }
 
-    return api->sensor_binding_triggered(binding, sensor, event);
+    return api->sensor_binding_triggered(binding, sensor, timestamp);
 }
 
 /**
