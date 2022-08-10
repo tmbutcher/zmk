@@ -6,8 +6,9 @@
 
  // standard build command: west build -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
 
- /* ********* TODO *************
- 	* Make the QWERTY No Mod layer into a conditional layer
+ /* ********* TO DO *************
+	* Once unicode works, create macros that change the layer and send the appropriate F key
+	  (for helper image) at the same time.
  */
 
 #include <behaviors.dtsi>
@@ -25,7 +26,7 @@
 #define LNUM	5
 #define SYM		6
 #define NAV		7
-#define MOUSE	8	// Uses AHK for now
+#define MOUSE	8
 #define FN		9	
 #define EMOJI	10	// Reserved for future use 
 #define CMP		11	// Reserved for future use
@@ -65,8 +66,8 @@
 #include <../boards/shields/space_invader/key_positions.h>
 #include <../boards/shields/space_invader/mouse.dtsi>
 #include <../boards/shields/space_invader/helper.h>
-#include <../boards/shields/space_invader/combos.dtsi>
 #include <../boards/shields/space_invader/behaviors.dtsi>
+#include <../boards/shields/space_invader/combos.dtsi>
 
 &mt { quick_tap_ms = <200>; };
 &lt { quick_tap_ms = <200>; };
@@ -206,9 +207,9 @@
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  				╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
 	&as LBRC LBKT &as AMPS N7	&as ASTRK N8  &as LPAR N9 	&as UNDER MINUS							  &as PIPE BSLH &as TILDE GRAVE xxx		  	xxx			  xxx
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 						├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&as RBRC RBKT &as DLLR N4	&as PRCNT N5  &as CARET N6	&revplus								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
+	&kp TAB		  &as DLLR N4	&as PRCNT N5  &as CARET N6	&revplus								  &kp BSPC		&kp RCTRL	  &kp RSHFT		&kp RALT	  &kp RWIN
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮		├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&lgthan		  &as EXCL N1	&as AT N2	  &as HASH N3	&as QMARK SLASH	  	 ___	     		  xxx			xxx		   &as KP_SMC COMMA &as COLON DOT xxx	
+	&as RBRC RBKT &as EXCL N1	&as AT N2	  &as HASH N3	&as QMARK SLASH	  	 &kp TAB	   		  xxx			xxx		   &as KP_SMC COMMA &as COLON DOT xxx	
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
 	&to DEF					&kp SPACE	  &dotcom		&zeroleft	  &as RPAR N0	&tog NUM	  ___		 	___			  ___						  ___	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
