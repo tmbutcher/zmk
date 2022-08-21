@@ -64,6 +64,7 @@ MOD_MORPH(lgthan, &as GT LT, &kp GT)
 MOD_MORPH(revplus, &as EQUAL PLUS, &kp EQUAL)
 MOD_MORPH(dotcom, &as COMMA DOT, &kp COMMA)
 MOD_MORPH(zeroleft, &as LPAR N0, &kp LPAR)
+MOD_MORPH(dashing, &em_dash, &en_dash)
 MOD_MORPH(bootsleep, &bootloader, &kp KP_SLP)
 MOD_MORPH(mouse_l, &mmv M_LT, &mmv MLTS)
 MOD_MORPH(mouse_r, &mmv M_RT, &mmv MRTS)
@@ -89,5 +90,16 @@ ZMK_BEHAVIOR(en_dash, macro,
 	bindings
 	= <&macro_press &kp KP_CMP>
 	, <&macro_tap &kp MINUS>
+	, <&macro_release &kp KP_CMP> ;
+)
+
+ZMK_BEHAVIOR(em_dash, macro,
+	wait-ms = <10>;
+	tap-ms = <10>;
+	bindings
+	= <&macro_press &kp KP_CMP>
+	, <&macro_press &kp LSHFT>
+	, <&macro_tap &kp MINUS>
+	, <&macro_release &kp LSHFT>
 	, <&macro_release &kp KP_CMP> ;
 )
