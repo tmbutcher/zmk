@@ -62,13 +62,15 @@ ZMK_COMBO_ADV(cut,   	&kp LC(X),		LB2 LB4, 			ALL, 					COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(copy,  	&kp LC(C),		LB2 LB3, 			ALL, 					COMBO_TERM_FAST)
 ZMK_COMBO_ADV(paste, 	&kp LC(V),		LB3 LB4, 			ALL, 					COMBO_TERM_FAST)
 
-ZMK_COMBO_ADV(plaintxt,	&kp LS(LC(V)),		LB2 LB3 LB4,		ALL,				COMBO_TERM_SLOW) 		// AHK: Paste plain text
-ZMK_COMBO_ADV(lowertxt,	&kp LS(LC(RBRC)),	LT4 LT5 LM4 LM5,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste all lowercase
-ZMK_COMBO_ADV(uppertxt,	&kp LS(LC(LBRC)),	LM4 LM5 LB4 LB5,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste all uppercase
-ZMK_COMBO_ADV(sent_txt,	&kp LS(LC(BSLH)),	LM3 LM4 LB3 LB4,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste in Sentence Case
+ZMK_COMBO_ADV(plaintxt,	&kp LS(LC(V)),		LB2 LB3 LB4,	ALL,					COMBO_TERM_SLOW) 		// AHK: Paste plain text
+ZMK_COMBO_ADV(lowertxt,	&kp LS(LC(RBRC)),	LT4 LT5 LM4 LM5,ALL,					COMBO_TERM_VERY_SLOW)	// AHK: Paste all lowercase
+ZMK_COMBO_ADV(uppertxt,	&kp LS(LC(LBRC)),	LM4 LM5 LB4 LB5,ALL,					COMBO_TERM_VERY_SLOW)	// AHK: Paste all uppercase
+ZMK_COMBO_ADV(sent_txt,	&kp LS(LC(BSLH)),	LM3 LM4 LB3 LB4,ALL,					COMBO_TERM_VERY_SLOW)	// AHK: Paste in Sentence Case
 
 ZMK_COMBO_ADV(undo, 	&kp LC(Z),		LB1 LB2, 			ALL,			 		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(redo, 	&kp LC(Y),		LB4 LB5, 			ALL,			 		COMBO_TERM_FAST)
+
+ZMK_COMBO_ADV(ctrl-w,	&kp LC(W),		RH2 RH3 RH4,		ALL,					COMBO_TERM_SLOW)
 
 /* Punctuation (horizontal left hand) */
 ZMK_COMBO_ADV(all,   	&kp LC(A),		LT2 LT3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
