@@ -54,7 +54,7 @@ HOLD_TAP(cm, 200, 150, &kp &kp)	// Custom mods: default hold-tap
 HOLD_TAP(as, 200, 0, &kp &kp)	// Autoshift: gives second entry with hold
 HOLD_TAP(fm, 150, 75, &kp &kp)	// Fast mods: Same as cm, except  faster quick-tap threshold (for keys that get pressed frequently)
 HOLD_TAP(sm, 150, 0, &mo &sk)	// Sticky mods: For using a sticky key tap with layer tap
-HOLD_TAP(shm, 150, 0, &kp &kp)	// Shift mod: special setting for shift key
+HOLD_TAP(shm, 150, 0, &kp &kp)	// Shift mod: special setting for shift-space key
 	
 
 /* 	MOD-MORPH BEHAVIORS */
@@ -72,7 +72,7 @@ MOD_MORPH(mouse_u, &mmv M_UP, &mmv MUPS)
 MOD_MORPH(mouse_d, &mmv M_DN, &mmv MDNS)
 
 // These ones aren't being used right now, but maybe they'll return at some future point
-MOD_MORPH(intbang, &kp QMARK, &kp EXCL)
+MOD_MORPH(intbang, &kp EXCL, &kp QMARK)
 MOD_MORPH(lparbkt, &kp LPAR, &kp LBKT)
 MOD_MORPH(rparbkt, &kp RPAR, &kp RBKT)
 
@@ -102,4 +102,8 @@ ZMK_BEHAVIOR(em_dash, macro,
 	, <&macro_tap &kp MINUS>
 	, <&macro_release &kp LSHFT>
 	, <&macro_release &kp KP_CMP> ;
+)
+
+ZMK_BEHAVIOR(unstick, macro,			// For when mods get stuck - presses and releases all of them
+	bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI &kp RGUI>;
 )
