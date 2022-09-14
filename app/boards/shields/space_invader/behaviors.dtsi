@@ -105,5 +105,7 @@ ZMK_BEHAVIOR(em_dash, macro,
 )
 
 ZMK_BEHAVIOR(unstick, macro,			// For when mods get stuck - presses and releases all of them
+	wait-ms = <10>;
+	tap-ms = <10>;
 	bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI &kp RGUI>;
 )
