@@ -83,6 +83,11 @@ ZMK_BEHAVIOR(tdbt, tap_dance,
     bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>, <&bt BT_SEL 3>, <&bt BT_SEL 4>;
 )
 
+ZMK_BEHAVIOR(tdusb, tap_dance,
+	tapping-term-ms = <200>;
+    bindings = <&out OUT_BLE>, <&out OUT_USB>;
+)
+
 /* MACROS */
 ZMK_BEHAVIOR(en_dash, macro,
 	wait-ms = <10>;
