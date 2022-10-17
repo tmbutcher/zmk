@@ -29,11 +29,25 @@
                 ZMK_BEHAVIOR_CORE_mod_morph; \
                 bindings = <key1>, <key2>; \
 				mods = <(MOD_LSFT|MOD_RSFT)>; \
-				masked-mods = <(MOD_LSFT|MOD_RSFT)>; \
-            }; \
+				}; \
         }; \
     };
 
+#define KEEP_MOD_MORPH(name, key1, key2, keep) \  
+	/ { \
+        behaviors { \
+            name: name { \
+                label = ZMK_HELPER_STRINGIFY(MM_ ## name); \
+                ZMK_BEHAVIOR_CORE_mod_morph; \
+                bindings = <key1>, <key2>; \
+				mods = <(MOD_LSFT|MOD_RSFT)>; \
+				keep-mods = <(keep)>; \   
+				}; \
+        }; \
+    };
+	// Is this necessary? Can an over-ridable default be set for keep-mods?
+	// If multiple keep-mods, need to separate w/ a pipe
+	
 #define HOLD_TAP(name, tapping, quick_tap, keys) \
 	/ { \
         behaviors { \
