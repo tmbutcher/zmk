@@ -74,10 +74,11 @@ ZMK_COMBO_ADV(ctrl-w,	&kp LC(W),		RH2 RH3 RH4,		ALL,					COMBO_TERM_SLOW)
 
 /* Punctuation (horizontal left hand) */
 ZMK_COMBO_ADV(all,   	&kp LC(A),		LT2 LT3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
-ZMK_COMBO_ADV(dashing, 	&dashing,		LT2 LT4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(emdash, 	&em_dash,		LT2 LT4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
 
 ZMK_COMBO_ADV(lthan, 	&kp LT,			LM2 LM3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(gthan, 	&kp GT,			LM3 LM4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
+ZMK_COMBO_ADV(endash, 	&en_dash,		LM2 LM4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
 
 /* Brackets (horizontal right hand) */			
 ZMK_COMBO_ADV(lbkt,  	&kp LBKT,		RT2 RT3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
