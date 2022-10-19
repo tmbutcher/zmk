@@ -123,6 +123,17 @@ ZMK_BEHAVIOR(em_dash, macro,
 	, <&macro_release &kp KP_CMP> ;
 )
 
+ZMK_BEHAVIOR(plaintxt, macro,
+	wait-ms = <10>;
+	tap-ms = <10>;
+	bindings
+	= <&macro_press &kp LSHFT>
+	, <&macro_press &kp LCTRL>
+	, <&macro_tap &kp V>
+	, <&macro_release &kp LCTRL>
+	, <&macro_release &kp LSHFT> ;
+)
+
 ZMK_BEHAVIOR(unstick, macro,			// For when mods get stuck - presses and releases all of them
 	wait-ms = <10>;
 	tap-ms = <10>;
