@@ -18,6 +18,7 @@ module.exports = {
       "features/underglow",
       "features/backlight",
       "features/battery",
+      "features/trackballs",
       "features/beta-testing",
     ],
     Behaviors: [
@@ -34,12 +35,14 @@ module.exports = {
       "behaviors/tap-dance",
       "behaviors/caps-word",
       "behaviors/key-repeat",
+      "behaviors/mouse-emulation",
       "behaviors/reset",
       "behaviors/bluetooth",
       "behaviors/outputs",
       "behaviors/underglow",
       "behaviors/backlight",
       "behaviors/power",
+      "behaviors/trackball-pim447",
     ],
     Codes: [
       "codes/index",
