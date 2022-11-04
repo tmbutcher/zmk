@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2022 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 / {
 	chosen {
 		zmk,kscan = &kscan0;
@@ -10,23 +16,23 @@
 
 		input-gpios
 			= <&pro_micro 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+			, <&pro_micro 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
 			;
 
 	};
 
-	&pro_micro_i2c {
-  		status = "okay";
-  		trackball_pim447@a {
-			compatible = "pimoroni,trackball_pim447";
-			reg = <0xa>;
-			label = "TRACKBALL_PIM447";
+&pro_micro_i2c {
+	status = "okay";
+	trackball_pim447@a {
+		compatible = "pimoroni,trackball_pim447";
+		reg = <0xa>;
+		label = "TRACKBALL_PIM447";
 
-			move-factor = <2>;
-			invert-move-x;
-			invert-move-y;
-			scroll-divisor = <2>;
-			invert-scroll-x;
-			invert-scroll-y;
-  		};
+		move-factor = <2>;
+		invert-move-x;
+		invert-move-y;
+		scroll-divisor = <2>;
+		invert-scroll-x;
+		invert-scroll-y;
 	};
 };
