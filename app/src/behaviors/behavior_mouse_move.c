@@ -48,9 +48,9 @@ static const struct behavior_driver_api behavior_mouse_move_driver_api = {
         .time_to_max_speed_ms = DT_INST_PROP(n, time_to_max_speed_ms),                             \
         .acceleration_exponent = DT_INST_PROP(n, acceleration_exponent),                           \
     };                                                                                             \
-    DEVICE_DT_INST_DEFINE(n, behavior_mouse_move_init, NULL, NULL,                \
+    DEVICE_DT_INST_DEFINE(n, behavior_mouse_move_init, device_pm_control_nop, NULL,                \
                           &behavior_mouse_move_config_##n, APPLICATION,                            \
-                          CONFIG_KERNEL_INIT_PRIORITY_DEFAULT, &behavior_mouse_move_driver_api);
+                          CONFIG_KERNEL_INIT_PRIORITY_DEFAULT, &behavior_mouse_move_driver_api); /* maybe replace device_pm_control_nop with NULL*/
 
 DT_INST_FOREACH_STATUS_OKAY(KP_INST)
 

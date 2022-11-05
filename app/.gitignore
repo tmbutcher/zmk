@@ -1,5 +1,3 @@
 build/
 node_modules/
 backup_firmware/
-boards/shields/*
-!boards/shields/space_invader
