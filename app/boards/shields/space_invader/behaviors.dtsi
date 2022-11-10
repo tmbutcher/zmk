@@ -86,6 +86,9 @@ MOD_MORPH(mouse_r, &mmv M_RT, &mmv MRTS)
 MOD_MORPH(mouse_u, &mmv M_UP, &mmv MUPS)
 MOD_MORPH(mouse_d, &mmv M_DN, &mmv MDNS)
 
+MOD_MORPH(l_brack, &kp LBKT, &kp LBRC)
+MOD_MORPH(r_brack, &kp RBKT, &kp RBRC)
+
 // These ones aren't being used right now, but maybe they'll return at some future point
 MOD_MORPH(intbang, &kp EXCL, &kp QMARK)
 MOD_MORPH(lparbkt, &kp LPAR, &kp LBKT)

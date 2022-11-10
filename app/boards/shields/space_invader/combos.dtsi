@@ -34,20 +34,14 @@
         }; \
     };
 
-/*-----------------------KEY POSITIONS-----------------------
-	╭────────────────────╮          ╭────────────────────╮   
-	│ LT1 LT2 LT3 LT4 LT5|          | RT1 RT2 RT3 RT4 RT5│  
-	│ LM1 LM2 LM3 LM4 LM5│   ╭──╮   │ RM1 RM2 RM3 RM4 RM5│  
-	│ LB1 LB2 LB3 LB4 LB5╰───╮EC╭───╯ RB1 RB2 RB3 RB4 RB5│  
-	│ LH1╭──╮ LH2 LH3 LH4 LH5│‾‾│ RH1 RH2 RH3 RH4╭──╮ RH5│
-	╰────╯  ╰────────────────╯  ╰────────────────╯  ╰────╯                
-	                      	╭────╮		   
-	                    ╭───╯ JU ╰───╮
-	                    │ JL  JC  JR │
-	                    ╰───╮ JR ╭───╯
-	                        ╰────╯						    */
-
-
+/*-----------------------KEY POSITIONS----------------------------------------
+	╭─────────────────────╮          ╭─────────────────────╮       ╭────╮		      
+	│ LT1 LT2 LT3 LT4 LT5 |          | RT1 RT2 RT3 RT4 RT5 │   ╭───╯ JU ╰───╮  
+	│ LM1 LM2 LM3 LM4 LM5 │   ╭──╮   │ RM1 RM2 RM3 RM4 RM5 │   │ JL  JC  JR │  
+	│ LB1 LB2 LB3 LB4 LB5 ╰───╮EC╭───╯ RB1 RB2 RB3 RB4 RB5 │   ╰───╮ JR ╭───╯  
+	│ LH1╭──╮ LH2 LH3 LH4 LH5  ‾‾  RH1 RH2 RH3 RH4 ╭──╮RH5 │       ╰────╯
+	╰────╯  ╰──────────────────────────────────────╯  ╰────╯  				*/              122345
+	                    
 // use global-quick-tap-ms for combos (requires PR 1387)
 #undef COMBO_ADD_ON
 #define COMBO_ADD_ON global-quick-tap-ms = <150>;
@@ -58,40 +52,59 @@
 
 
 /* Shortcuts */
-ZMK_COMBO_ADV(cut,   	&kp LC(X),		LB2 LB4, 			ALL, 					COMBO_TERM_SLOW)
-ZMK_COMBO_ADV(copy,  	&kp LC(C),		LB2 LB3, 			ALL, 					COMBO_TERM_FAST)
-ZMK_COMBO_ADV(paste, 	&kp LC(V),		LB3 LB4, 			ALL, 					COMBO_TERM_FAST)
+// ZMK_COMBO_ADV(all,   	&kp LC(A),		LT2 LT3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 
-ZMK_COMBO_ADV(plaintxt, &plaintxt,			LB2 LB3 LB4,	ALL,					COMBO_TERM_SLOW) 		// AHK: Paste plain text
-ZMK_COMBO_ADV(lowertxt,	&kp LS(LC(RBRC)),	LT4 LT5 LM4 LM5,ALL,					COMBO_TERM_VERY_SLOW)	// AHK: Paste all lowercase
-ZMK_COMBO_ADV(uppertxt,	&kp LS(LC(LBRC)),	LM4 LM5 LB4 LB5,ALL,					COMBO_TERM_VERY_SLOW)	// AHK: Paste all uppercase
-ZMK_COMBO_ADV(sent_txt,	&kp LS(LC(BSLH)),	LM3 LM4 LB3 LB4,ALL,					COMBO_TERM_VERY_SLOW)	// AHK: Paste in Sentence Case
+ZMK_COMBO_ADV(cut,   	&kp LC(X),		LB2 LB4, 				ALL, 				COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(copy,  	&kp LC(C),		LB2 LB3, 				ALL, 				COMBO_TERM_FAST)
+ZMK_COMBO_ADV(paste, 	&kp LC(V),		LB3 LB4, 				ALL, 				COMBO_TERM_FAST)
 
-ZMK_COMBO_ADV(undo, 	&kp LC(Z),		LB1 LB2, 			ALL,			 		COMBO_TERM_FAST)
-ZMK_COMBO_ADV(redo, 	&kp LC(Y),		LB4 LB5, 			ALL,			 		COMBO_TERM_FAST)
+ZMK_COMBO_ADV(plaintxt, &plaintxt,			LB2 LB3 LB4,		ALL,				COMBO_TERM_SLOW) 		// AHK: Paste plain text
+ZMK_COMBO_ADV(lowertxt,	&kp LS(LC(RBRC)),	LT4 LT5 LM4 LM5,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste all lowercase
+ZMK_COMBO_ADV(uppertxt,	&kp LS(LC(LBRC)),	LM4 LM5 LB4 LB5,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste all uppercase
+ZMK_COMBO_ADV(sent_txt,	&kp LS(LC(BSLH)),	LM3 LM4 LB3 LB4,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste in Sentence Case
 
-ZMK_COMBO_ADV(ctrl-w,	&kp LC(W),		RH2 RH3 RH4,		ALL,					COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(undo, 	&kp LC(Z),		LB1 LB2, 				ALL,		 		COMBO_TERM_FAST)
+ZMK_COMBO_ADV(redo, 	&kp LC(Y),		LB4 LB5, 				ALL,		 		COMBO_TERM_FAST)
 
-/* Punctuation (horizontal left hand) */
-ZMK_COMBO_ADV(all,   	&kp LC(A),		LT2 LT3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
+ZMK_COMBO_ADV(ctrl-w,	&kp LC(W),		RH2 RH3 RH4,			ALL,				COMBO_TERM_SLOW)
+
+/* Numbers */
+ZMK_COMBO_ADV(n1, 		&kp N1,			LT1 LT2, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(n2, 		&kp N2,			LT2 LT3, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_FAST)
+ZMK_COMBO_ADV(n3, 		&kp N3,			LT3 LT4, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_FAST)
+ZMK_COMBO_ADV(n4, 		&kp N4,			LT4 LT5, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_SLOW)
+
+ZMK_COMBO_ADV(n5, 		&kp N5,			LT5 RT1, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_VERY_SLOW)
+
+ZMK_COMBO_ADV(n6, 		&kp N6,			RT1 RT2, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(n7, 		&kp N7,			RT2 RT3, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_FAST)
+ZMK_COMBO_ADV(n8, 		&kp N8,			RT3 RT4, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_FAST)
+ZMK_COMBO_ADV(n9, 		&kp N9,			RT4 RT5, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_SLOW)
+
+ZMK_COMBO_ADV(n0, 		&kp N0,			LT1 RT5, 		DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_VERY_SLOW)
+
+/* Dashes */
 ZMK_COMBO_ADV(emdash, 	&em_dash,		LT2 LT4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(endash, 	&en_dash,		LM2 LM4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(hyph2,  	&kp MINUS,		RT2 RT4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
 
 ZMK_COMBO_ADV(lthan, 	&cm LA(LSHFT) LT,	LM2 LM3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(gthan, 	&cm LS(LCTRL) GT,	LM3 LM4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(endash, 	&enm LA(LCTRL) 0,	LM2 LM4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)	// Uses a special hold tap. The 0 is because the tap is always an en dash, so it takes no arguments
 
-/* Brackets (horizontal right hand) */			
-ZMK_COMBO_ADV(lbkt,  	&kp LBKT,		RT2 RT3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
-ZMK_COMBO_ADV(rbkt,  	&kp RBKT,		RT3 RT4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
-ZMK_COMBO_ADV(hyph2,  	&kp MINUS,		RT2 RT4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
-ZMK_COMBO_ADV(quote,	&kp DQT,		RT4 RT5,			DEF QWERTY NUM,			COMBO_TERM_FAST)
+// ZMK_COMBO_ADV(lbkt,  	&kp LBKT,		RT2 RT3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
+// ZMK_COMBO_ADV(rbkt,  	&kp RBKT,		RT3 RT4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 
 ZMK_COMBO_ADV(lpar,  	&cm RC(RSHFT) LPAR,	RM2 RM3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(rpar,  	&cm RS(RALT) RPAR,	RM3 RM4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(excl,  	&cm RC(RALT) EXCL,	RM2 RM4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 
-ZMK_COMBO_ADV(lbrc,  	&kp LBRC,		RB2 RB3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
-ZMK_COMBO_ADV(rbrc,  	&kp RBRC,		RB3 RB4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
+ZMK_COMBO_ADV(lbrc,  	&l_brack,		RB2 RB3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)		// Added special mod-morph to allow toprow number combos
+ZMK_COMBO_ADV(rbrc,  	&r_brack,		RB3 RB4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
+
+/* Other Punctuation (horizontal combos) */
+ZMK_COMBO_ADV(quote,	&kp DQT,		RT1 RT5,			DEF QWERTY NUM,			COMBO_TERM_FAST)		// Was RT4 RT5 before toprow number combos added
+ZMK_COMBO_ADV(excl,  	&intbang,		RM2 RM4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 
 /* Other symbols (vertical combos) */			
 ZMK_COMBO_ADV(at,    	&kp AT,			LT2 LM2, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
@@ -116,7 +129,8 @@ ZMK_COMBO_ADV(pipe,  	&kp PIPE,		RM4 RB4, 			DEF QWERTY NUM, 		COMBO_TERM_SLOW)
 
 /* Layer Toggle Combos */
 ZMK_COMBO_ADV(qwerty,	&tog QWERTY,	LT1 LT2 LT3 LT4, 	DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_SLOW)
-ZMK_COMBO_ADV(num,   	&tog NUM,		LT3 LT4, 			DEF QWERTY NUM, 			COMBO_TERM_SLOW)
+//ZMK_COMBO_ADV(num,   	&tog NUM,		LT3 LT4, 			DEF QWERTY NUM, 			COMBO_TERM_SLOW)	// Old numlock combo
+ZMK_COMBO_ADV(num,   	&tog NUM,		LM2 LM3 LM4,		DEF QWERTY NUM, 			COMBO_TERM_SLOW)	// New numlock combo to allow toprow number combos
 ZMK_COMBO_ADV(no_mods, 	&tog DEF_NM,	LB1 LB2 LB3 LB4,	DEF DEF_NM QWERTY QWER_NM, 	COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(stay,		&tog STAY,		RM2 RM3 RM4 RM5,	ALL,			 			COMBO_TERM_SLOW)
 
