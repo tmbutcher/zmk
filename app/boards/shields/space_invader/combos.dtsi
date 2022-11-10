@@ -40,7 +40,7 @@
 	│ LM1 LM2 LM3 LM4 LM5 │   ╭──╮   │ RM1 RM2 RM3 RM4 RM5 │   │ JL  JC  JR │  
 	│ LB1 LB2 LB3 LB4 LB5 ╰───╮EC╭───╯ RB1 RB2 RB3 RB4 RB5 │   ╰───╮ JR ╭───╯  
 	│ LH1╭──╮ LH2 LH3 LH4 LH5  ‾‾  RH1 RH2 RH3 RH4 ╭──╮RH5 │       ╰────╯
-	╰────╯  ╰──────────────────────────────────────╯  ╰────╯  				*/              122345
+	╰────╯  ╰──────────────────────────────────────╯  ╰────╯  				*/
 	                    
 // use global-quick-tap-ms for combos (requires PR 1387)
 #undef COMBO_ADD_ON
