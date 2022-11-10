@@ -14,7 +14,8 @@
  
         default_layer {
             bindings = <
-                &kp X
+                &kp LSHFT
+				&kp X
                 &kp Z
             >;
         };

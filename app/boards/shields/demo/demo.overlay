@@ -5,26 +5,67 @@
  */
 
 #include <dt-bindings/zmk/trackball_pim447.h> // for PIM447_MOVE and PIM447_SCROLL constants.
+#include <dt-bindings/zmk/matrix_transform.h>
 
 / {
 	chosen {
 		zmk,kscan = &kscan0;
 		zephyr,console = &cdc_acm_uart;
+		zmk,matrix_transform = &default_transform;
 	};
 
-	kscan0: kscan {
-		compatible = "zmk,kscan-gpio-matrix";
-		label = "KSCAN";
-		diode-direction = "col2row";
+	    kscan0: kscan_0 {
+        compatible = "zmk,kscan-composite";
+        label = "KSCAN_COMP";
+        rows = <5>;
+        columns = <3>;
 
-		col-gpios
-			= <&pro_micro 4 (GPIO_ACTIVE_HIGH)>
-			, <&pro_micro 6 (GPIO_ACTIVE_HIGH)>
+        direct: direct {
+            kscan = <&kscan_direct>;
+        };
+
+        matrix: matrix {
+            kscan = <&kscan_matrix>;
+            row-offset = <1>;
+        };
+    };
+
+    kscan_direct: kscan_1 {
+        compatible = "zmk,kscan-gpio-direct";
+        label = "KSCAN_DIRECT";
+
+        input-gpios
+            = <&gpio1 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // pin specifically for capacitive
+            ;
+    };
+
+
+    kscan_matrix: kscan_2 {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN_MATRIX";
+
+        diode-direction = "col2row";
+        col-gpios
+			= <&gpio0 22 (GPIO_ACTIVE_HIGH)>
+			, <&gpio1 0 (GPIO_ACTIVE_HIGH)>
 			;
 		row-gpios
-			= <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			= <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio1 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			;
-	};
+    };
+
+
+
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        rows = <5>;
+        columns = <3>;
+        map = <
+            RC(0, 0) RC(1, 0) RC(1, 1)
+            >;
+    };
 };
 
 &pro_micro_i2c {
