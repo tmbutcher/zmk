@@ -1,6 +1,6 @@
 @ECHO OFF
 
-choice /C YPNQ /T 5 /D Y /M "Build firmware? [Y]es | [N]o | [F]ast Build (probably won't work) | [Q]uit" /N
+choice /C YNFQ /T 5 /D Y /M "Build firmware? [Y]es | [N]o | [F]ast Build (probably won't work) | [Q]uit" /N
 if %ERRORLEVEL% EQU 1 goto pristineBuild
 if %ERRORLEVEL% EQU 2 goto flashKeeb
 if %ERRORLEVEL% EQU 3 goto buildFirmware
