@@ -1,9 +1,0 @@
-file_format: "1"
-id: pim-demo
-name: Pim-Demo
-type: shield
-url: https://github.com/Spaceboards/SpaceboardsHardware/tree/master/Keyboards/2%25%20Milk
-requires: [pro_micro]
-features:
-  - keys
-  - trackball
