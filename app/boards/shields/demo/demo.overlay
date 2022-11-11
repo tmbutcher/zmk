@@ -39,7 +39,6 @@
             ;
     };
 
-
     kscan_matrix: kscan_2 {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN_MATRIX";
@@ -54,9 +53,6 @@
 			, <&gpio1 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			;
     };
-
-
-
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
@@ -81,5 +77,6 @@
 		scroll-divisor = <2>;
 		invert-scroll-x;
 		invert-scroll-y;
+		mode = <PIM447_SCROLL>;
 	};
 };
