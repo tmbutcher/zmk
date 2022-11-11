@@ -94,80 +94,80 @@ static const uint8_t zmk_hid_report_desc[] = {
     /* END COLLECTION */
     HID_END_COLLECTION,
 
-    /* USAGE_PAGE (Generic Desktop) */
-    HID_USAGE_PAGE(HID_USAGE_GD),
-    /* USAGE (Mouse) */
-    HID_USAGE(HID_USAGE_GD_MOUSE),
-    /* COLLECTION (Application) */
-    HID_COLLECTION(HID_COLLECTION_APPLICATION),
-    /* REPORT ID (4) */
-    HID_REPORT_ID(0x04),
-    /* USAGE (Pointer) */
-    HID_USAGE(HID_USAGE_GD_POINTER),
-    /* COLLECTION (Physical) */
-    HID_COLLECTION(HID_COLLECTION_PHYSICAL),
-    /* USAGE_PAGE (Button) */
-    HID_USAGE_PAGE(HID_USAGE_BUTTON),
-    /* USAGE_MINIMUM (0x1) (button 1?) */
-    HID_USAGE_MIN8(0x01),
-    /* USAGE_MAXIMUM (0x10) (button 5? Buttons up to 8 still work) */
-    HID_USAGE_MAX8(0x10),
-    /* LOGICAL_MINIMUM (0) */
-    HID_LOGICAL_MIN8(0x00),
-    /* LOGICAL_MAXIMUM (1) */
-    HID_LOGICAL_MAX8(0x01),
-    /* REPORT_SIZE (1) */
-    HID_REPORT_SIZE(0x01),
-    /* REPORT_COUNT (16) */
-    HID_REPORT_COUNT(0x10),
-    /* INPUT (Data,Var,Abs) */
-    HID_INPUT(0x02),
-    /* USAGE_PAGE (Generic Desktop) */
-    HID_USAGE_PAGE(HID_USAGE_GD),
-    /* LOGICAL_MINIMUM (-32767) */
-    HID_LOGICAL_MIN16(0x01, 0x80),
-    /* LOGICAL_MAXIMUM (32767) */
-    HID_LOGICAL_MAX16(0xFF, 0x7F),
-    /* REPORT_SIZE (16) */
-    HID_REPORT_SIZE(0x10),
-    /* REPORT_COUNT (2) */
-    HID_REPORT_COUNT(0x02),
-    /* USAGE (X) */ // Vertical scroll
-    HID_USAGE(HID_USAGE_GD_X),
-    /* USAGE (Y) */
-    HID_USAGE(HID_USAGE_GD_Y),
-    /* Input (Data,Var,Rel) */
-    HID_INPUT(0x06),
-    /* LOGICAL_MINIMUM (-127) */
-    HID_LOGICAL_MIN8(0x81),
-    /* LOGICAL_MAXIMUM (127) */
-    HID_LOGICAL_MAX8(0x7F),
-    /* REPORT_SIZE (8) */
-    HID_REPORT_SIZE(0x08),
-    /* REPORT_COUNT (1) */
-    HID_REPORT_COUNT(0x01),
-    /* USAGE (Wheel) */
-    HID_USAGE(HID_USAGE_GD_WHEEL),
-    /* Input (Data,Var,Rel) */
-    HID_INPUT(0x06),
-    /* USAGE_PAGE (Consumer) */ // Horizontal scroll
-    HID_USAGE_PAGE(HID_USAGE_CONSUMER),
-    /* USAGE (AC Pan) */
-    0x0A,
-    0x38,
-    0x02,
-    /* LOGICAL_MINIMUM (-127) */
-    HID_LOGICAL_MIN8(0x81),
-    /* LOGICAL_MAXIMUM (127) */
-    HID_LOGICAL_MAX8(0x7F),
-    /* REPORT_COUNT (1) */
-    HID_REPORT_COUNT(0x01),
-    /* Input (Data,Var,Rel) */
-    HID_INPUT(0x06),
-    /* END COLLECTION */
-    HID_END_COLLECTION,
-    /* END COLLECTION */
-    HID_END_COLLECTION,
+    // /* USAGE_PAGE (Generic Desktop) */
+    // HID_USAGE_PAGE(HID_USAGE_GD),
+    // /* USAGE (Mouse) */
+    // HID_USAGE(HID_USAGE_GD_MOUSE),
+    // /* COLLECTION (Application) */
+    // HID_COLLECTION(HID_COLLECTION_APPLICATION),
+    // /* REPORT ID (4) */
+    // HID_REPORT_ID(0x04),
+    // /* USAGE (Pointer) */
+    // HID_USAGE(HID_USAGE_GD_POINTER),
+    // /* COLLECTION (Physical) */
+    // HID_COLLECTION(HID_COLLECTION_PHYSICAL),
+    // /* USAGE_PAGE (Button) */
+    // HID_USAGE_PAGE(HID_USAGE_BUTTON),
+    // /* USAGE_MINIMUM (0x1) (button 1?) */
+    // HID_USAGE_MIN8(0x01),
+    // /* USAGE_MAXIMUM (0x10) (button 5? Buttons up to 8 still work) */
+    // HID_USAGE_MAX8(0x10),
+    // /* LOGICAL_MINIMUM (0) */
+    // HID_LOGICAL_MIN8(0x00),
+    // /* LOGICAL_MAXIMUM (1) */
+    // HID_LOGICAL_MAX8(0x01),
+    // /* REPORT_SIZE (1) */
+    // HID_REPORT_SIZE(0x01),
+    // /* REPORT_COUNT (16) */
+    // HID_REPORT_COUNT(0x10),
+    // /* INPUT (Data,Var,Abs) */
+    // HID_INPUT(0x02),
+    // /* USAGE_PAGE (Generic Desktop) */
+    // HID_USAGE_PAGE(HID_USAGE_GD),
+    // /* LOGICAL_MINIMUM (-32767) */
+    // HID_LOGICAL_MIN16(0x01, 0x80),
+    // /* LOGICAL_MAXIMUM (32767) */
+    // HID_LOGICAL_MAX16(0xFF, 0x7F),
+    // /* REPORT_SIZE (16) */
+    // HID_REPORT_SIZE(0x10),
+    // /* REPORT_COUNT (2) */
+    // HID_REPORT_COUNT(0x02),
+    // /* USAGE (X) */ // Vertical scroll
+    // HID_USAGE(HID_USAGE_GD_X),
+    // /* USAGE (Y) */
+    // HID_USAGE(HID_USAGE_GD_Y),
+    // /* Input (Data,Var,Rel) */
+    // HID_INPUT(0x06),
+    // /* LOGICAL_MINIMUM (-127) */
+    // HID_LOGICAL_MIN8(0x81),
+    // /* LOGICAL_MAXIMUM (127) */
+    // HID_LOGICAL_MAX8(0x7F),
+    // /* REPORT_SIZE (8) */
+    // HID_REPORT_SIZE(0x08),
+    // /* REPORT_COUNT (1) */
+    // HID_REPORT_COUNT(0x01),
+    // /* USAGE (Wheel) */
+    // HID_USAGE(HID_USAGE_GD_WHEEL),
+    // /* Input (Data,Var,Rel) */
+    // HID_INPUT(0x06),
+    // /* USAGE_PAGE (Consumer) */ // Horizontal scroll
+    // HID_USAGE_PAGE(HID_USAGE_CONSUMER),
+    // /* USAGE (AC Pan) */
+    // 0x0A,
+    // 0x38,
+    // 0x02,
+    // /* LOGICAL_MINIMUM (-127) */
+    // HID_LOGICAL_MIN8(0x81),
+    // /* LOGICAL_MAXIMUM (127) */
+    // HID_LOGICAL_MAX8(0x7F),
+    // /* REPORT_COUNT (1) */
+    // HID_REPORT_COUNT(0x01),
+    // /* Input (Data,Var,Rel) */
+    // HID_INPUT(0x06),
+    // /* END COLLECTION */
+    // HID_END_COLLECTION,
+    // /* END COLLECTION */
+    // HID_END_COLLECTION,
 //     /* REPORT_COUNT (CONFIG_ZMK_HID_CONSUMER_REPORT_SIZE) */
 //     HID_GI_REPORT_COUNT,
 //     CONFIG_ZMK_HID_CONSUMER_REPORT_SIZE,
