@@ -11,6 +11,7 @@
 	chosen {
 		zmk,kscan = &kscan0;
 		zmk,matrix_transform = &default_transform;
+		zephyr,console = &cdc_acm_uart;
 	};
 
 	kscan0: kscan_0 {
@@ -19,14 +20,15 @@
         rows = <5>;
         columns = <6>;
 
-        // direct: direct {
-        //     kscan = <&kscan_direct>;
-        // };
-
         matrix: matrix {
             kscan = <&kscan_matrix>;
             row-offset = <1>;
 			column-offset = <1>;
+        };
+
+		direct: direct {
+            kscan = <&kscan_direct>;
+			column-offset = <6>;
         };
 	};
 
@@ -41,7 +43,6 @@
 			, <&gpio1 11 GPIO_ACTIVE_HIGH>
 			, <&gpio1 13 GPIO_ACTIVE_HIGH>
 			, <&gpio1 15 GPIO_ACTIVE_HIGH>
-			, <&gpio0 2 GPIO_ACTIVE_HIGH>
 			;
 
 		row-gpios
@@ -53,20 +54,20 @@
 			;
     };
 
-	// kscan_direct: kscan_1 {
-    //     compatible = "zmk,kscan-gpio-direct";
-    //     label = "KSCAN_DIRECT";
+	kscan_direct: kscan_2 {
+        compatible = "zmk,kscan-gpio-direct";
+        label = "KSCAN_DIRECT";
 
-    //     input-gpios
-    //         // = <&gpio1 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-	// 		//, <&gpio1 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // pin specifically for capacitive
-    //         ;
-    // };
+        input-gpios
+            = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>	  // pin for 6th column
+			, <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // pin specifically for capacitive
+            ;
+    };
 
     	default_transform: keymap_transform_0 {
 		compatible = "zmk,matrix-transform";
-		columns = <6>;
-		rows = <0>;
+		columns = <7>;
+		rows = <6>;
 // 					| RN1 | RN2 | RN3 | RN4 | RN5 |
 // 					| RT1 | RT2 | RT3 | RT4 | RT5 |
 // 					| RM1 | RM2 | RM3 | RM4 | RM5 | RM6 |
@@ -83,9 +84,9 @@
         //				 ├─────────┼─────────┼─────────┼─────────┼─────────┤
           				   RC(2,1)   RC(2,2)   RC(2,3)   RC(2,4)   RC(2,5)      
         //				 ├─────────┼─────────┼─────────┼─────────┼─────────┤─────────╮
-          				   RC(3,1)   RC(3,2)   RC(3,3)   RC(3,4)   RC(3,5)   RC(2,6)
+          				   RC(3,1)   RC(3,2)   RC(3,3)   RC(3,4)   RC(3,5)   RC(0,6)
         //				 ├─────────┼─────────┼─────────┼─────────┼─────────┤─────────┤
-          				   RC(4,1)   RC(4,2)   RC(4,3)   RC(4,4)   RC(4,5) //RC(?,?)  
+          				   RC(4,1)   RC(4,2)   RC(4,3)   RC(4,4)   RC(4,5) 	 RC(0,7)  
         //				 ╰─────╭───┴─────┬───┴─────╮───┴─────────┴─────────┴─────────╯
 							     RC(5,4)   RC(5,5)
 		//			╭──────────┼─────────┴─────────╯	
@@ -112,6 +113,6 @@
 		scroll-divisor = <2>;
 		invert-scroll-x;
 		invert-scroll-y;
-		mode = <PIM447_SCROLL>;
+		mode = <PIM447_MOVE>;
 	};
 };
