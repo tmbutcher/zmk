@@ -1,10 +1,10 @@
 # Copyright (c) 2021 Tom Butcher
 # SPDX-License-Identifier: MIT
 
-if SPLAYT_DEMO
+if SPLAYT_DEMO_CHOC
 
 config ZMK_KEYBOARD_NAME
-    default "splayt-demo"
+    default "splayt-demo-choc"
 
 if ZMK_DISPLAY
 

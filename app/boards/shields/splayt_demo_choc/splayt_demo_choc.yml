@@ -1,6 +1,6 @@
 file_format: "1"
-id: splayt-demo
-name: Splayt-Demo
+id: splayt-demo-choc
+name: Splayt-Demo-Choc
 type: shield
 url: https://github.com/Spaceboards/SpaceboardsHardware/tree/master/Keyboards/2%25%20Milk
 requires: [pro_micro]

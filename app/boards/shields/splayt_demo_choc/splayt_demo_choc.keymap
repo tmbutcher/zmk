@@ -63,11 +63,11 @@
 #define HYPER	(LG(LA(LS(LCTRL))))		  // If I want to send a hypered key, then I might need to make a custom behavior
 // #define HYPER	(LG(LA(LS(LCTRL))))   // Maybe try to make a custom mod kp?
 
-// #include <../boards/shields/splayt_demo/key_positions.h>
-#include <../boards/shields/splayt_demo/mouse.dtsi>
-#include <../boards/shields/splayt_demo/helper.h>
-#include <../boards/shields/splayt_demo/behaviors.dtsi>
-// #include <../boards/shields/splayt_demo/combos.dtsi>
+#include <../boards/shields/splayt_demo_choc/key_positions.h>
+#include <../boards/shields/splayt_demo_choc/mouse.dtsi>
+#include <../boards/shields/splayt_demo_choc/helper.h>
+#include <../boards/shields/splayt_demo_choc/behaviors.dtsi>
+#include <../boards/shields/splayt_demo_choc/combos.dtsi>
 
 &mt { quick_tap_ms = <200>; };
 &lt { quick_tap_ms = <200>; };
