@@ -1,9 +1,11 @@
 @ECHO OFF
 
-choice /C SPQ /T 50 /D Q /M "What shield? [S]pace Invader | [P]im-Demo | Q]uit" /N
+choice /C SPCMQ /T 50 /D Q /M "What shield? [S]pace Invader | [P]im-Demo | [C]hoc Splayt Demo | [M]X Splayt Demo | [Q]uit" /N
 if %ERRORLEVEL% EQU 1 set shield=space_invader& set board=adafruit_feather_nrf52840& set volume=FTHR840BOOT
-if %ERRORLEVEL% EQU 2 set shield=pim_demo& set board=nice_nano_v2& set volume=NICENANO
-if %ERRORLEVEL% EQU 3 goto end
+if %ERRORLEVEL% EQU 2 set shield=demo& set board=nice_nano_v2& set volume=NICENANO
+if %ERRORLEVEL% EQU 3 set shield=splayt_demo_choc& set board=nice_nano_v2& set volume=NICENANO
+if %ERRORLEVEL% EQU 4 set shield=splayt_demo_mx& set board=nice_nano_v2& set volume=NICENANO
+if %ERRORLEVEL% EQU 5 goto end
 
 choice /C YNFQ /T 5 /D Y /M "Build firmware? [Y]es | [N]o | [F]ast Build (probably won't work) | [Q]uit" /N
 if %ERRORLEVEL% EQU 1 goto pristineBuild
@@ -63,7 +65,7 @@ if %ERRORLEVEL% EQU 1 goto flashKeeb
 :hold
 echo.
 choice /C RX /M "Well that didn't work. [R]estart or e[X]it?" /N
-if %ERRORLEVEL% EQU 1 goto buildFirmware
+if %ERRORLEVEL% EQU 1 goto pristineBuild
 if %ERRORLEVEL% EQU 2 goto end
 
 :end
