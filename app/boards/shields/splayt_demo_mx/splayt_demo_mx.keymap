@@ -1,0 +1,140 @@
+/*
+ * Copyright (c) 2021 Tom Butcher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+ // standard build command: west build -b adafruit_feather_nrf52840 -- -DSHIELD=space_invader
+
+ /* ********* TO DO *************
+	* Once unicode works, create macros that change the layer and send the appropriate F key
+	  (for helper image) at the same time.
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/ext_power.h>
+
+// Layer Defs
+#define DEF		0
+#define DEF_NM	1
+#define QWERTY	2
+#define QWER_NM	3
+#define NUM		4
+#define LNUM	5
+#define SYM		6
+#define NAV		7
+#define MOUSE	8
+#define FN		9	
+#define EMOJI	10	// Reserved for future use 
+#define CMP		11	// Reserved for future use
+#define STAY	12
+
+// Mouse Key defs--For use until AHK can be ditched
+#define WH_DN	(F16)
+#define WH_UP	(F17)
+// #define WH_L	(KP_N7)
+// #define WH_R	(KP_N9)
+// #define M_UP	(KP_N8)
+// #define M_DN	(KP_N5)
+// #define M_L		(KP_N4)
+// #define M_R		(KP_N6)
+// #define M_UP_SL	(LC(LG(LA(M_UP))))		// These move the mouse slowly
+// #define M_DN_SL	(LC(LG(LA(M_DN))))
+// #define M_R_SL	(LC(LG(LA(M_R))))
+// #define M_L_SL	(LC(LG(LA(M_L))))
+// #define M_MB	(KP_DIVIDE)
+// #define M_LB	(KP_MINUS)
+// #define M_RB	(KP_MULTIPLY)
+
+// F Key subs (use with AHK)
+#define KP_PLS	(F18)
+#define KP_COM	(F19)
+#define KP_SMC	(F20)
+#define KP_EMJ	(F21)
+#define KP_CMP	(F23)
+#define KP_SLP	(LG(LA(LS(LC(APOS)))))
+
+// Other defs
+#define xxx		&none	
+#define ___		&trans
+#define HYPER	(LG(LA(LS(LCTRL))))		  // If I want to send a hypered key, then I might need to make a custom behavior
+// #define HYPER	(LG(LA(LS(LCTRL))))   // Maybe try to make a custom mod kp?
+
+#include <../boards/shields/splayt_demo_mx/key_positions.h>
+#include <../boards/shields/splayt_demo_mx/mouse.dtsi>
+#include <../boards/shields/splayt_demo_mx/helper.h>
+#include <../boards/shields/splayt_demo_mx/behaviors.dtsi>
+#include <../boards/shields/splayt_demo_mx/combos.dtsi>
+
+&mt { quick_tap_ms = <200>; };
+&lt { quick_tap_ms = <200>; };
+
+/ {
+	conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
+
+	keymap {
+		compatible = "zmk,keymap";
+
+							// -------------------------------------------------TEMPLATE-------------------------------------------------
+							// |      |      |      |      |      |                                  |      |      |      |      |      |
+							// |      |      |      |      |      |                                  |      |      |      |      |      |
+							// |      |      |      |      |      |             |      |             |      |      |      |      |      |
+							// |      |------|      |      |      |      |      	          |      |      |      |      |------|      |
+							// |----------------------------------|      |      |      |      |      |----------------------------------|
+							// ----------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------EMPTY TEMPLATE-----------------------------------------------------------------------------
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+
+//├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┼──────╰──────╮──────╯──────┼─────────────┼─────────────┼─────────────┼─────────┬───┴─────────────┤
+
+//╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
+//																		  		 ╭─────────╮
+
+//																	   ╭─────────┼─────────┼─────────╮
+
+//																	   ╰─────────┼─────────┼─────────╯
+
+//																				 ╰─────────╯
+
+
+
+		default_layer { 
+			label = "Default";
+			bindings = <
+		//----------------------------------------------COLEMAK----------------------------------------------
+		//				╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+          				  &kp N6		&kp N7		  &kp N8		&kp N9		  &kp N0		
+        //				├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+          				  &kp J			&kp L		  &kp U			&kp Y		  &kp APOS	  
+        //				├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤─────────────╮
+          				  &kp M			&cm RCTRL N	  &cm RSHFT E	&cm RALT I	  &cm RWIN O    &kp ESC		// &lt FN ESC  
+        //				├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤─────────────┤
+          				  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH		// Capacitive?
+        //				╰─────────╭───┴─────────┬───┴─────────╮───┴─────────────┴─────────────┴─────────────╯
+							    	&cm KP_CMP DEL &kp END 		// &lt SYM END
+		//			╭─────────────┼─────────────┴─────────────╯	
+  		  			  &shm RSHFT SPACE 
+		//	  ╭─────╰───────╮─────╯											  
+ 			    &kp BSPC		// &lt NUM BSPC  
+		//	  ├─────────────┤
+				&kp RET
+		//	  ╰─────────────╯												  
+       		>;
+		};
+
+	};
+};

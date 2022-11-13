@@ -1,0 +1,18 @@
+#define str(s) #s
+
+#define HOLD-TAP(NAME, LABEL, TAPPING_TERM, QUICK_TAP, BINDINGS) \
+	##NAME: ##LABEL { \
+		compatible = "zmk,behavior-hold-tap"; \
+		label = str(LABEL)
+		tapping_term_ms = <TAPPING_TERM>;\
+		quick_tap_ms = <QUICK_TAP>; \
+		flavor = "tap-preferred"; \
+		#binding-cells = <2>; \
+		bindings = <BINDINGS>; \
+	};
+
+HOLD-TAP(hm, homerow_mods, 150, 150, &kp &kp)
+HOLD-TAP(cm, custom_mods, 150, 150, &kp &kp)		// Not sure if there's any actual difference between this and hm
+HOLD-TAP(as, auto_shift, 200, -1, &kp &kp)
+HOLD-TAP(fm, fast_mods, 150, 75, &kp &kp)			// Same as hm, except with faster quick-tap threshold (for keys that get pressed frequently)
+HOLD-TAP(sm, sticky_mod_layer, 150, -1, &mo &sk)	// For using a sticky key tap with layer tap
