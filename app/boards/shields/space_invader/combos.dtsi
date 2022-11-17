@@ -58,7 +58,7 @@ ZMK_COMBO_ADV(cut,   	&kp LC(X),		LB2 LB4, 				ALL, 				COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(copy,  	&kp LC(C),		LB2 LB3, 				ALL, 				COMBO_TERM_FAST)
 ZMK_COMBO_ADV(paste, 	&kp LC(V),		LB3 LB4, 				ALL, 				COMBO_TERM_FAST)
 
-ZMK_COMBO_ADV(plaintxt, &plaintxt,			LB2 LB3 LB4,		ALL,				COMBO_TERM_SLOW) 		// AHK: Paste plain text
+ZMK_COMBO_ADV(plaintxt, &plaintxt,			LB2 LB3 LB4,		ALL,				COMBO_TERM_VERY_SLOW) 		// AHK: Paste plain text
 ZMK_COMBO_ADV(lowertxt,	&kp LS(LC(RBRC)),	LT4 LT5 LM4 LM5,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste all lowercase
 ZMK_COMBO_ADV(uppertxt,	&kp LS(LC(LBRC)),	LM4 LM5 LB4 LB5,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste all uppercase
 ZMK_COMBO_ADV(sent_txt,	&kp LS(LC(BSLH)),	LM3 LM4 LB3 LB4,	ALL,				COMBO_TERM_VERY_SLOW)	// AHK: Paste in Sentence Case
@@ -103,7 +103,7 @@ ZMK_COMBO_ADV(lbrc,  	&l_brack,		RB2 RB3, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)	
 ZMK_COMBO_ADV(rbrc,  	&r_brack,		RB3 RB4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 
 /* Other Punctuation (horizontal combos) */
-ZMK_COMBO_ADV(quote,	&kp DQT,		RT1 RT5,			DEF QWERTY NUM,			COMBO_TERM_FAST)		// Was RT4 RT5 before toprow number combos added
+ZMK_COMBO_ADV(quote,	&kp DQT,		RT2 RT5,			DEF QWERTY NUM,			COMBO_TERM_FAST)		// Was RT4 RT5 before toprow number combos added
 ZMK_COMBO_ADV(excl,  	&intbang,		RM2 RM4, 			DEF QWERTY NUM, 		COMBO_TERM_FAST)
 
 /* Other symbols (vertical combos) */			
