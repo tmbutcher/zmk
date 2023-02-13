@@ -88,7 +88,6 @@ ZMK_COMBO_ADV(n0, 		&kp N0,				LT1 RT5, 			STANDARD, 	COMBO_TERM_VERY_SLOW)
 
 /* Dashes */
 ZMK_COMBO_ADV(emdash, 	&em_dash,			LT2 LT4, 			REDUCED,	COMBO_TERM_SLOW)
-ZMK_COMBO_ADV(endash, 	&en_dash,			LM2 LM4, 			REDUCED, 	COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(hyph2,  	&kp MINUS,			RT2 RT4, 			ALL, 		COMBO_TERM_SLOW)
 
 ZMK_COMBO_ADV(lthan, 	&cm LA(LSHFT) LT,	LM2 LM3, 			REDUCED,	COMBO_TERM_FAST)
@@ -98,9 +97,8 @@ ZMK_COMBO_ADV(endash, 	&enm LA(LCTRL) 0,	LM2 LM4, 			REDUCED,	COMBO_TERM_SLOW)	/
 // ZMK_COMBO_ADV(lbkt,  	&kp LBKT,		RT2 RT3, 			ALL, 		COMBO_TERM_FAST)
 // ZMK_COMBO_ADV(rbkt,  	&kp RBKT,		RT3 RT4, 			ALL, 		COMBO_TERM_FAST)
 
-ZMK_COMBO_ADV(lpar,  	&cm RC(RSHFT)LPAR,	RM2 RM3, 			ALL, 		COMBO_TERM_FAST)
+ZMK_COMBO_ADV(lpar,  	&cm RC(RSHFT) LPAR,	RM2 RM3, 			ALL, 		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(rpar,  	&cm RS(RALT) RPAR,	RM3 RM4, 			ALL, 		COMBO_TERM_FAST)
-ZMK_COMBO_ADV(excl,  	&cm RC(RALT) EXCL,	RM2 RM4, 			ALL, 		COMBO_TERM_FAST)
 
 ZMK_COMBO_ADV(lbrc,  	&l_brack,			RB2 RB3, 			ALL, 		COMBO_TERM_FAST)		// Added special mod-morph to allow toprow number combos
 ZMK_COMBO_ADV(rbrc,  	&r_brack,			RB3 RB4, 			ALL, 		COMBO_TERM_FAST)
@@ -114,7 +112,9 @@ ZMK_COMBO_ADV(J,		&kp J,				RM1 RM3,			STANDARD,	COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(apos,		&kp APOS,			RM2 RM5,			STANDARD,	COMBO_TERM_SLOW)		// Was RT4 RT5 before toprow number combos added
 
 ZMK_COMBO_ADV(quotes,	&kp DQT,			RT2 RT5,			ALL,		COMBO_TERM_VERY_SLOW)
-ZMK_COMBO_ADV(excl,  	&intbang,			RM2 RM4, 			ALL,	 	COMBO_TERM_SLOW)
+
+ZMK_COMBO_ADV(excl, 	&cm RC(RALT) EXCL,	RM2 RM4, 			ALL,	 	COMBO_TERM_SLOW)
+// ZMK_COMBO_ADV(slashes, 	&slm RC(RALT) &slashes,	RM2 RM4, 		ALL,	 	COMBO_TERM_SLOW)
 
 /* Other symbols (vertical combos) */			
 ZMK_COMBO_ADV(at,    	&kp AT,				LT2 LM2, 			ALL, 		COMBO_TERM_SLOW)
