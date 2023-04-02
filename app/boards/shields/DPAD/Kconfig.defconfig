@@ -1,0 +1,11 @@
+# Copyright (c) 2021 Tom Butcher
+# SPDX-License-Identifier: MIT
+
+if DPAD
+
+config ZMK_KEYBOARD_NAME
+    default "dpad"
+	
+endif
+
+

@@ -1,9 +1,9 @@
 @ECHO OFF
 
-choice /C SPCMQ /T 50 /D Q /M "What shield? [S]pace Invader | [P]im-Demo | [C]hoc Splayt Demo | [M]X Splayt Demo | [Q]uit" /N
+choice /C SPDMQ /T 50 /D Q /M "What shield? [S]pace Invader | [P]im-Demo | [D]PAD Demo | [M]X Splayt Demo | [Q]uit" /N
 if %ERRORLEVEL% EQU 1 set shield=space_invader& set board=adafruit_feather_nrf52840& set volume=FTHR840BOOT
 if %ERRORLEVEL% EQU 2 set shield=demo& set board=nice_nano_v2& set volume=NICENANO
-if %ERRORLEVEL% EQU 3 set shield=splayt_demo_choc& set board=nice_nano_v2& set volume=NICENANO
+if %ERRORLEVEL% EQU 3 set shield=dpad& set board=nice_nano_v2& set volume=NICENANO
 if %ERRORLEVEL% EQU 4 set shield=splayt_demo_mx& set board=nice_nano_v2& set volume=NICENANO
 if %ERRORLEVEL% EQU 5 goto end
 

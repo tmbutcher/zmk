@@ -1,0 +1,30 @@
+/*
+ * Copyright (c) 2021 Tom Butcher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+ // standard build command: west build -b nice_nano_v2 -- -DSHIELD=dpad
+
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <behaviors.dtsi>
+
+#define xxx		&none	
+#define ___		&trans
+
+/ {
+	keymap {
+		compatible = "zmk,keymap";
+
+		default_layer { 
+			label = "Default";
+			
+			bindings = <
+				&kp DOWN &kp LEFT &kp RIGHT &kp UP
+			>;
+		};
+	};
+};
