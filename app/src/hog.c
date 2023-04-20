@@ -64,8 +64,6 @@ static struct hids_report mouse_input = {
 };
 #endif
 
-static bool host_requests_notification = false;
-static uint8_t ctrl_point;
 // static uint8_t proto_mode;
 
 static ssize_t read_hids_info(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf,

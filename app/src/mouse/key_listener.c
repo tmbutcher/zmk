@@ -19,10 +19,8 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/mouse.h>
 
 #if !defined(CONFIG_ZMK_SPLIT) || defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-static struct vector2d move_speed = {0};
+
 static struct vector2d scroll_speed = {0};
-static struct mouse_config move_config = (struct mouse_config){0};
-static struct mouse_config scroll_config = (struct mouse_config){0};
 static int64_t start_time = 0;
 
 bool equals(const struct mouse_config *one, const struct mouse_config *other) {

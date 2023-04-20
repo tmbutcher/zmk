@@ -230,7 +230,7 @@ int zmk_hid_consumer_release(zmk_key_t code) {
 
 void zmk_hid_consumer_clear() { memset(&consumer_report.body, 0, sizeof(consumer_report.body)); }
 
-bool zmk_hid_consumer_is_pressed(zmk_key_t key) {
+bool zmk_hid_consumer_is_pressed(zmk_key_t key) {   // Here through....
     for (int idx = 0; idx < CONFIG_ZMK_HID_CONSUMER_REPORT_SIZE; idx++) {
         if (consumer_report.body.keys[idx] == key) {
             return true;
@@ -267,6 +267,25 @@ bool zmk_hid_is_pressed(uint32_t usage) {
         return zmk_hid_consumer_is_pressed(ZMK_HID_USAGE_ID(usage));
     }
     return false;
+}  // ...here may need commenting out
+
+// Keep track of how often a button was pressed.
+// Only release the button if the count is 0.
+static int explicit_button_counts[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static zmk_mod_flags_t explicit_buttons = 0;
+
+#define SET_MOUSE_BUTTONS(btns)                                                                    \
+    {                                                                                              \
+        mouse_report.body.buttons = btns;                                                          \
+        LOG_DBG("Mouse buttons set to 0x%02X", mouse_report.body.buttons);                         \
+    }
+
+int zmk_hid_mouse_button_press(zmk_mouse_button_t button) {
+    explicit_button_counts[button]++;
+    LOG_DBG("Button %d count %d", button, explicit_button_counts[button]);
+    WRITE_BIT(explicit_buttons, button, true);
+    SET_MOUSE_BUTTONS(explicit_buttons);
+    return 0;
 }
 
 #if IS_ENABLED(CONFIG_ZMK_MOUSE)
