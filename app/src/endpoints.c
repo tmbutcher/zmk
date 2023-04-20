@@ -144,6 +144,7 @@ int zmk_endpoints_send_report(uint16_t usage_page) {
     }
 }
 
+#if IS_ENABLED(CONFIG_ZMK_MOUSE)
 int zmk_endpoints_send_mouse_report() {
     struct zmk_hid_mouse_report *mouse_report = zmk_hid_get_mouse_report();
 
@@ -160,11 +161,7 @@ int zmk_endpoints_send_mouse_report() {
 
 #if IS_ENABLED(CONFIG_ZMK_BLE)
     case ZMK_ENDPOINT_BLE: {
-#if IS_ENABLED(CONFIG_ZMK_MOUSE_WORK_QUEUE_DEDICATED)
-        int err = zmk_hog_send_mouse_report_direct(&mouse_report->body);
-#else
         int err = zmk_hog_send_mouse_report(&mouse_report->body);
-#endif
         if (err) {
             LOG_ERR("FAILED TO SEND OVER HOG: %d", err);
         }
@@ -177,6 +174,7 @@ int zmk_endpoints_send_mouse_report() {
         return -ENOTSUP;
     }
 }
+#endif /* IS_ENABLED(CONFIG_ZMK_MOUSE) */
 
 #if IS_ENABLED(CONFIG_SETTINGS)
 
@@ -262,7 +260,9 @@ static enum zmk_endpoint get_selected_endpoint() {
 static void disconnect_current_endpoint() {
     zmk_hid_keyboard_clear();
     zmk_hid_consumer_clear();
+#if IS_ENABLED(CONFIG_ZMK_MOUSE)
     zmk_hid_mouse_clear();
+#endif
 
     zmk_endpoints_send_report(HID_USAGE_KEY);
     zmk_endpoints_send_report(HID_USAGE_CONSUMER);
