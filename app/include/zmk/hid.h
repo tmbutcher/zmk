@@ -6,9 +6,8 @@
 
 #pragma once
 
-#include <usb/usb_device.h>
-//#include <usb/class/usb_hid.h>
-#include <usb/class/hid.h>
+#include <zephyr/usb/usb_device.h>
+#include <zephyr/usb/class/usb_hid.h>
 
 #include <zmk/keys.h>
 #include <zmk/mouse.h>
