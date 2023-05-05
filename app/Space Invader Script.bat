@@ -1,9 +1,9 @@
 @ECHO OFF
 
 choice /C SDRQ /T 50 /D Q /M "What shield? [S]pace Invader | [D]emotle | Demotle_[R]ight | [Q]uit" /N
-if %ERRORLEVEL% EQU 1 set shieldBase=space_invader& set board=adafruit_feather_nrf52840& set volume=FTHR840BOOT& set "split="
-if %ERRORLEVEL% EQU 2 set shieldBase=demotle& set board=nice_nano_v2& set volume=NICENANO& set split=null& set split=_left
-if %ERRORLEVEL% EQU 3 set shieldBase=demotle& set board=nice_nano_v2& set volume=NICENANO& set split=null& set split=_right
+if %ERRORLEVEL% EQU 1 set shieldBase=space_invader& set board=adafruit_feather_nrf52840& set volume=FTHR840BOOT& set "split="& set shield=%shieldBase%%split%
+if %ERRORLEVEL% EQU 2 set shieldBase=demotle& set board=nice_nano_v2& set volume=NICENANO& set split=null& set split=_left& set shield=%shieldBase%%split%
+if %ERRORLEVEL% EQU 3 set shieldBase=demotle& set board=nice_nano_v2& set volume=NICENANO& set split=null& set split=_right& set shield=%shieldBase%%split%
 if %ERRORLEVEL% EQU 4 goto end
 
 choice /C YNFQ /T 5 /D Y /M "Build firmware? [Y]es | [N]o | [F]ast Build (probably won't work) | [Q]uit" /N
@@ -20,6 +20,7 @@ if %ERRORLEVEL% EQU 0 goto copyFirmware
 if %ERRORLEVEL% neq 0 goto pristineBuild
 
 :pristineBuild
+set shield=%shieldBase%%split%
 west build -p -b %board% -- -DSHIELD=%shield% -Wno-dev
 if %ERRORLEVEL% EQU 0 goto copyFirmware
 if %ERRORLEVEL% neq 0 goto hold
@@ -75,7 +76,7 @@ if %ERRORLEVEL% EQU 2 goto end
 :splitCycle
 echo.
 choice /C YN /M "Build and flash other side of the split? [Y]es | [N]o" /N
-if %ERRORLEVEL% EQU 1 set split=_right
-goto buildFirmware
+if %ERRORLEVEL% EQU 1 set split=_right& goto buildFirmware
+if %ERRORLEVEL% EQU 2 goto end
 
 :end
