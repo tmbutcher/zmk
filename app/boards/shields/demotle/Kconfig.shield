@@ -1,5 +1,8 @@
 # Copyright (c) 2023 Tom Butcher
 # SPDX-License-Identifier: MIT
 
-config SHIELD_DEMOTLE
-    def_bool $(shields_list_contains,demotle)
+config SHIELD_DEMOTLE_LEFT
+    def_bool $(shields_list_contains,demotle_left)
+
+config SHIELD_DEMOTLE_RIGHT
+    def_bool $(shields_list_contains,demotle_right)

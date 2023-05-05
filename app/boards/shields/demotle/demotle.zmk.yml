@@ -1,0 +1,12 @@
+file_format: "1"
+id: demotle
+name: Demotle
+type: shield
+url: https://github.com/tmbutcher/dev
+requires:
+  - pro_micro
+features:
+  - keys
+siblings:
+  - demotle_left
+  - demotle_right

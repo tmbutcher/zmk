@@ -1,10 +1,22 @@
 # Copyright (c) 2023 Tom Butcher
 # SPDX-License-Identifier: MIT
 
-if DEMOTLE
+if DEMOTLE_LEFT
 
 config ZMK_KEYBOARD_NAME
     default "demotle"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if DEMOTLE_LEFT || DEMOTLE_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif
 
 if ZMK_DISPLAY
 
@@ -35,5 +47,3 @@ choice LV_COLOR_DEPTH
 endchoice
 
 endif # LVGL
-
-endif
