@@ -1,0 +1,149 @@
+/* ZMK_BEHAVIORS */
+
+#define ZMK_BEHAVIOR_CORE_caps_word   compatible = "zmk,behavior-caps-word";  #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_hold_tap    compatible = "zmk,behavior-hold-tap";   #binding-cells = <2>
+#define ZMK_BEHAVIOR_CORE_key_repeat  compatible = "zmk,behavior-key-repeat"; #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_macro       compatible = "zmk,behavior-macro";      #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_mod_morph   compatible = "zmk,behavior-mod-morph";  #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_sticky_key  compatible = "zmk,behavior-sticky-key"; #binding-cells = <1>
+#define ZMK_BEHAVIOR_CORE_tap_dance   compatible = "zmk,behavior-tap-dance";  #binding-cells = <0>
+
+#define ZMK_HELPER_STRINGIFY(x) #x
+
+#define ZMK_BEHAVIOR(name, type, ...) \
+    / { \
+        behaviors { \
+            name: name { \
+                label = ZMK_HELPER_STRINGIFY(ZB_ ## name); \
+                ZMK_BEHAVIOR_CORE_ ## type; \
+                __VA_ARGS__ \
+            }; \
+        }; \
+    };
+
+#define MOD_MORPH(name, key1, key2) \
+	/ { \
+        behaviors { \
+            name: name { \
+                label = ZMK_HELPER_STRINGIFY(MM_ ## name); \
+                ZMK_BEHAVIOR_CORE_mod_morph; \
+                bindings = <key1>, <key2>; \
+				mods = <(MOD_LSFT|MOD_RSFT)>; \
+				}; \
+        }; \
+    };
+
+#define KEEP_MOD_MORPH(name, key1, key2, keep) \  
+	/ { \
+        behaviors { \
+            name: name { \
+                label = ZMK_HELPER_STRINGIFY(MM_ ## name); \
+                ZMK_BEHAVIOR_CORE_mod_morph; \
+                bindings = <key1>, <key2>; \
+				mods = <(MOD_LSFT|MOD_RSFT)>; \
+				keep-mods = <(keep)>; \   
+				}; \
+        }; \
+    };
+	// Is this necessary? Can an over-ridable default be set for keep-mods?
+	// If multiple keep-mods, need to separate w/ a pipe
+	
+#define HOLD_TAP(name, tapping, quick_tap, keys) \
+	/ { \
+        behaviors { \
+            name: name { \
+                label = ZMK_HELPER_STRINGIFY(HT_ ## name); \
+                ZMK_BEHAVIOR_CORE_hold_tap; \
+                tapping_term_ms = <tapping>; \
+				quick_tap_ms = <quick_tap>; \
+				flavor = "tap-preferred"; \
+				#binding-cells = <2>; \
+				bindings = <keys>; \
+            }; \
+        }; \
+    };
+
+/* HOLD-TAP BEHAVIORS */
+HOLD_TAP(cm, 200, 150, &kp &kp)	// Custom mods: default hold-tap
+HOLD_TAP(as, 200, 0, &kp &kp)	// Autoshift: gives second entry with hold
+HOLD_TAP(fm, 150, 75, &kp &kp)	// Fast mods: Same as cm, except  faster quick-tap threshold (for keys that get pressed frequently)
+HOLD_TAP(sm, 150, 0, &mo &sk)	// Sticky mods: For using a sticky key tap with layer tap
+HOLD_TAP(shm, 150, 0, &kp &kp)	// Shift mod: special setting for shift-space key
+HOLD_TAP(enm, 200, 150, &kp &en_dash)	// En-dash mod: special mod for using home row mods with en dash macro for combos
+HOLD_TAP(slm, 200, 150, &kp &slashes)	// Slashes mod: same as above
+	
+
+/* 	MOD-MORPH BEHAVIORS */
+MOD_MORPH(comcol, &kp COMMA, &kp SEMI)
+MOD_MORPH(dotcol, &kp DOT, &kp COLON)
+MOD_MORPH(lgthan, &as GT LT, &kp GT)
+MOD_MORPH(revplus, &as EQUAL PLUS, &kp EQUAL)
+MOD_MORPH(dotcom, &as COMMA DOT, &kp COMMA)
+MOD_MORPH(zeroleft, &as LPAR N0, &kp LPAR)
+MOD_MORPH(dashing, &em_dash, &en_dash)
+MOD_MORPH(bootsleep, &bootloader, &kp KP_SLP)
+
+
+MOD_MORPH(mouse_l, &mmv M_LT, &mmv MLTS)
+MOD_MORPH(mouse_r, &mmv M_RT, &mmv MRTS)
+MOD_MORPH(mouse_u, &mmv M_UP, &mmv MUPS)
+MOD_MORPH(mouse_d, &mmv M_DN, &mmv MDNS)
+
+MOD_MORPH(l_brack, &kp LBKT, &kp LBRC)
+MOD_MORPH(r_brack, &kp RBKT, &kp RBRC)
+
+// These ones aren't being used right now, but maybe they'll return at some future point
+MOD_MORPH(lparbkt, &kp LPAR, &kp LBKT)
+MOD_MORPH(rparbkt, &kp RPAR, &kp RBKT)
+MOD_MORPH(slashes, &kp SLASH, &kp BSLH)
+MOD_MORPH(intbang, &kp QMARK, &kp EXCL)
+
+
+/* TAP DANCE BEHAVIORS */
+ZMK_BEHAVIOR(tdbt, tap_dance,
+	tapping-term-ms = <200>;
+    bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>, <&bt BT_SEL 3>, <&bt BT_SEL 4>;
+)
+
+ZMK_BEHAVIOR(tdusb, tap_dance,
+	tapping-term-ms = <200>;
+    bindings = <&out OUT_BLE>, <&out OUT_USB>;
+)
+
+/* MACROS */
+ZMK_BEHAVIOR(en_dash, macro,
+	wait-ms = <10>;
+	tap-ms = <10>;
+	bindings
+	= <&macro_press &kp KP_CMP>
+	, <&macro_tap &kp MINUS>
+	, <&macro_release &kp KP_CMP> ;
+)
+
+ZMK_BEHAVIOR(em_dash, macro,
+	wait-ms = <10>;
+	tap-ms = <10>;
+	bindings
+	= <&macro_press &kp KP_CMP>
+	, <&macro_press &kp LSHFT>
+	, <&macro_tap &kp MINUS>
+	, <&macro_release &kp LSHFT>
+	, <&macro_release &kp KP_CMP> ;
+)
+
+ZMK_BEHAVIOR(plaintxt, macro,
+	wait-ms = <10>;
+	tap-ms = <10>;
+	bindings
+	= <&macro_press &kp LSHFT>
+	, <&macro_press &kp LCTRL>
+	, <&macro_tap &kp V>
+	, <&macro_release &kp LCTRL>
+	, <&macro_release &kp LSHFT> ;
+)
+
+ZMK_BEHAVIOR(unstick, macro,			// For when mods get stuck - presses and releases all of them
+	wait-ms = <10>;
+	tap-ms = <10>;
+	bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI &kp RGUI>;
+)

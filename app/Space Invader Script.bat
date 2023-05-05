@@ -1,11 +1,11 @@
 @ECHO OFF
 
-@REM choice /C SPQ /T 50 /D Q /M "What shield? [S]pace Invader | [P]im-Demo | Q]uit" /N
-@REM if %ERRORLEVEL% EQU 1 set shield=space_invader& set board=adafruit_feather_nrf52840& set volume=FTHR840BOOT
-@REM if %ERRORLEVEL% EQU 2 set shield=demo& set board=nice_nano_v2& set volume=NICENANO
-@REM if %ERRORLEVEL% EQU 3 goto end
+choice /C SDLQ /T 50 /D Q /M "What shield? [S]pace Invader | [D]emotle | Demotle[L] | Q]uit" /N
+if %ERRORLEVEL% EQU 1 set shield=space_invader& set board=adafruit_feather_nrf52840& set volume=FTHR840BOOT
+if %ERRORLEVEL% EQU 2 set shield=demotle& set board=nice_nano_v2& set volume=NICENANO
+if %ERRORLEVEL% EQU 3 goto end
 
-set shield=space_invader& set board=adafruit_feather_nrf52840& set volume=FTHR840BOOT
+@REM set shield=space_invader& set board=adafruit_feather_nrf52840& set volume=FTHR840BOOT
 
 choice /C YNFQ /T 5 /D Y /M "Build firmware? [Y]es | [N]o | [F]ast Build (probably won't work) | [Q]uit" /N
 if %ERRORLEVEL% EQU 1 goto pristineBuild
