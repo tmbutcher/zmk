@@ -76,8 +76,7 @@
 		label = "ENCODER";
 		a-gpios = <&feather_header 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 		b-gpios = <&feather_header 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		resolution = <2>;
-		status = "okay";
+		steps = <15>;
 	};
 
 // OLED Pins are 12 (SDA) and 13 (SCL)
@@ -85,6 +84,7 @@
 	sensors {
 		compatible = "zmk,keymap-sensors";
 		sensors = <&encoder>;
+		triggers-per-rotation = <15>;
 	};
 };
 
