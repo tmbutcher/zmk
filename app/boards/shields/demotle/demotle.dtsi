@@ -18,11 +18,11 @@
         diode-direction = "col2row";
 		
 		row-gpios
-			= <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 017
-			, <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 020
-			, <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 022
-			, <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 024
-			, <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 100
+			= <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 017 pro_micro 2
+			, <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 020 pro_micro 3
+			, <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 022 pro_micro 4
+			, <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 024 pro_micro 5
+			, <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // pin 100 pro_micro 6
 			;
     };
 
@@ -42,9 +42,9 @@
         // ├─────────┼─────────┼─────────┼─────────┼─────────┤						  ├─────────┼─────────┼─────────┼─────────┼─────────┤
              RC(3,0)   RC(3,1)   RC(3,2)   RC(3,3)   RC(3,4)							RC(3,5)   RC(3,6)   RC(3,7)   RC(3,8)   RC(3,9) 
         // ╰─────────┴─────────┴─────────┼─────────┼─────────╰─────────╮	╭─────────╯─────────┼─────────┼─────────┴─────────┴─────────╯
-										   RC(4,1)   RC(4,2)   RC(4,3)		  RC(4,5)	RC(4,6)	  RC(4,7)
+										   RC(4,2)   RC(4,3)   RC(4,4)		  RC(4,5)	RC(4,6)	  RC(4,7)
 		//								 ╰─────────┼─────────┼─────────╯	╰─────────┼─────────┼─────────╯
-													 RC(4,4)							RC(4,8)
+													 RC(4,1)							RC(4,8)
 		//										   ╰─────────╯						  ╰─────────╯
         >;
 	};

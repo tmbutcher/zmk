@@ -34,7 +34,7 @@
         }; \
     };
 
-/*  //----------------- KEY POSITIONS------------------\\   // Will need to reconfigure for the num row and not having L/RH5 anymore
+/*  //----------------- KEY POSITIONS------------------\\   // Will need to reconfigure for the num row and the thumb row
 	╭────────────────────╮         ╭────────────────────╮   
 	│ LN1 LN2 LN3 LN4 LN5│         │RN1 RN2 RN3 RN4 RN5 │   
 	│ LT1 LT2 LT3 LT4 LT5│         │RT1 RT2 RT3 RT4 RT5 │   
@@ -153,4 +153,6 @@ ZMK_COMBO_ADV(sleep, 	&kp KP_SLP,			LT4 LT5 RT1 RT2, 	ALL, 		COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(caps_wd,	&caps_word,			LM1 LM2 LM3,		STANDARD, 	COMBO_TERM_FAST)
 ZMK_COMBO_ADV(caps_lk,	&kp CAPS,			LM1 LM2 LM3 LM4,	STANDARD, 	COMBO_TERM_SLOW)
 
-ZMK_COMBO_ADV(unstick,	&unstick,			LH2 LH3 LH4,		ALL,		COMBO_TERM_VERY_SLOW)
+ZMK_COMBO_ADV(unstick,	&unstick,			LH1 LH2 LH3,		ALL,		COMBO_TERM_VERY_SLOW)
+
+ZMK_COMBO_ADV(unstick,	&bootloader,		LN1 LN5 LB1 LB4,	ALL,		COMBO_TERM_VERY_SLOW)
