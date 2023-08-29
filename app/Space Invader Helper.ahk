@@ -71,12 +71,12 @@ SetNumLockState, AlwaysOn
 
 	F16::
 		Loop, 2 {
-			Click, WheelDown 2
+			Click, WheelDown
 		}
 		return
 	F17::
 			Loop, 2 {
-			Click, WheelUp 2
+			Click, WheelUp
 		}
 		return
     ; Numpad7::Click, WheelLeft
