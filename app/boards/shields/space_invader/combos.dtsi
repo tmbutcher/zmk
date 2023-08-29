@@ -48,10 +48,10 @@
 
 #define COMBO_TERM_FAST 35
 #define COMBO_TERM_SLOW 45
-#define COMBO_TERM_VERY_SLOW 100
+#define COMBO_TERM_VERY_SLOW 150
 
-#define STANDARD DEF DEF_NM QWERTY QWER_NM
-#define REDUCED DEF QWERTY NUM
+#define STANDARD DEF DEF_NM OHAND QWERTY QWER_NM
+#define REDUCED DEF OHAND QWERTY NUM
 
 
 /* Shortcuts */
@@ -142,6 +142,7 @@ ZMK_COMBO_ADV(qwerty,	&tog QWERTY,		LT1 LT2 LT3 LT4, 	ALL, 		COMBO_TERM_SLOW)
 //ZMK_COMBO_ADV(num,   	&tog NUM,			LT3 LT4, 			ALL, 		COMBO_TERM_SLOW)	// Old numlock combo
 ZMK_COMBO_ADV(num,   	&tog NUM,			LM2 LM3 LM4,		ALL,		COMBO_TERM_SLOW)	// New numlock combo to allow toprow number combos
 ZMK_COMBO_ADV(no_mods, 	&tog DEF_NM,		LB1 LB2 LB3 LB4,	ALL, 		COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(ohand,	&tog OHAND,			RM2 RM3 RM4,		ALL,		COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(stay,		&tog STAY,			RM2 RM3 RM4 RM5,	ALL,		COMBO_TERM_SLOW)
 
 /* Other Combos */
