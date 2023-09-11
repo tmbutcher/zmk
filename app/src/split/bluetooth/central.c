@@ -433,19 +433,21 @@ static int stop_scanning() {
 static bool split_central_eir_found(const bt_addr_le_t *addr) {
     LOG_DBG("Found the split service");
 
+    // Reserve peripheral slot. Once the central has bonded to its peripherals,
+    // the peripheral MAC addresses will be validated internally and the slot
+    // reservation will fail if there is a mismatch.
+    int slot_idx = reserve_peripheral_slot(addr);
+    if (slot_idx < 0) {
+        LOG_INF("Unable to reserve peripheral slot (err %d)", slot_idx);
+        return false;
+    }
+    struct peripheral_slot *slot = &peripherals[slot_idx];
+
     // Stop scanning so we can connect to the peripheral device.
     int err = stop_scanning();
     if (err < 0) {
         return false;
     }
-
-    int slot_idx = reserve_peripheral_slot(addr);
-    if (slot_idx < 0) {
-        LOG_ERR("Failed to reserve peripheral slot (err %d)", slot_idx);
-        return false;
-    }
-
-    struct peripheral_slot *slot = &peripherals[slot_idx];
 
     LOG_DBG("Initiating new connnection");
     struct bt_le_conn_param *param =
@@ -509,8 +511,10 @@ static void split_central_device_found(const bt_addr_le_t *addr, int8_t rssi, ui
     LOG_DBG("[DEVICE]: %s, AD evt type %u, AD data len %u, RSSI %i", dev, type, ad->len, rssi);
 
     /* We're only interested in connectable events */
-    if (type == BT_GAP_ADV_TYPE_ADV_IND || type == BT_GAP_ADV_TYPE_ADV_DIRECT_IND) {
+    if (type == BT_GAP_ADV_TYPE_ADV_IND) {
         bt_data_parse(ad, split_central_eir_parse, (void *)addr);
+    } else if (type == BT_GAP_ADV_TYPE_ADV_DIRECT_IND) {
+        split_central_eir_found(addr);
     }
 }
 
