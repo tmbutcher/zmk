@@ -20,18 +20,19 @@
 // Layer Defs
 #define DEF		0
 #define DEF_NM	1
-#define OHAND	2
-#define QWERTY	3
-#define QWER_NM	4
-#define NUM		5
-#define LNUM	6
-#define SYM		7
-#define NAV		8
-#define MOUSE	9
-#define FN		10	
-#define EMOJI	11	// Reserved for future use 
-#define CMP		12	// Reserved for future use
-#define STAY	13
+#define WORK	2
+#define OHAND	3
+#define QWERTY	4
+#define QWER_NM	5
+#define NUM		6
+#define LNUM	7
+#define SYM		8
+#define NAV		9
+#define MOUSE	10	
+#define FN		11	// Reserved for future use 
+#define EMOJI	12	// Reserved for future use
+#define CMP		13
+#define STAY	14
 
 // Mouse Key defs--For use until AHK can be ditched
 #define WH_DN	(F16)
@@ -77,8 +78,8 @@
 	conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <1 3>;
-            then-layer = <4>;
+            if-layers = <1 4>;
+            then-layer = <5>;
         };
     };
 
@@ -170,6 +171,31 @@
 			sensor-bindings = <&inc_dec_kp ___ ___>;
 		};
 
+		work_layer { 
+			label = "Work";
+			bindings = <
+//--------------------------------------------------------------------------------COLEMAK---------------------------------------------------------------------------------
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+  	&kp Q		  &kp W			&kp F		  &kp P			&kp B									  &kp J			&kp L		  &kp U			&kp Y		  &lt STAY APOS		// &tdq
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+  	&cm LWIN A	  &cm LALT R	&cm LSHFT S	  &cm LCTRL T	&lt LNUM G								  &kp M			&cm RCTRL N	  &cm RSHFT E	&cm RALT I	  &cm RWIN O
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+	&kp Z		  &kp X			&kp C		  &kp D			&kp V				  &kp C_MUTE		  &kp K			&kp H		  &comcol		&dotcol		  &kp SLASH
+//├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
+	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &shm RSHFT SPACE &lt OHAND DEL &cm KP_CMP END		  &mt RSHFT RET
+//╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
+//																		  		 ╭─────────╮
+																				  &kp UP
+//																	   ╭─────────┼─────────┼─────────╮
+																		&kp LEFT  &kp RET	&kp RIGHT
+//																	   ╰─────────┼─────────┼─────────╯
+																				  &kp DOWN
+//																				 ╰─────────╯
+			>;
+
+			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
+		};
+
 		one_hand_layer { 
 			label = "One Handed";
 			bindings = <
@@ -223,7 +249,7 @@
 		qwerty_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "QNoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp S &kp D &kp F ___ ___ &kp K &kp L &kp COLON &kp APOS ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
-						___ ___ &mt LALT LS(TAB) ___ ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
+						___ ___ &mt LALT LS(TAB) &kp SPACE ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
 			sensor-bindings = <&inc_dec_kp ___ ___>;
 		};
 
