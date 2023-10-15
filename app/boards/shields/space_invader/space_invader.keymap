@@ -161,7 +161,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&scroll;
+			sensor-bindings = <&scroll>;
 		};
 
 		default_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
@@ -308,7 +308,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮		├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 	 xxx		  xxx			xxx			  &as PIPE BSLH &as TILDE GRAVE		  ___				  &lgthan		&as EXCL N1	  &as AT N2		&as HASH N3	  &as QMARK SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
-	&to DEF					&kp HOME	  &kp LS(TAB)	&sm NAV LSHFT &dotcom		___			  &zeroleft	  	___			  &as RPAR N0			  	  ___	
+	&to DEF						&kp HOME	  &kp LS(TAB)	&sm NAV LSHFT &dotcom		___			  &zeroleft	  	___			  &as RPAR N0			  	  ___	
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
 //																		  		 ╭─────────╮
 																				   ___	
