@@ -161,14 +161,14 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
+			sensor-bindings = <&scroll;
 		};
 
 		default_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "D.NoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp R &kp S &kp T ___ ___ &kp N &kp E &kp I &kp O ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 						___ ___ &mt LALT LS(TAB) ___ ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
-			sensor-bindings = <&inc_dec_kp ___ ___>;
+			sensor-bindings = <&scroll>;
 		};
 
 		work_layer { 
@@ -193,7 +193,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
+			sensor-bindings = <&scroll>;
 		};
 
 		one_hand_layer { 
@@ -218,7 +218,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
+			sensor-bindings = <&scroll>;
 		};
 
 		qwerty_layer {
@@ -243,14 +243,14 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp ___ ___>;
+			sensor-bindings = <&scroll>;
 		};
 
 		qwerty_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "QNoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp S &kp D &kp F ___ ___ &kp K &kp L &kp COLON &kp APOS ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 						___ ___ &mt LALT LS(TAB) &kp SPACE ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
-			sensor-bindings = <&inc_dec_kp ___ ___>;
+			sensor-bindings = <&scroll>;
 		};
 
 		number_layer {
@@ -284,7 +284,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+			sensor-bindings = <&volume>;
 		};
 
 
@@ -319,7 +319,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+			sensor-bindings = <&volume>;
 		};
 
 		symbol_layer {
@@ -344,7 +344,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+			sensor-bindings = <&volume>;
 		};
 
 		navigation_layer {
@@ -369,7 +369,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp LC(TAB) LS(LC(TAB))>;	// Scroll tabs
+			sensor-bindings = <&tabs>;	// Scroll tabs
 		};
 
 		mouse_layer {
@@ -394,7 +394,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
+			sensor-bindings = <&scroll>;
 		};
 
 		function_layer {
@@ -419,7 +419,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+			sensor-bindings = <&volume>;
 		};
 
 		emoji_layer { // todo: Unicode (including emoji) not yet implemented in ZMK. Maybe try using AHK in the meantime?
@@ -444,7 +444,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
+			sensor-bindings = <&scroll>;
 		};
 
 		compose_layer { // todo: unicode not yet implemented in ZMK. Maybe try using AHK in the meantime?
@@ -469,7 +469,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
+			sensor-bindings = <&scroll>;
 		};
 
 		stay_layer {	// This layer is for toggling the layers (rather than just holding them on). Can be replaced in the future with double-taps or something
@@ -494,7 +494,7 @@
 //																				 ╰─────────╯
 			>;
 
-			sensor-bindings = <&inc_dec_kp WH_UP WH_DN>;
+			sensor-bindings = <&scroll>;
 		};
 	};
 };

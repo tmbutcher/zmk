@@ -76,7 +76,7 @@
 		label = "ENCODER";
 		a-gpios = <&feather_header 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 		b-gpios = <&feather_header 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		steps = <15>;
+		steps = <30>;
 	};
 
 // OLED Pins are 12 (SDA) and 13 (SCL)

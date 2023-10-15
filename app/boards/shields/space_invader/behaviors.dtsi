@@ -1,12 +1,13 @@
 /* ZMK_BEHAVIORS */
 
-#define ZMK_BEHAVIOR_CORE_caps_word   compatible = "zmk,behavior-caps-word";  #binding-cells = <0>
-#define ZMK_BEHAVIOR_CORE_hold_tap    compatible = "zmk,behavior-hold-tap";   #binding-cells = <2>
-#define ZMK_BEHAVIOR_CORE_key_repeat  compatible = "zmk,behavior-key-repeat"; #binding-cells = <0>
-#define ZMK_BEHAVIOR_CORE_macro       compatible = "zmk,behavior-macro";      #binding-cells = <0>
-#define ZMK_BEHAVIOR_CORE_mod_morph   compatible = "zmk,behavior-mod-morph";  #binding-cells = <0>
-#define ZMK_BEHAVIOR_CORE_sticky_key  compatible = "zmk,behavior-sticky-key"; #binding-cells = <1>
-#define ZMK_BEHAVIOR_CORE_tap_dance   compatible = "zmk,behavior-tap-dance";  #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_caps_word   compatible = "zmk,behavior-caps-word";  		#binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_hold_tap    compatible = "zmk,behavior-hold-tap";   		#binding-cells = <2>
+#define ZMK_BEHAVIOR_CORE_key_repeat  compatible = "zmk,behavior-key-repeat"; 		#binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_macro       compatible = "zmk,behavior-macro";      		#binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_mod_morph   compatible = "zmk,behavior-mod-morph";  		#binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_sticky_key  compatible = "zmk,behavior-sticky-key"; 		#binding-cells = <1>
+#define ZMK_BEHAVIOR_CORE_tap_dance   compatible = "zmk,behavior-tap-dance";  		#binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_encoder     compatible = "zmk,behavior-sensor-rotate";	#sensor-binding-cells = <0>
 
 #define ZMK_HELPER_STRINGIFY(x) #x
 
@@ -63,6 +64,18 @@
         }; \
     };
 
+#define ENCODER(name, rot_up, rot_down) \ 
+	/ { \
+		behaviors { \
+			name: name { \
+				label = ZMK_HELPER_STRINGIFY(EN_ ## name); \
+				ZMK_BEHAVIOR_CORE_encoder; \
+				bindings = <rot_up>, <rot_down>; \
+			}; \
+		}; \
+	};
+	// "up" = clockwise; "down" = counter-clockwise
+
 /* HOLD-TAP BEHAVIORS */
 HOLD_TAP(cm, 200, 150, &kp &kp)	// Custom mods: default hold-tap
 HOLD_TAP(as, 200, 0, &kp &kp)	// Autoshift: gives second entry with hold
@@ -98,6 +111,11 @@ MOD_MORPH(rparbkt, &kp RPAR, &kp RBKT)
 MOD_MORPH(slashes, &kp SLASH, &kp BSLH)
 MOD_MORPH(intbang, &kp QMARK, &kp EXCL)
 
+
+/* ENCODER BEHAVIORS */
+ENCODER(scroll, &mwh S_UP, &mwh S_DN)
+ENCODER(volume, &kp C_VOL_UP, &kp C_VOL_DN)
+ENCODER(tabs, &kp LS(LC(TAB)), &kp LC(TAB))
 
 /* TAP DANCE BEHAVIORS */
 ZMK_BEHAVIOR(tdbt, tap_dance,
