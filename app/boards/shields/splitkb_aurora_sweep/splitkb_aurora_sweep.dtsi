@@ -28,35 +28,34 @@
     left_encoder1: left_encoder1 {
         compatible = "alps,ec11";
         label = "L_ENCODER1";
-        steps = <80>;
+        resolution = <4>;
         status = "disabled";
     };
 
     left_encoder2: left_encoder2 {
         compatible = "alps,ec11";
         label = "L_ENCODER2";
-        steps = <80>;
+        resolution = <4>;
         status = "disabled";
     };
 
     right_encoder1: right_encoder1 {
         compatible = "alps,ec11";
         label = "R_ENCODER1";
-        steps = <80>;
+        resolution = <4>;
         status = "disabled";
     };
 
     right_encoder2: right_encoder2 {
         compatible = "alps,ec11";
         label = "R_ENCODER2";
-        steps = <80>;
+        resolution = <4>;
         status = "disabled";
     };
 
-    sensors: sensors {
+    sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder1 &right_encoder1>;
-        triggers-per-rotation = <20>;
     };
 };
 

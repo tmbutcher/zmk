@@ -18,7 +18,7 @@ child-binding:
     timeout-ms:
       type: int
       default: 50
-    require-prior-idle-ms:
+    global-quick-tap-ms:
       type: int
       default: -1
     slow-release:

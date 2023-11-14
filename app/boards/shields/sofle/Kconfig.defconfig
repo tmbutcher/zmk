@@ -46,10 +46,4 @@ endchoice
 
 endif # LVGL
 
-if ZMK_RGB_UNDERGLOW
-
-config WS2812_STRIP
-    default y
-endif
-
 endif
