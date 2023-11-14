@@ -50,8 +50,9 @@
 #define COMBO_TERM_SLOW 45
 #define COMBO_TERM_VERY_SLOW 150
 
-#define STANDARD DEF DEF_NM OHAND QWERTY QWER_NM
-#define REDUCED DEF OHAND QWERTY NUM
+#define STANDARD DEF DEF_NM OHAND QWERTY QWER_NM WORK
+#define REDUCED DEF OHAND QWERTY NUM WORK
+#define NOT_WORK DEF OHAND QWERTY NUM
 
 
 /* Shortcuts */
@@ -61,10 +62,12 @@ ZMK_COMBO_ADV(cut,   	&kp LC(X),			LB2 LB4, 			ALL, 		COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(copy,  	&kp LC(C),			LB2 LB3,			ALL, 		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(paste, 	&kp LC(V),			LB3 LB4,			ALL, 		COMBO_TERM_FAST)
 
-ZMK_COMBO_ADV(plaintxt, &plaintxt,			LB2 LB3 LB4,		ALL,		COMBO_TERM_VERY_SLOW) 		// AHK: Paste plain text
+ZMK_COMBO_ADV(plaintxt, &plaintxt,			LB2 LB3 LB4,		NOT_WORK,	COMBO_TERM_VERY_SLOW) 	// AHK: Paste plain text
 ZMK_COMBO_ADV(lowertxt,	&kp LS(LC(RBRC)),	LT4 LT5 LM4 LM5,	ALL,		COMBO_TERM_VERY_SLOW)	// AHK: Paste all lowercase
 ZMK_COMBO_ADV(uppertxt,	&kp LS(LC(LBRC)),	LM4 LM5 LB4 LB5,	ALL,		COMBO_TERM_VERY_SLOW)	// AHK: Paste all uppercase
 ZMK_COMBO_ADV(sent_txt,	&kp LS(LC(BSLH)),	LM3 LM4 LB3 LB4,	ALL,		COMBO_TERM_VERY_SLOW)	// AHK: Paste in Sentence Case
+
+ZMK_COMBO_ADV(workpaste, &kp LC(LA(V)),		LB2 LB3 LB4,		WORK,   	COMBO_TERM_VERY_SLOW)   // Opens clipboard history app
 
 ZMK_COMBO_ADV(undo, 	&kp LC(Z),			LB1 LB2, 			ALL,		COMBO_TERM_FAST)
 ZMK_COMBO_ADV(redo, 	&kp LC(Y),			LB4 LB5, 			ALL,		COMBO_TERM_FAST)
@@ -87,12 +90,12 @@ ZMK_COMBO_ADV(n9, 		&kp N9,				RT4 RT5, 			STANDARD, 	COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(n0, 		&kp N0,				LT1 RT5, 			STANDARD, 	COMBO_TERM_VERY_SLOW)
 
 /* Dashes */
-ZMK_COMBO_ADV(emdash, 	&em_dash,			LT2 LT4, 			REDUCED,	COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(emdash, 	&em_dash,			LT2 LT4, 			NOT_WORK,	COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(hyph2,  	&kp MINUS,			RT2 RT4, 			ALL, 		COMBO_TERM_SLOW)
 
 ZMK_COMBO_ADV(lthan, 	&cm LA(LSHFT) LT,	LM2 LM3, 			REDUCED,	COMBO_TERM_FAST)
 ZMK_COMBO_ADV(gthan, 	&cm LS(LCTRL) GT,	LM3 LM4, 			REDUCED,	COMBO_TERM_FAST)
-ZMK_COMBO_ADV(endash, 	&enm LA(LCTRL) 0,	LM2 LM4, 			REDUCED,	COMBO_TERM_SLOW)	// Uses a special hold tap. The 0 is because the tap is always an en dash, so it takes no arguments
+ZMK_COMBO_ADV(endash, 	&enm LA(LCTRL) 0,	LM2 LM4, 			NOT_WORK,	COMBO_TERM_SLOW)	// Uses a special hold tap. The 0 is because the tap is always an en dash, so it takes no arguments
 
 ZMK_COMBO_ADV(work_emdash, 	&kp LA(LS(MINUS)),	LT2 LT4,		WORK,	COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(work_endash, 	&kp LC(LS(MINUS)),	LM2 LM4, 		WORK,	COMBO_TERM_SLOW)
