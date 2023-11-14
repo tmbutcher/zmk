@@ -167,7 +167,7 @@
 		default_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "D.NoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp R &kp S &kp T ___ ___ &kp N &kp E &kp I &kp O ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
-						___ ___ &mt LALT LS(TAB) ___ ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
+						___ ___ &kp SPACE ___ ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
 			sensor-bindings = <&scroll>;
 		};
 
@@ -232,7 +232,7 @@
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 	&kp Z		  &kp X			&kp C		  &kp V			&kp B				 ___				  &kp N			&kp M		  &kp COMMA		&kp DOT		  &kp SLASH
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤
-	___			  				___			  ___			___			  ___			___			  ___			___			  ___						  ___	
+	&lt FN ESC			  &mt LCTRL HOME &cm KP_EMJ LS(TAB) &sm NAV LSHFT &lt MOUSE TAB	&lt NUM BSPC &shm RSHFT SPACE &lt OHAND DEL &cm KP_CMP END		  &mt RSHFT RET
 //╰─────────────────╯		  ╰─────────────┴─────────────┴─────────────┴─────────────╯─────────────┴─────────────┴─────────────┴─────────────╯	   		╰─────────────────╯
 //																		  		 ╭─────────╮
 																				   ___	
@@ -249,7 +249,7 @@
 		qwerty_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "QNoMods";
 			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp S &kp D &kp F ___ ___ &kp K &kp L &kp COLON &kp APOS ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
-						___ ___ &mt LALT LS(TAB) &kp SPACE ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
+						___ ___ &kp SPACE ___ ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
 			sensor-bindings = <&scroll>;
 		};
 
