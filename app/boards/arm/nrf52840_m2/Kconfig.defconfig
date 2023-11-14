@@ -16,13 +16,4 @@ endif # USB_DEVICE_STACK
 config BT_CTLR
     default BT
 
-config ZMK_BLE
-    default y
-
-config ZMK_USB
-    default y
-
-config ZMK_KEYBOARD_NAME
-    default "adafruit_feather_nrf52840"
-
 endif # BOARD_NRF52840_M2
