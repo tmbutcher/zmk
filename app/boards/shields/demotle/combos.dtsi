@@ -46,7 +46,7 @@
 	                    
 // use global-quick-tap-ms for combos (requires PR 1387)
 #undef COMBO_ADD_ON
-#define COMBO_ADD_ON global-quick-tap-ms = <150>;
+#define COMBO_ADD_ON require-prior-idle-ms = <150>;
 
 #define COMBO_TERM_FAST 35
 #define COMBO_TERM_SLOW 45
