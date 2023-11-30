@@ -46,9 +46,23 @@ This behavior can press/release up to 16 mouse buttons.
 ### Behavior Binding
 
 - Reference: `&mkp`
-- Parameter: A `uint16` with each bit referring to a button.
+- Parameter: A `uint8` with bits 0 through 4 each referring to a button.
 
-Example:
+The following defines can be passed for the parameter:
+
+| Define        | Action         |
+| :------------ | :------------- |
+| `MB1`, `LCLK` | Left click     |
+| `MB2`, `RCLK` | Right click    |
+| `MB3`, `MCLK` | Middle click   |
+| `MB4`         | Mouse button 4 |
+| `MB5`         | Mouse button 5 |
+
+Mouse buttons 4 and 5 typically map to "back" and "forward" actions in most applications.
+
+### Examples
+
+The following will send a left click press when the binding is triggered:
 
 ```
 &mkp LCLK

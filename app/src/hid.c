@@ -12,6 +12,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <dt-bindings/zmk/modifiers.h>
 
 static struct zmk_hid_keyboard_report keyboard_report = {
+
     .report_id = ZMK_HID_REPORT_ID_KEYBOARD, .body = {.modifiers = 0, ._reserved = 0, .keys = {0}}};
 
 static struct zmk_hid_consumer_report consumer_report = {.report_id = ZMK_HID_REPORT_ID_CONSUMER,
@@ -25,9 +26,11 @@ static uint8_t keys_held = 0;
 #endif /* IS_ENABLED(CONFIG_ZMK_USB_BOOT) */
 
 #if IS_ENABLED(CONFIG_ZMK_MOUSE)
-static struct zmk_hid_mouse_report mouse_report = {
-    .report_id = 4, .body = {.buttons = 0, .x = 0, .y = 0, .scroll_x = 0, .scroll_y = 0}};
-#endif
+
+static struct zmk_hid_mouse_report mouse_report = {.report_id = ZMK_HID_REPORT_ID_MOUSE,
+                                                   .body = {.buttons = 0, .x = 0, .y = 0, .scroll_x = 0, .scroll_y = 0}};
+
+#endif // IS_ENABLED(CONFIG_ZMK_MOUSE)
 
 // Keep track of how often a modifier was pressed.
 // Only release the modifier if the count is 0.
@@ -363,9 +366,10 @@ bool zmk_hid_is_pressed(uint32_t usage) {
 }
 
 #if IS_ENABLED(CONFIG_ZMK_MOUSE)
+
 // Keep track of how often a button was pressed.
 // Only release the button if the count is 0.
-static int explicit_button_counts[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static int explicit_button_counts[5] = {0, 0, 0, 0, 0};
 static zmk_mod_flags_t explicit_buttons = 0;
 
 #define SET_MOUSE_BUTTONS(btns)                                                                    \
@@ -375,6 +379,10 @@ static zmk_mod_flags_t explicit_buttons = 0;
     }
 
 int zmk_hid_mouse_button_press(zmk_mouse_button_t button) {
+    if (button >= ZMK_HID_MOUSE_NUM_BUTTONS) {
+        return -EINVAL;
+    }
+
     explicit_button_counts[button]++;
     LOG_DBG("Button %d count %d", button, explicit_button_counts[button]);
     WRITE_BIT(explicit_buttons, button, true);
@@ -383,6 +391,10 @@ int zmk_hid_mouse_button_press(zmk_mouse_button_t button) {
 }
 
 int zmk_hid_mouse_button_release(zmk_mouse_button_t button) {
+    if (button >= ZMK_HID_MOUSE_NUM_BUTTONS) {
+        return -EINVAL;
+    }
+
     if (explicit_button_counts[button] <= 0) {
         LOG_ERR("Tried to release button %d too often", button);
         return -EINVAL;
@@ -398,8 +410,8 @@ int zmk_hid_mouse_button_release(zmk_mouse_button_t button) {
 }
 
 int zmk_hid_mouse_buttons_press(zmk_mouse_button_flags_t buttons) {
-    for (zmk_mod_t i = 0; i < 16; i++) {
-        if (buttons & (1 << i)) {
+    for (zmk_mouse_button_t i = 0; i < ZMK_HID_MOUSE_NUM_BUTTONS; i++) {
+        if (buttons & BIT(i)) {
             zmk_hid_mouse_button_press(i);
         }
     }
@@ -407,8 +419,8 @@ int zmk_hid_mouse_buttons_press(zmk_mouse_button_flags_t buttons) {
 }
 
 int zmk_hid_mouse_buttons_release(zmk_mouse_button_flags_t buttons) {
-    for (zmk_mod_t i = 0; i < 16; i++) {
-        if (buttons & (1 << i)) {
+    for (zmk_mouse_button_t i = 0; i < ZMK_HID_MOUSE_NUM_BUTTONS; i++) {
+        if (buttons & BIT(i)) {
             zmk_hid_mouse_button_release(i);
         }
     }
@@ -452,7 +464,9 @@ struct zmk_hid_consumer_report *zmk_hid_get_consumer_report() {
 }
 
 #if IS_ENABLED(CONFIG_ZMK_MOUSE)
+
 struct zmk_hid_mouse_report *zmk_hid_get_mouse_report() {
     return &mouse_report;
 }
-#endif
+
+#endif // IS_ENABLED(CONFIG_ZMK_MOUSE)

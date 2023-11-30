@@ -6,21 +6,21 @@
 #pragma once
 
 /* Mouse press behavior */
+/* Mouse press behavior */
 /* Left click */
-#define MB1 (0x01)
+#define MB1 BIT(0)
 #define LCLK (MB1)
 
 /* Right click */
-#define MB2 (0x02)
+#define MB2 BIT(1)
 #define RCLK (MB2)
 
 /* Middle click */
-#define MB3 (0x04)
+#define MB3 BIT(2)
 #define MCLK (MB3)
 
-#define MB4 (0x08)
-
-#define MB5 (0x10)
+#define MB4 BIT(3)
+#define MB5 BIT(4)
 
 #define MB6 (0x20)
 
@@ -53,3 +53,20 @@
 #define SCROLL_DOWN SCROLL_VERT(-10)
 #define SCROLL_LEFT SCROLL_HOR(-10)
 #define SCROLL_RIGHT SCROLL_HOR(10)
+#include <zephyr/dt-bindings/dt-util.h>
+
+/* Mouse press behavior */
+/* Left click */
+#define MB1 BIT(0)
+#define LCLK (MB1)
+
+/* Right click */
+#define MB2 BIT(1)
+#define RCLK (MB2)
+
+/* Middle click */
+#define MB3 BIT(2)
+#define MCLK (MB3)
+
+#define MB4 BIT(3)
+#define MB5 BIT(4)
