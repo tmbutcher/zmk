@@ -70,6 +70,7 @@
 #include <../boards/shields/space_invader/helper.h>
 #include <../boards/shields/space_invader/behaviors.dtsi>
 #include <../boards/shields/space_invader/combos.dtsi>
+#include <../boards/shields/space_invader/private.dtsi>
 
 &mt { quick_tap_ms = <200>; };
 &lt { quick_tap_ms = <200>; };
@@ -377,9 +378,9 @@
 			bindings = <
 //----------------------------------------------------------------------------------MOUSE---------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	xxx			  xxx			xxx			  xxx			xxx										  &mwh S_UP		&mwh S_LT	  &mouse_u		&mwh S_RT 	  xxx	
+	xxx			  xxx			xxx			  xxx			xxx										  &msc S_UP		&msc S_LT	  &mouse_u		&msc S_RT 	  xxx	
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-	&kp LWIN	  &kp LALT		&kp LSHFT	  &kp LCTRL		&kp HYPER								  &mwh S_DN		&mouse_l	  &mouse_d		&mouse_r	  &kp RSHFT	
+	&kp LWIN	  &kp LALT		&kp LSHFT	  &kp LCTRL		&kp HYPER								  &msc S_DN		&mouse_l	  &mouse_d		&mouse_r	  &kp RSHFT	
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 	xxx			  xxx			xxx			  xxx			xxx					 ___				  xxx			xxx			  xxx			xxx			  xxx
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤

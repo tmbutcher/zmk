@@ -113,7 +113,7 @@ MOD_MORPH(intbang, &kp QMARK, &kp EXCL)
 
 
 /* ENCODER BEHAVIORS */
-ENCODER(scroll, &mwh S_UP, &mwh S_DN)
+ENCODER(scroll, &msc S_UP, &msc S_DN)
 ENCODER(volume, &kp C_VOL_UP, &kp C_VOL_DN)
 ENCODER(tabs, &kp LS(LC(TAB)), &kp LC(TAB))
 
