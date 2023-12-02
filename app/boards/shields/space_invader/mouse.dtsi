@@ -1,0 +1,56 @@
+#include <dt-bindings/zmk/mouse.h>
+
+&mmv {
+  time-to-max-speed-ms = <500>;
+  acceleration-exponent = <1>;
+  delay-ms = <0>;
+};
+
+&mwh {
+  time-to-max-speed-ms = <400>;
+  acceleration-exponent = <0>;
+  delay-ms = <0>;
+};
+
+#define U_MOUSE_MOVE_MAX 3000
+#define S_MOUSE_MOVE_MAX 500
+#define U_MOUSE_SCROLL_MAX 100
+
+
+#undef MOVE_UP
+#undef MOVE_DOWN
+#undef MOVE_LEFT
+#undef MOVE_RIGHT
+#define MOVE_UP MOVE_VERT(-U_MOUSE_MOVE_MAX)
+#define MOVE_DOWN MOVE_VERT(U_MOUSE_MOVE_MAX)
+#define MOVE_LEFT MOVE_HOR(-U_MOUSE_MOVE_MAX)
+#define MOVE_RIGHT MOVE_HOR(U_MOUSE_MOVE_MAX)
+
+#define MOVE_UP_SLOW MOVE_VERT(-S_MOUSE_MOVE_MAX)
+#define MOVE_DOWN_SLOW MOVE_VERT(S_MOUSE_MOVE_MAX)
+#define MOVE_LEFT_SLOW MOVE_HOR(-S_MOUSE_MOVE_MAX)
+#define MOVE_RIGHT_SLOW MOVE_HOR(S_MOUSE_MOVE_MAX)
+
+#define M_UP MOVE_UP
+#define M_DN MOVE_DOWN
+#define M_LT MOVE_LEFT
+#define M_RT MOVE_RIGHT
+
+#define MUPS MOVE_UP_SLOW
+#define MDNS MOVE_DOWN_SLOW
+#define MLTS MOVE_LEFT_SLOW
+#define MRTS MOVE_RIGHT_SLOW
+
+#undef SCROLL_UP
+#undef SCROLL_DOWN
+#undef SCROLL_LEFT
+#undef SCROLL_RIGHT
+#define SCROLL_UP SCROLL_VERT(U_MOUSE_SCROLL_MAX)
+#define SCROLL_DOWN SCROLL_VERT(-U_MOUSE_SCROLL_MAX)
+#define SCROLL_LEFT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
+#define SCROLL_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
+
+#define S_UP SCROLL_UP
+#define S_DN SCROLL_DOWN
+#define S_LT SCROLL_LEFT
+#define S_RT SCROLL_RIGHT
