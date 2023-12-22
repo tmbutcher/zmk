@@ -16,3 +16,6 @@ __pycache__
 
 # clangd
 app/.cache/
+
+#TMB
+app/boards/shields/space_invader/private.dtsi
