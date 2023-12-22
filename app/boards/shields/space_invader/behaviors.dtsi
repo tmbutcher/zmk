@@ -129,6 +129,18 @@ ZMK_BEHAVIOR(tdusb, tap_dance,
 )
 
 /* MACROS */
+ZMK_BEHAVIOR(dcomp, macro,
+	wait-ms = <10>;
+	tap-ms = <0>;
+	bindings = <&kp KP_CMP &kp KP_CMP>;
+)
+
+ZMK_BEHAVIOR(tcomp, macro,
+	wait-ms = <10>;
+	tap-ms = <0>;
+	bindings = <&kp KP_CMP &kp KP_CMP &kp KP_CMP>;
+)
+
 ZMK_BEHAVIOR(en_dash, macro,
 	wait-ms = <10>;
 	tap-ms = <0>;
@@ -142,11 +154,10 @@ ZMK_BEHAVIOR(em_dash, macro,
 	wait-ms = <10>;
 	tap-ms = <0>;
 	bindings
-	= <&macro_press &kp KP_CMP>
+	= <&macro_tap &kp KP_CMP>
 	, <&macro_press &kp LSHFT>
 	, <&macro_tap &kp MINUS>
-	, <&macro_release &kp LSHFT>
-	, <&macro_release &kp KP_CMP> ;
+	, <&macro_release &kp LSHFT> ;
 )
 
 ZMK_BEHAVIOR(plaintxt, macro,
@@ -165,3 +176,4 @@ ZMK_BEHAVIOR(unstick, macro,			// For when mods get stuck - presses and releases
 	tap-ms = <0>;
 	bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI &macro_wait_time 100 &kp RGUI &kp ESC>;
 )
+
