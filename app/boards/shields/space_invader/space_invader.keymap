@@ -167,7 +167,7 @@
 
 		default_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "D.NoMods";
-			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp R &kp S &kp T ___ ___ &kp N &kp E &kp I &kp O ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp R &kp S &kp T &kp G ___ &kp N &kp E &kp I &kp O ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 						___ ___ &kp SPACE ___ ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
 			sensor-bindings = <&scroll>;
 		};
@@ -249,7 +249,7 @@
 
 		qwerty_no_mods_layer { // Just turns off homerow mods, so no need for the whole keymap diagram
 			label = "QNoMods";
-			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp S &kp D &kp F ___ ___ &kp K &kp L &kp COLON &kp APOS ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+			bindings = <___ ___	___ ___ ___ ___ ___ ___ ___ ___ &kp A &kp S &kp D &kp F &kp G ___ &kp K &kp L &kp COLON &kp APOS ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 						___ ___ &kp SPACE ___ ___ ___ ___ ___ &mt RWIN END ___ ___ ___ ___ ___ ___>;
 			sensor-bindings = <&scroll>;
 		};
