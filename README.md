@@ -1,3 +1,3 @@
 List of PRs (etc.) merged with this branch:
 
-[Caksoylar] (https://github.com/caksoylar/zmk) / feat/mouse-keys-3.2 (Dec. 2, 2023)
+[Pete Johanson] (https://github.com/petejohanson/zmk) / feat/pointers-move-scroll (Dec. 2, 2023)
