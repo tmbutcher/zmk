@@ -9,13 +9,10 @@
 #define ZMK_BEHAVIOR_CORE_tap_dance   compatible = "zmk,behavior-tap-dance";  		#binding-cells = <0>
 #define ZMK_BEHAVIOR_CORE_encoder     compatible = "zmk,behavior-sensor-rotate";	#sensor-binding-cells = <0>
 
-#define ZMK_HELPER_STRINGIFY(x) #x
-
 #define ZMK_BEHAVIOR(name, type, ...) \
     / { \
         behaviors { \
             name: name { \
-                label = ZMK_HELPER_STRINGIFY(ZB_ ## name); \
                 ZMK_BEHAVIOR_CORE_ ## type; \
                 __VA_ARGS__ \
             }; \
@@ -26,7 +23,6 @@
 	/ { \
         behaviors { \
             name: name { \
-                label = ZMK_HELPER_STRINGIFY(MM_ ## name); \
                 ZMK_BEHAVIOR_CORE_mod_morph; \
                 bindings = <key1>, <key2>; \
 				mods = <(MOD_LSFT|MOD_RSFT)>; \
@@ -38,7 +34,6 @@
 	/ { \
         behaviors { \
             name: name { \
-                label = ZMK_HELPER_STRINGIFY(MM_ ## name); \
                 ZMK_BEHAVIOR_CORE_mod_morph; \
                 bindings = <key1>, <key2>; \
 				mods = <(MOD_LSFT|MOD_RSFT)>; \
@@ -53,7 +48,6 @@
 	/ { \
         behaviors { \
             name: name { \
-                label = ZMK_HELPER_STRINGIFY(HT_ ## name); \
                 ZMK_BEHAVIOR_CORE_hold_tap; \
                 tapping_term_ms = <tapping>; \
 				quick_tap_ms = <quick_tap>; \
@@ -68,7 +62,6 @@
 	/ { \
 		behaviors { \
 			name: name { \
-				label = ZMK_HELPER_STRINGIFY(EN_ ## name); \
 				ZMK_BEHAVIOR_CORE_encoder; \
 				bindings = <rot_up>, <rot_down>; \
 			}; \

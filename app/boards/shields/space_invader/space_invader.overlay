@@ -92,9 +92,11 @@
 
 &feather_i2c {
 	status = "okay";
-	sda-pin = <12>;
-	scl-pin = <11>;
-	zephyr,concat-buf-size = <1024>;
+	// sda-pin = <12>;
+	// scl-pin = <11>;
+	// zephyr,concat-buf-size = <1024>;
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
 
 	oled: ssd1306@3c {
 		compatible = "solomon,ssd1306fb";
@@ -109,6 +111,7 @@
 		com-invdir;
 		segment-remap;
 		com-sequential;
+		inversion-on;
 		prechargep = <0x22>;
 	};
 };
