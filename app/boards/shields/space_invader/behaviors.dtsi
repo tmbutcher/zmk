@@ -130,20 +130,20 @@ ZMK_BEHAVIOR(tdusb, tap_dance,
 
 /* MACROS */
 ZMK_BEHAVIOR(dcomp, macro,
-	wait-ms = <10>;
-	tap-ms = <0>;
+	wait-ms = <20>;
+	tap-ms = <10>;
 	bindings = <&kp KP_CMP &kp KP_CMP>;
 )
 
 ZMK_BEHAVIOR(tcomp, macro,
-	wait-ms = <10>;
-	tap-ms = <0>;
+	wait-ms = <20>;
+	tap-ms = <10>;
 	bindings = <&kp KP_CMP &kp KP_CMP &kp KP_CMP>;
 )
 
 ZMK_BEHAVIOR(en_dash, macro,
-	wait-ms = <10>;
-	tap-ms = <0>;
+	wait-ms = <20>;
+	tap-ms = <10>;
 	bindings
 	= <&macro_press &kp KP_CMP>
 	, <&macro_tap &kp MINUS>
@@ -151,8 +151,8 @@ ZMK_BEHAVIOR(en_dash, macro,
 )
 
 ZMK_BEHAVIOR(em_dash, macro,
-	wait-ms = <10>;
-	tap-ms = <0>;
+	wait-ms = <20>;
+	tap-ms = <10>;
 	bindings
 	= <&macro_tap &kp KP_CMP>
 	, <&macro_press &kp LSHFT>
@@ -161,19 +161,31 @@ ZMK_BEHAVIOR(em_dash, macro,
 )
 
 ZMK_BEHAVIOR(plaintxt, macro,
-	wait-ms = <10>;
-	tap-ms = <0>;
+	wait-ms = <20>;
+	tap-ms = <10>;
 	bindings
-	= <&macro_press &kp LSHFT>
-	, <&macro_press &kp LCTRL>
+	= <&macro_press &kp LSHFT &kp LCTRL>
 	, <&macro_tap &kp V>
-	, <&macro_release &kp LCTRL>
-	, <&macro_release &kp LSHFT> ;
+	, <&macro_release &kp LCTRL &kp LSHFT> ;
 )
 
 ZMK_BEHAVIOR(unstick, macro,			// For when mods get stuck - presses and releases all of them
-	wait-ms = <10>;
-	tap-ms = <0>;
-	bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI &macro_wait_time 100 &kp RGUI &kp ESC>;
+	wait-ms = <20>;
+	tap-ms = <10>;
+	bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI>
+	, <&macro_wait_time 100>
+	, <&kp RGUI &kp ESC> ;
+)
+
+ZMK_BEHAVIOR(tnr, macro,			// Macro to set Word to TNR
+	wait-ms = <20>;
+	tap-ms = <10>;
+	bindings
+	= <&macro_press &kp LSHFT>
+	, <&macro_tap &kp HOME>
+	, <&macro_press &kp LCTRL>
+	, <&macro_tap &kp F>
+	, <&macro_release &kp LSHFT &kp LCTRL>
+	, <&macro_tap &kp T &kp I &kp M &kp E &kp S &kp DOWN &kp RET &kp END> ;
 )
 

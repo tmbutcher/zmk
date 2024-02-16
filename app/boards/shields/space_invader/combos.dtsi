@@ -74,6 +74,8 @@ ZMK_COMBO_ADV(redo, 	&kp LC(Y),			LB4 LB5, 			ALL,		COMBO_TERM_FAST)
 
 ZMK_COMBO_ADV(ctrl-w,	&kp LC(W),			RH2 RH3 RH4,		ALL,		COMBO_TERM_SLOW)
 
+ZMK_COMBO_ADV(TNR,      &tnr,               RB2 RB3 RB4 RB5,    WORK,       COMBO_TERM_VERY_SLOW)
+
 
 /* Numbers */
 ZMK_COMBO_ADV(n1, 		&kp N1,				LT1 LT2, 			STANDARD, 	COMBO_TERM_SLOW)
