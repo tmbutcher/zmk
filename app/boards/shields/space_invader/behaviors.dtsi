@@ -58,12 +58,13 @@
         }; \
     };
 
-#define ENCODER(name, rot_up, rot_down) \ 
+#define ENCODER(name, rot_up, rot_down, tap_ms) \ 
 	/ { \
 		behaviors { \
 			name: name { \
 				ZMK_BEHAVIOR_CORE_encoder; \
 				bindings = <rot_up>, <rot_down>; \
+				tap-ms = <tap_ms>; \
 			}; \
 		}; \
 	};
@@ -106,9 +107,9 @@ MOD_MORPH(intbang, &kp QMARK, &kp EXCL)
 
 
 /* ENCODER BEHAVIORS */
-ENCODER(scroll, &msc S_UP, &msc S_DN)
-ENCODER(volume, &kp C_VOL_UP, &kp C_VOL_DN)
-ENCODER(tabs, &kp LS(LC(TAB)), &kp LC(TAB))
+ENCODER(scroll, &msc S_UP, &msc S_DN, 50)
+ENCODER(volume, &kp C_VOL_UP, &kp C_VOL_DN, 5)
+ENCODER(tabs, &kp LS(LC(TAB)), &kp LC(TAB), 5)
 
 /* TAP DANCE BEHAVIORS */
 ZMK_BEHAVIOR(tdbt, tap_dance,
