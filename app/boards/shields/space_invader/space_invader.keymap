@@ -34,23 +34,6 @@
 #define CMP		13
 #define STAY	14
 
-// Mouse Key defs--For use until AHK can be ditched
-#define WH_DN	(F16)
-#define WH_UP	(F17)
-// #define WH_L	(KP_N7)
-// #define WH_R	(KP_N9)
-// #define M_UP	(KP_N8)
-// #define M_DN	(KP_N5)
-// #define M_L		(KP_N4)
-// #define M_R		(KP_N6)
-// #define M_UP_SL	(LC(LG(LA(M_UP))))		// These move the mouse slowly
-// #define M_DN_SL	(LC(LG(LA(M_DN))))
-// #define M_R_SL	(LC(LG(LA(M_R))))
-// #define M_L_SL	(LC(LG(LA(M_L))))
-// #define M_MB	(KP_DIVIDE)
-// #define M_LB	(KP_MINUS)
-// #define M_RB	(KP_MULTIPLY)
-
 // F Key subs (use with AHK)
 #define KP_PLS	(F18)
 #define KP_COM	(F19)
@@ -352,9 +335,9 @@
 			bindings = <
 //-------------------------------------------------------------------------------NAVIGATION-------------------------------------------------------------------------------
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮	 		  			    ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-	xxx			  xxx			xxx			  xxx			xxx										  &kp WH_UP   	&kp HOME	  &kp UP		&kp END		  &kp PG_UP
+	xxx			  xxx			xxx			  xxx			xxx										  &msc S_UP   	&kp HOME	  &kp UP		&kp END		  &kp PG_UP
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	 					    ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-  	&kp LWIN	  &kp LALT	 	&kp LSHFT	  &kp LCTRL		xxx										  &kp WH_DN   	&kp LEFT	  &kp DOWN    	&kp RIGHT 	  &kp PG_DN
+  	&kp LWIN	  &kp LALT	 	&kp LSHFT	  &kp LCTRL		xxx										  &msc S_DN   	&kp LEFT	  &kp DOWN    	&kp RIGHT 	  &kp PG_DN
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤	   ╭─────────────╮      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
 	xxx			  xxx			xxx			  xxx			xxx				     &kp LC(W)			  xxx			&kp LC(LEFT)  xxx			&kp LC(RIGHT) xxx	
 //├─────────────┴───┬─────────┼─────────────┼─────────────┼─────────────┬──────╰──────╮──────╯──────┬─────────────┼─────────────┼─────────────┴─────────┬───┴─────────────┤

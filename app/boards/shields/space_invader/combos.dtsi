@@ -161,7 +161,7 @@ ZMK_COMBO_ADV(work,		&tog WORK,			LB1 LB2 RB4 RB5,	ALL,		COMBO_TERM_VERY_SLOW)
 
 
 /* Other Combos */
-ZMK_COMBO_ADV(reset, 	&sys_reset,			RT2 RT3 RT4 RT5, 	ALL, 		COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(reset, 	&sys_reset,			RT1 RT5,        	ALL, 		COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(sleep, 	&kp KP_SLP,			LT4 LT5 RT1 RT2, 	ALL, 		COMBO_TERM_SLOW)
 
 ZMK_COMBO_ADV(caps_wd,	&caps_word,			LM1 LM2 LM3,		STANDARD, 	COMBO_TERM_FAST)
